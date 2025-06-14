@@ -2,6 +2,8 @@ import time
 import random
 from colorama import Fore, Style
 
+print("Welcome to TermAdventure!")
+
 score = 0
 dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local",
       "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc2","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2",
