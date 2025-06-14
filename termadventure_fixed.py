@@ -27,10 +27,10 @@ for i in names:
     gendir.clear()
 dirlen=len(dir)
 print(Style.RESET_ALL)
-print(names)
-print(memory)
-print(names_memory)
-print(dir)
+print("names - "+str(names))
+print("memory - "+str(memory))
+print("namesmemory - "+str(names_memory))
+print("dir - "+str(dir))
 inp = input("player@termadventure ~ ")
 syntax = inp.split(" ")
 syntax+=[".."]
@@ -40,11 +40,14 @@ while True:
         if inp == str(syntax[0])+" "+str(syntax[1]):
             if syntax[1] in names: #cd dest
                 layer+=1
+                memory.clear()
+                memory+=dir
                 names_memory.clear()
                 names_memory+=names
                 names.clear()
                 empty_chance = random.randint(1,8)
                 print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+                dir.clear()
                 if empty_chance < 5:
                     bonus_chance = random.randint(1,15)
                     easter_chance = random.randint(1,15)
@@ -114,35 +117,55 @@ while True:
                                 dir.append(list(gendir))
                                 gendir.clear()
                     dirlen=len(dir)
-                    if bonus_chance > 8:
+                    if bonus_chance > 12:
                         names.append(str(files[0]))
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
                     if easter_chance > 14:
                         names.append(str(files[1]))
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if readme_chance > 8:
+                    if readme_chance > 12:
                         names.append(str(files[2]))
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if unknown_chance > 10:
+                    if unknown_chance > 12:
                         names.append(str(files[3]))
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                    memory.clear()
-                    memory+=dir
-                    dir.clear()
+                    # memory.clear()
+                    # memory+=dir
+                    # dir.clear()
                     print(Style.RESET_ALL)
                     lastdir=syntax[1]
-                    print(names)
-                    print(memory)
-                    print(names_memory)
-                    print(dir)
+                    print("names - "+str(names))
+                    print("memory - "+str(memory))
+                    print("namesmemory - "+str(names_memory))
+                    print("dir - "+str(dir))
                     inp = input("player@termadventure ~ ")
                     syntax = inp.split(" ")
                     syntax+=[".."]
                 elif empty_chance >= 5:
-                    memory.clear()
-                    memory+=dir
-                    names_memory.clear()
-                    names_memory+=names
+                    bonus_chance = random.randint(1,15)
+                    easter_chance = random.randint(1,15)
+                    readme_chance = random.randint(1,15)
+                    unknown_chance = random.randint(1,15)
+                    for i in range(random.randint(2,7)):
+                        names.append(str(random.choice(dirs)))
+                    for i in names:
+                        for i in range(random.randint(2,7)):
+                            gendir.append(str(random.choice(dirs)))
+                        dir.append(list(gendir))
+                        gendir.clear()
+                    dirlen=len(dir)
+                    if bonus_chance > 8:
+                        names.append(str(files[0]))
+                    if easter_chance > 14:
+                        names.append(str(files[1]))
+                    if readme_chance > 8:
+                        names.append(str(files[2]))
+                    if unknown_chance > 10:
+                        names.append(str(files[3]))
+                    # memory.clear()
+                    # memory+=dir
+                    # names_memory.clear()
+                    # names_memory+=names
                     if inp == "cd "+names_memory[0]:
                         dir[0].append("empty")
                     elif inp == "cd "+names_memory[1]:
@@ -157,16 +180,17 @@ while True:
                         dir[5].append("empty")
                     elif inp == "cd "+names_memory[6]:
                         dir[6].append("empty")
+                    dir.clear()
                     print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                     print(Style.RESET_ALL)
-                    print(names)
-                    print(memory)
-                    print(names_memory)
-                    print(dir)
+                    print("names - "+str(names))
+                    print("memory - "+str(memory))
+                    print("namesmemory - "+str(names_memory))
+                    print("dir - "+str(dir))
                     inp = input("player@termadventure ~ ")
                     syntax = inp.split(" ")
                     syntax+=[".."]
-            if inp == str(syntax[0])+" "+str(syntax[2]): #cd ..
+            elif inp == str(syntax[0])+" "+str(syntax[2]): #cd ..
                 layer-=1
                 print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
                 for i in range(dirlen):
@@ -189,7 +213,7 @@ while True:
                 syntax.clear()
                 syntax = inp.split(" ")
                 syntax+=[".."]
-        if inp == files[0]:
+        elif inp == files[0]:
             if inp == "bonus" and syntax[0] in names: #bonus
                 bonusscore = random.choice(bonuses)
                 if bonusscore == 1000:
@@ -246,7 +270,7 @@ while True:
                 syntax.clear()
                 syntax = inp.split(" ")
                 syntax+=[".."]
-        if inp == files[1]:
+        elif inp == files[1]:
             if inp == "easteregg" and syntax[0] in names: #easteregg
                 print(Fore.YELLOW,"* Easter egg found! +10000pts",end="         ")
                 score+=10000
