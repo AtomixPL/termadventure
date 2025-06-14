@@ -141,7 +141,7 @@ while True:
                     inp = input("player@termadventure ~ ")
                     syntax = inp.split(" ")
                     syntax+=[".."]
-                elif empty_chance >= 5:
+                elif empty_chance >= 5: #generate dirs
                     bonus_chance = random.randint(1,15)
                     easter_chance = random.randint(1,15)
                     readme_chance = random.randint(1,15)
@@ -166,21 +166,6 @@ while True:
                     # memory+=dir
                     # names_memory.clear()
                     # names_memory+=names
-                    if inp == "cd "+names_memory[0]:
-                        dir[0].append("empty")
-                    elif inp == "cd "+names_memory[1]:
-                        dir[1].append("empty")
-                    elif inp == "cd "+names_memory[2]:
-                        dir[2].append("empty")
-                    elif inp == "cd "+names_memory[3]:
-                        dir[3].append("empty")
-                    elif inp == "cd "+names_memory[4]:
-                        dir[4].append("empty")
-                    elif inp == "cd "+names_memory[5]:
-                        dir[5].append("empty")
-                    elif inp == "cd "+names_memory[6]:
-                        dir[6].append("empty")
-                    dir.clear()
                     print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                     print(Style.RESET_ALL)
                     print("names - "+str(names))
@@ -292,124 +277,124 @@ while True:
             if syntax[0] == "cd" and syntax[1] in names_memory: #cd (newdest)
                 layer+=1
                 print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-                if syntax[1] == names_memory[0]:
-                    if "empty" in memory[0]:
+                if syntax[1] == names[0]:
+                    if "empty" in dir[0]:
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         print(Style.RESET_ALL)
                         inp = input("player@termadventure ~ ")
                         syntax = inp.split(" ")
                         syntax+=[".."] 
-                    for i in range(len(memory[0])):
-                        print(Fore.BLUE+Style.BRIGHT,memory[0][i], end="         ")
-                    if "bonus" in names_memory[0]:
+                    for i in range(len(dir[0])):
+                        print(Fore.BLUE+Style.BRIGHT,dir[0][i], end="         ")
+                    if "bonus" in names[0]:
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
-                    if "easteregg" in names_memory[0]:
+                    if "easteregg" in names[0]:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "readme" in names_memory[0]:
+                    if "readme" in names[0]:
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "unknown" in names_memory[0]:
+                    if "unknown" in names[0]:
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                elif syntax[1] == names_memory[1]:
-                    if "empty" in memory[1]:
+                elif syntax[1] == names[1]:
+                    if "empty" in dir[1]:
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         print(Style.RESET_ALL)
                         inp = input("player@termadventure ~ ")
                         syntax = inp.split(" ")
                         syntax+=[".."] 
-                    for i in range(len(memory[1])):
-                        print(Fore.BLUE+Style.BRIGHT,memory[1][i], end="         ")
-                    if "bonus" in names_memory[1]:
+                    for i in range(len(dir[1])):
+                        print(Fore.BLUE+Style.BRIGHT,dir[1][i], end="         ")
+                    if "bonus" in names[1]:
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
-                    if "easteregg" in names_memory[1]:
+                    if "easteregg" in names[1]:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "readme" in names_memory[1]:
+                    if "readme" in names[1]:
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "unknown" in names_memory[1]:
+                    if "unknown" in names[1]:
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                elif syntax[1] == names_memory[2]:
-                    if "empty" in memory[2]:
+                elif syntax[1] == names[2]:
+                    if "empty" in dir[2]:
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         print(Style.RESET_ALL)
                         inp = input("player@termadventure ~ ")
                         syntax = inp.split(" ")
                         syntax+=[".."] 
-                    for i in range(len(memory[2])):
-                        print(Fore.BLUE+Style.BRIGHT,memory[2][i], end="         ")
-                    if "bonus" in names_memory[2]:
+                    for i in range(len(dir[2])):
+                        print(Fore.BLUE+Style.BRIGHT,dir[2][i], end="         ")
+                    if "bonus" in names[2]:
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
-                    if "easteregg" in names_memory[2]:
+                    if "easteregg" in names[2]:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "readme" in names_memory[2]:
+                    if "readme" in names[2]:
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "unknown" in names_memory[2]:
+                    if "unknown" in names[2]:
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                elif syntax[1] == names_memory[3]:
-                    if "empty" in memory[3]:
+                elif syntax[1] == names[3]:
+                    if "empty" in dir[3]:
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         print(Style.RESET_ALL)
                         inp = input("player@termadventure ~ ")
                         syntax = inp.split(" ")
                         syntax+=[".."] 
-                    for i in range(len(memory[3])):
-                        print(Fore.BLUE+Style.BRIGHT,memory[3][i], end="         ")
-                    if "bonus" in names_memory[3]:
+                    for i in range(len(dir[3])):
+                        print(Fore.BLUE+Style.BRIGHT,dir[3][i], end="         ")
+                    if "bonus" in names[3]:
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
-                    if "easteregg" in names_memory[3]:
+                    if "easteregg" in names[3]:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "readme" in names_memory[3]:
+                    if "readme" in names[3]:
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "unknown" in names_memory[3]:
+                    if "unknown" in names[3]:
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                elif syntax[1] == names_memory[4]:
-                    if "empty" in memory[4]:
+                elif syntax[1] == names[4]:
+                    if "empty" in dir[4]:
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         print(Style.RESET_ALL)
                         inp = input("player@termadventure ~ ")
                         syntax = inp.split(" ")
                         syntax+=[".."] 
-                    for i in range(len(memory[4])):
-                        print(Fore.BLUE+Style.BRIGHT,memory[4][i], end="         ")
-                    if "bonus" in names_memory[4]:
+                    for i in range(len(dir[4])):
+                        print(Fore.BLUE+Style.BRIGHT,dir[4][i], end="         ")
+                    if "bonus" in names[4]:
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
-                    if "easteregg" in names_memory[4]:
+                    if "easteregg" in names[4]:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "readme" in names_memory[4]:
+                    if "readme" in names[4]:
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "unknown" in names_memory[4]:
+                    if "unknown" in names[4]:
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                elif syntax[1] == names_memory[5]:
-                    if "empty" in memory[5]:
+                elif syntax[1] == names[5]:
+                    if "empty" in dir[5]:
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         print(Style.RESET_ALL)
                         inp = input("player@termadventure ~ ")
                         syntax = inp.split(" ")
                         syntax+=[".."] 
-                    for i in range(len(memory[5])):
-                        print(Fore.BLUE+Style.BRIGHT,memory[5][i], end="         ")
-                    if "bonus" in names_memory[5]:
+                    for i in range(len(dir[5])):
+                        print(Fore.BLUE+Style.BRIGHT,dir[5][i], end="         ")
+                    if "bonus" in names[5]:
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
-                    if "easteregg" in names_memory[5]:
+                    if "easteregg" in names[5]:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "readme" in names_memory[5]:
+                    if "readme" in names[5]:
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "unknown" in names_memory[5]:
+                    if "unknown" in names[5]:
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                elif syntax[1] == names_memory[6]:
-                    if "empty" in memory[6]:
+                elif syntax[1] == names[6]:
+                    if "empty" in dir[6]:
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         print(Style.RESET_ALL)
                         inp = input("player@termadventure ~ ")
                         syntax = inp.split(" ")
                         syntax+=[".."] 
-                    for i in range(len(memory[6])):
-                        print(Fore.BLUE+Style.BRIGHT,memory[6][i], end="         ")
-                    if "bonus" in names_memory[6]:
+                    for i in range(len(dir[6])):
+                        print(Fore.BLUE+Style.BRIGHT,dir[6][i], end="         ")
+                    if "bonus" in names[6]:
                         print(Fore.GREEN+Style.BRIGHT,files[0],end="         ")
-                    if "easteregg" in names_memory[6]:
+                    if "easteregg" in names[6]:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "readme" in names_memory[6]:
+                    if "readme" in names[6]:
                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "unknown" in names_memory[6]:
+                    if "unknown" in names[6]:
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                 print(Style.RESET_ALL)
                 wentback=False
