@@ -35,8 +35,6 @@ inp = input("player@termadventure ~ ")
 syntax = inp.split(" ")
 syntax+=[".."]
 
-
-
 while True:
     if wentback == False:
         if inp == str(syntax[0])+" "+str(syntax[1]):
