@@ -3,10 +3,10 @@ import random
 from colorama import Fore, Style
 
 score = 0
-dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local",
-      "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc2","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2",
-      "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3"]
-files=["bonus","easteregg","readme","unknown","codex","kernelcode"]
+dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sda1","sdb1","sdc1","nvme0n1p1",
+      "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc2","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2","tty2","sda2","sdb2","sdc2","nvme0n1p2",
+      "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3","home3","udev3","tty3","sda3","sdb3","sdc3","nvme0n1p3"]   
+files=["bonus","easteregg","readme","unknown","codex","kernelcode","hex"]
 memory=[]
 dir=[]
 names=[]
@@ -171,67 +171,67 @@ while True:
                 syntax = inp.split(" ")
                 syntax+=["..","cat"]
         elif inp == files[0]:
-            if inp == "bonus" and syntax[0] in names: #bonus
+            if inp == "bonus" and syntax[0] in genfiles: #bonus
                 bonusscore = random.choice(bonuses)
                 if bonusscore == 1000:
                     print(Fore.GREEN,"* Bonus! +1000pts",end="         ")
                     score+=1000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 2000:
                     print(Fore.GREEN,"* Bonus! +2000pts",end="         ")
                     score+=2000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 3000:
                     print(Fore.GREEN,"* Bonus! +3000pts",end="         ")
                     score+=3000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 4000:
                     print(Fore.GREEN,"* Bonus! +4000pts",end="         ")
                     score+=4000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 5000:
                     print(Fore.GREEN,"* Bonus! +5000pts",end="         ")
                     score+=5000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 6000:
                     print(Fore.GREEN,"* Bonus! +6000pts",end="         ")
                     score+=6000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 7000:
                     print(Fore.GREEN,"* Bonus! +7000pts",end="         ")
                     score+=7000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 8000:
                     print(Fore.GREEN,"* Bonus! +8000pts",end="         ")
                     score+=8000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 9000:
                     print(Fore.GREEN,"* Bonus! +9000pts",end="         ")
                     score+=9000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 10000:
                     print(Fore.YELLOW,"* Bonus! +10000pts",end="         ")
                     score+=10000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 inp = input("player@termadventure ~ ")
                 syntax.clear()
                 syntax = inp.split(" ")
                 syntax+=["..","cat"]
         elif inp == files[1]:
-            if inp == "easteregg" and syntax[0] in names: #easteregg
+            if inp == "easteregg" and syntax[0] in genfiles: #easteregg
                 print(Fore.YELLOW,"* Easter egg found! +10000pts",end="         ")
                 score+=10000
-                names.remove("easteregg")
+                genfiles.remove("easteregg")
                 print(Style.RESET_ALL)
                 inp = input("player@termadventure ~ ")
                 syntax.clear()
@@ -242,6 +242,11 @@ while True:
             if syntax[0] == "cd" and syntax[1] in names: #cd (newdest)
                 if syntax[1] in names: #cd dest
                     layer+=1
+                    empty_chance = random.randint(1,8)
+                    bonus_chance = random.randint(1,15)
+                    easter_chance = random.randint(1,15)
+                    readme_chance = random.randint(1,15)
+                    unknown_chance = random.randint(1,15)
                     empty_chance = random.randint(1,8)
                     print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
                     if empty_chance < 5:
@@ -317,15 +322,10 @@ while True:
                                 syntax+=["..","cat"]
                 memory.clear()
                 memory+=dir
+                dir.clear()
                 names_memory.clear()
                 names_memory+=names
                 names.clear()
-                dir.clear()
-                empty_chance = random.randint(1,8)
-                bonus_chance = random.randint(1,15)
-                easter_chance = random.randint(1,15)
-                readme_chance = random.randint(1,15)
-                unknown_chance = random.randint(1,15)
                 for i in range(random.randint(2,7)):
                     names.append(str(random.choice(dirs)))
                     print(Fore.BLUE+Style.BRIGHT,names[i],end="         ")
@@ -360,66 +360,66 @@ while True:
                 inp = input("player@termadventure ~ ")
                 syntax = inp.split(" ")
                 syntax+=["..","cat"] 
-        if inp == "bonus" and syntax[0] in names: #bonus
+        elif inp == "bonus" and syntax[0] in genfiles: #bonus
                 bonusscore = random.choice(bonuses)
                 if bonusscore == 1000:
                     print(Fore.GREEN,"* Bonus! +1000pts",end="         ")
                     score+=1000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 2000:
                     print(Fore.GREEN,"* Bonus! +2000pts",end="         ")
                     score+=2000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 3000:
                     print(Fore.GREEN,"* Bonus! +3000pts",end="         ")
                     score+=3000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 4000:
                     print(Fore.GREEN,"* Bonus! +4000pts",end="         ")
                     score+=4000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 5000:
                     print(Fore.GREEN,"* Bonus! +5000pts",end="         ")
                     score+=5000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 6000:
                     print(Fore.GREEN,"* Bonus! +6000pts",end="         ")
                     score+=6000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 7000:
                     print(Fore.GREEN,"* Bonus! +7000pts",end="         ")
                     score+=7000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 8000:
                     print(Fore.GREEN,"* Bonus! +8000pts",end="         ")
                     score+=8000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 9000:
                     print(Fore.GREEN,"* Bonus! +9000pts",end="         ")
                     score+=9000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 elif bonusscore == 10000:
                     print(Fore.YELLOW,"* Bonus! +10000pts",end="         ")
                     score+=10000
-                    names.remove("bonus")
+                    genfiles.remove("bonus")
                     print(Style.RESET_ALL)
                 inp = input("player@termadventure ~ ")
                 syntax.clear()
                 syntax = inp.split(" ")
                 syntax+=["..","cat"]
-        if syntax[0] == "easteregg" and syntax[0] in names: #easteregg
+        elif syntax[0] == "easteregg" and syntax[0] in genfiles: #easteregg
             print(Fore.YELLOW,"* Easter egg found! +10000pts",end="         ")
             score+=10000
-            names.remove("easteregg")
+            genfiles.remove("easteregg")
             print(Style.RESET_ALL)
             inp = input("player@termadventure ~ ")
             syntax.clear()
