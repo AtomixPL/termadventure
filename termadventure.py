@@ -4,10 +4,14 @@ import os
 from colorama import Fore, Style
 
 score = 0
-dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sda1","sdb1","sdc1","nvme0n1p1",
-      "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc2","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2","tty2","sda2","sdb2","sdc2","nvme0n1p2",
-      "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3","home3","udev3","tty3","sda3","sdb3","sdc3","nvme0n1p3",
-      "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4","tmpfs4","home4","udev4","tty4","sda4","sdb4","sdc4","nvme0n1p4"]   
+dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
+      "lost+found","include","man","log","cache","lock","spool",
+      "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc2","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",
+      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2",
+      "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3",
+      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3",
+      "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
+      "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4"]   
 files=["bonus","easteregg","readme","unknown","codex","kernelcode","hex"]
 memory=[]
 dir=[]
@@ -16,6 +20,8 @@ names_memory=[]
 gendir=[]
 file=[]
 file_memory=[]
+rootpasswords=["********","123","root","admin","password","letmein","linuxontop","iusearchbtw","fricknvidia","copilotsucks","itsfreerealestate","onlyopensource",]
+password = 0
 layer = 1
 wentbackempty=False
 wentback=False
@@ -36,7 +42,7 @@ for i in names:
     
 dirlen=len(dir)
 
-while True:
+while layer < 50:
     
     if wentbackempty == False:
         print(Style.RESET_ALL)
@@ -47,10 +53,12 @@ while True:
         if inp == str(syntax[0])+" "+str(syntax[1]):
             if syntax[1] in names: #cd dest
                 layer+=1
+                if layer == 50:
+                    break
                 empty_chance = random.randint(1,8)
                 print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
                 
-                if empty_chance < 7:
+                if empty_chance < 6:
                     memory.clear()
                     memory+=dir
                     names_memory.clear()
@@ -150,7 +158,7 @@ while True:
                         file.append(str(files[3]))
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                         
-                elif empty_chance >= 7:
+                elif empty_chance >= 6:
                     if syntax[1] == names[0]:
                         dir[0].append("empty")
                     elif syntax[1] == names[1]:
@@ -263,7 +271,7 @@ while True:
                 while time.time() < wait:
                     print(".",end="", flush=True)
                     time.sleep(0.003)
-                if crash_chance < 10:
+                if crash_chance < 9:
                     if bonus_chance >= 14:
                         print("\n")
                         bonusscore = random.choice(bonuses)
@@ -313,7 +321,7 @@ while True:
                         print("nothing")
                         file.remove("unknown")
                         
-                elif crash_chance == 10:
+                elif crash_chance >= 9:
                     layer=0
                     print("\nplayer@termadventure ~ ", end="")
                     time.sleep(0.1)
@@ -334,7 +342,7 @@ while True:
         if inp == str(syntax[0])+" "+str(syntax[1]):
             if syntax[0] == "cd" and syntax[1] in names_memory:
                 
-                if empty_chance < 7:
+                if empty_chance < 6:
                     layer+=1
                     names.clear()
                     dir.clear()
@@ -430,7 +438,7 @@ while True:
                         file.append(str(files[3]))
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                         
-                elif empty_chance >= 7:
+                elif empty_chance >= 6:
                     if syntax[1] == names_memory[0]:
                         dir[0].append("empty")
                     elif syntax[1] == names_memory[1]:
@@ -468,8 +476,7 @@ while True:
                     empty_chance = random.randint(1,8)
                     print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
                     
-                    if empty_chance < 7:
-                        
+                    if empty_chance < 6:
                         if syntax[1] == names[0]: #if name[x] print dir[x]
                             if "empty" not in dir[0]:
                                 names_memory.clear()
@@ -640,7 +647,7 @@ while True:
                                 file.append(str(files[3]))
                                 print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                             
-                    elif empty_chance >= 7:
+                    elif empty_chance >= 6:
                         if syntax[1] == names[0]:
                             dir[0].append("empty")
                         elif syntax[1] == names[1]:
@@ -728,6 +735,62 @@ while True:
             print(Fore.YELLOW+Style.BRIGHT,"* Easter egg found! +10000pts",end="         ")
             score+=10000
             file.remove("easteregg")
-        
-    if layer == 50:
+
+print(Fore.MAGENTA+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+password = random.choice(rootpasswords)
+for i in range(2):
+    print(".",end="", flush=True)
+    time.sleep(1)
+for i in range(3):
+    print(".",end="", flush=True)
+    time.sleep(0.4)
+for i in range(6):
+    print(".",end="", flush=True)
+    time.sleep(0.3)
+for i in range(12):
+    print(".",end="", flush=True)
+    time.sleep(0.1)
+for i in range(18):
+    print(".",end="", flush=True)
+    time.sleep(0.05)
+wait = time.time() + 1.5
+while time.time() < wait:
+    print(".",end="", flush=True)
+    time.sleep(0.002)
+print("\n")
+print(Fore.MAGENTA+Style.BRIGHT,"root",end="         ")
+print(Style.RESET_ALL,"password")
+time.sleep(1)
+while True:
+    syntax.clear()
+    inp = input("player@termadventure ~ ")
+    syntax = inp.split(" ")
+    if inp == "cd root":
+        print("bash: cd: root: Permission denied")
+    if inp == "cat password":
+        print("The password for root user is: "+str(password),end="")
+        print("\n")
+        print(Style.DIM,"* Hint: su root")
+    if inp == "su root":
+        time.sleep(0.1)
+        prompt = input("Password: ")        
+        if prompt == str(password):
+            break    
+        else:
+            print("su: Authentication failure")
+print(Style.DIM,"* Hint: Enter the root directory to finish the game")
+while True:
+    print(Style.RESET_ALL)
+    syntax.clear()
+    inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure ~ ")
+    syntax = inp.split(" ") 
+    if inp == "cd root":
         break
+chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
+for i in range(70):
+    print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
+    time.sleep(0.02)
+os.system("cls")
+time.sleep(1)
+print(Fore.MAGENTA,"* "+Fore.WHITE,"You made it to the root directory! Congrats!")
+time.sleep(2)
