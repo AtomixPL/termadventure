@@ -28,6 +28,26 @@ wentback=False
 inemptydir=False
 bonuses = [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
 
+print(Fore.GREEN+Style.BRIGHT,r"""
+  ______                    ___       __                 __                
+ /_  __/__  _________ ___  /   | ____/ /   _____  ____  / /___  __________ 
+  / / / _ \/ ___/ __ `__ \/ /| |/ __  / | / / _ \/ __ \/ __/ / / / ___/ _ \
+ / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
+/_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
+""", end="")
+print(Fore.WHITE,"Written in Python by Atomix, June 2025                         Version 0.1")
+print(Style.RESET_ALL)
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL," - begin the adventure")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL," - show info about the game")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL," - exit the game")
+inp = input("\nroot@termadventure ~ ")
+
+
+
+
+
+
+
 print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
 
 for i in range(random.randint(4,8)):
