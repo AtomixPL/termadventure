@@ -13,6 +13,23 @@ dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp",
       "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
       "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4"]   
 files=["bonus","easteregg","readme","unknown","codex","kernelcode","hex"]
+latinnums={"unus": 1,
+           "duo": 2,
+           "tres": 3,
+           "quattuor": 4,
+           "quinque": 5,
+           "sex": 6,
+           "septem": 7,
+           "octo": 8,
+           "novem": 9}
+readmetexts=["Linux kernel code: ","""
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+""","Hello World!","Nothing to find here!","Thank you Player, but the thing you're looking for is in another readme file!","Why don't you throw your windows away and get a penguin which can give you more than anything?",
+"That Clippy guy's so annoying","If it works, don't touch it","It's Free Real Estate"]
 memory=[]
 dir=[]
 names=[]
@@ -20,7 +37,7 @@ names_memory=[]
 gendir=[]
 file=[]
 file_memory=[]
-rootpasswords=["********","123","root","admin","password","letmein","fusrohdah","blahblahblah","opensesame","linuxontop","iusearchbtw","itsfreerealestate","onlyopensource",]
+rootpasswords=["********","123","root","admin","password","letmein","fusrohdah","blahblahblah","opensesame","linuxontop","iusearchbtw","jctheking","onlyopensource",]
 password = 0
 layer = 1
 wentbackempty=False
@@ -44,18 +61,18 @@ print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL," - exit the g
 while True:
     inp = input("\nplayer@termadventure ~ ")
 
-    if inp == "play":
+    if inp == "play" or "p":
         break
-    if inp == "info":
+    if inp == "info" or "i":
         print("""
-    * Explore the seemingly infinite disk containing directories and files.
+    * Explore the seemingly infinite Linux kernel containing directories and files.
     * You may find a lot of interesting things, which can give you points.
     * But unknown files may delete your system, so be careful!
     * There are also readme files, which can contain codes for specific programs.
     * Reach layer 50 to get to the root directory. 
     * For the full guidebook, check out the README file in the repository.
             """)
-    if inp == "quit":
+    if inp == "quit" or "q":
         exit()
 
 print(Fore.GREEN+Style.BRIGHT,"* "+Fore.WHITE+Style.NORMAL+"Let's go!")
@@ -314,14 +331,14 @@ while layer < 50:
                 file.remove("easteregg")
                 
         elif inp == files[3]:
-            crash_chance = random.randint(1,10)
+            crash_chance = random.randint(1,15)
             bonus_chance = random.randint(1,15)
             if inp == "unknown" and syntax[0] in file:
                 wait = time.time() + 1
                 while time.time() < wait:
                     print(".",end="", flush=True)
                     time.sleep(0.003)
-                if crash_chance < 9:
+                if crash_chance < 14:
                     if bonus_chance >= 14:
                         print("\n")
                         bonusscore = random.choice(bonuses)
@@ -371,7 +388,7 @@ while layer < 50:
                         print("nothing")
                         file.remove("unknown")
                         
-                elif crash_chance >= 9:
+                elif crash_chance >= 14:
                     layer=0
                     print("\nplayer@termadventure ~ ", end="")
                     time.sleep(0.1)
