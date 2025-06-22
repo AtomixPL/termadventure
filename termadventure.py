@@ -20,7 +20,7 @@ names_memory=[]
 gendir=[]
 file=[]
 file_memory=[]
-rootpasswords=["********","123","root","admin","password","letmein","linuxontop","iusearchbtw","fricknvidia","copilotsucks","itsfreerealestate","onlyopensource",]
+rootpasswords=["********","123","root","admin","password","letmein","fusrohdah","blahblahblah","opensesame","linuxontop","iusearchbtw","itsfreerealestate","onlyopensource",]
 password = 0
 layer = 1
 wentbackempty=False
@@ -37,17 +37,29 @@ print(Fore.GREEN+Style.BRIGHT,r"""
 """, end="")
 print(Fore.WHITE,"Written in Python by Atomix, June 2025                         Version 0.1")
 print(Style.RESET_ALL)
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL," - begin the adventure")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL," - start the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL," - show info about the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL," - exit the game")
-inp = input("\nroot@termadventure ~ ")
 
+while True:
+    inp = input("\nplayer@termadventure ~ ")
 
+    if inp == "play":
+        break
+    if inp == "info":
+        print("""
+    * Explore the seemingly infinite disk containing directories and files.
+    * You may find a lot of interesting things, which can give you points.
+    * But unknown files may delete your system, so be careful!
+    * There are also readme files, which can contain codes for specific programs.
+    * Reach layer 50 to get to the root directory. 
+    * For the full guidebook, check out the README file in the repository.
+            """)
+    if inp == "quit":
+        exit()
 
-
-
-
-
+print(Fore.GREEN+Style.BRIGHT,"* "+Fore.WHITE+Style.NORMAL+"Let's go!")
+time.sleep(2)
 print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
 
 for i in range(random.randint(4,8)):
@@ -59,8 +71,6 @@ for i in names:
         gendir.append(str(random.choice(dirs)))
     dir.append(list(gendir))
     gendir.clear()
-    
-dirlen=len(dir)
 
 while layer < 50:
     
@@ -162,8 +172,6 @@ while layer < 50:
                                 gendir.append(str(random.choice(dirs)))
                             dir.append(list(gendir))
                             gendir.clear()
-                            
-                    dirlen=len(dir)
                     
                     if bonus_chance > 8:
                         file.append(str(files[0]))
@@ -172,8 +180,22 @@ while layer < 50:
                         file.append(str(files[1]))
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")                      
                     if readme_chance > 10:
-                        file.append(str(files[2]))
-                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")        
+                        readmenum = random.randint(1,3)
+                        if readmenum == 1:
+                            file.append(str(files[2]))
+                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                        elif readmenum == 2:
+                            file.append(str(files[2]))
+                            file.append(str(files[2]+"2"))
+                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                        elif readmenum == 3:
+                            file.append(str(files[2]))
+                            file.append(str(files[2]+"2"))
+                            file.append(str(files[2]+"3"))
+                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                            print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
                     if unknown_chance > 8:
                         file.append(str(files[3]))
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
@@ -209,6 +231,10 @@ while layer < 50:
                     print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                 if "readme" in file:
                     print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                if "readme2" in file:
+                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                if "readme3" in file:
+                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
                 if "unknown" in file:
                     print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                     
@@ -227,6 +253,10 @@ while layer < 50:
                     print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                 if "readme" in file_memory:
                     print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                if "readme2" in file_memory:
+                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                if "readme3" in file_memory:
+                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
                 if "unknown" in file_memory:
                     print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                     
@@ -442,7 +472,6 @@ while layer < 50:
                             dir.append(list(gendir))
                             gendir.clear()
                             
-                    dirlen=len(dir)
                     wentback=False
                     
                     if bonus_chance > 8:
@@ -452,8 +481,22 @@ while layer < 50:
                         file.append(str(files[1]))
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                     if readme_chance > 10:
-                        file.append(str(files[2]))
-                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                        readmenum = random.randint(1,3)
+                        if readmenum == 1:
+                            file.append(str(files[2]))
+                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                        elif readmenum == 2:
+                            file.append(str(files[2]))
+                            file.append(str(files[2]+"2"))
+                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                        elif readmenum == 3:
+                            file.append(str(files[2]))
+                            file.append(str(files[2]+"2"))
+                            file.append(str(files[2]+"3"))
+                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                            print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
                     if unknown_chance > 8:
                         file.append(str(files[3]))
                         print(Fore.RED+Style.BRIGHT,files[3],end="         ")
@@ -651,8 +694,7 @@ while layer < 50:
                             else:
                                 print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                                 inemptydir=True
-                                
-                        dirlen=len(dir)
+                            
                         if inemptydir == False:
                             if bonus_chance > 8:
                                 file.append(str(files[0]))
@@ -661,8 +703,22 @@ while layer < 50:
                                 file.append(str(files[1]))
                                 print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                             if readme_chance > 10:
-                                file.append(str(files[2]))
-                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                readmenum = random.randint(1,3)
+                                if readmenum == 1:
+                                    file.append(str(files[2]))
+                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                                elif readmenum == 2:
+                                    file.append(str(files[2]))
+                                    file.append(str(files[2]+"2"))
+                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                                elif readmenum == 3:
+                                    file.append(str(files[2]))
+                                    file.append(str(files[2]+"2"))
+                                    file.append(str(files[2]+"3"))
+                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
                             if unknown_chance > 8:
                                 file.append(str(files[3]))
                                 print(Fore.RED+Style.BRIGHT,files[3],end="         ")
@@ -703,6 +759,10 @@ while layer < 50:
                     print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                 if "readme" in file_memory:
                     print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                if "readme2" in file_memory:
+                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                if "readme3" in file_memory:
+                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
                 if "unknown" in file_memory:
                     print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                     
@@ -812,5 +872,5 @@ for i in range(70):
     time.sleep(0.02)
 os.system("cls")
 time.sleep(1)
-print(Fore.MAGENTA,"* "+Fore.WHITE,"You made it to the root directory! Congrats!")
+print(Fore.MAGENTA,"* "+Fore.WHITE,"You made it to the end! Congrats!")
 time.sleep(2)
