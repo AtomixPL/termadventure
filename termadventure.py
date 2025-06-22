@@ -1,18 +1,10 @@
 import time
 import random
 import os
+import sys
 from colorama import Fore, Style
 
 score = 0
-dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
-      "lost+found","include","man","log","cache","lock","spool",
-      "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc2","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",
-      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2",
-      "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3",
-      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3",
-      "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
-      "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4"]   
-files=["bonus","easteregg","readme","unknown","codex","kernelcode","hex"]
 latinnums={"unus": 1,
            "duo": 2,
            "tres": 3,
@@ -22,6 +14,15 @@ latinnums={"unus": 1,
            "septem": 7,
            "octo": 8,
            "novem": 9}
+dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
+      "lost+found","include","man","log","cache","lock","spool",
+      "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc2","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",
+      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2",
+      "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3",
+      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3",
+      "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
+      "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4"]   
+files=["bonus","easteregg","readme","unknown","codex","kernelcode","hex"]
 readmetexts=["Linux kernel code: ","""
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -394,7 +395,10 @@ while layer < 50:
                     time.sleep(0.1)
                     print("sudo rm -rf /* --no-preserve-root")
                     time.sleep(0.4)
-                    os.system("cls")
+                    if sys.platform("win32"):
+                        os.system("cls")
+                    elif sys.platform("linux"):
+                        os.system("clear")
                     time.sleep(1)
                     print(Fore.RED+Style.BRIGHT,"* "+Fore.WHITE+Style.NORMAL+"Game over!")
                     inp == input()
@@ -887,7 +891,10 @@ chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","
 for i in range(70):
     print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
     time.sleep(0.02)
-os.system("cls")
+if sys.platform("win32"):
+    os.system("cls")
+elif sys.platform("linux"):
+    os.system("clear")
 time.sleep(1)
 print(Fore.MAGENTA,"* "+Fore.WHITE,"You made it to the end! Congrats!")
 time.sleep(2)
