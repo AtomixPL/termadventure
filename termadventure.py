@@ -29,21 +29,14 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-""","Hello World!","Nothing to find here!","Thank you Player, but the thing you're looking for is in another readme file!","Why don't you throw your windows away and get a penguin which can give you more than anything?",
-"That Clippy guy's so annoying","If it works, don't touch it","It's Free Real Estate"]
-memory=[]
-dir=[]
-names=[]
-names_memory=[]
-gendir=[]
-file=[]
-file_memory=[]
-rootpasswords=["********","123","root","admin","password","letmein","fusrohdah","blahblahblah","opensesame","linuxontop","iusearchbtw","jctheking","onlyopensource",]
-password = 0
-layer = 1
-wentbackempty=False
-wentback=False
-inemptydir=False
+""","Here are some points for you: ","Hello World!","Nothing to find here!","Thank you Player, but the thing you're looking for is in another readme file!","empty",
+"nothing","If it works, don't touch it","It's Free Real Estate","My new great novel... to be written","""
+To do list:
+- buy amd gpu
+- install arch linux on first drive
+- install gentoo on second drive
+"""]
+rootpasswords=["********","123","root","admin","password","administrator"]
 bonuses = [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
 
 print(Fore.GREEN+Style.BRIGHT,r"""
@@ -55,694 +48,180 @@ print(Fore.GREEN+Style.BRIGHT,r"""
 """, end="")
 print(Fore.WHITE,"Written in Python by Atomix, June 2025                         Version 0.1")
 print(Style.RESET_ALL)
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL," - start the game")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL," - show info about the game")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL," - exit the game")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show info about the game")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- exit the game")
 
 while True:
     inp = input("\nplayer@termadventure ~ ")
 
-    if inp == "play" or "p":
-        break
-    if inp == "info" or "i":
+    if inp == "info" or inp == "i":
         print("""
     * Explore the seemingly infinite Linux kernel containing directories and files.
     * You may find a lot of interesting things, which can give you points.
-    * But unknown files may delete your system, so be careful!
-    * There are also readme files, which can contain codes for specific programs.
+    * But unknown files may delete your system (not literally), so be careful!
+    * There are also readme files, which can contain codes for specific puzzle programs.
     * Reach layer 50 to get to the root directory. 
     * For the full guidebook, check out the README file in the repository.
             """)
-    if inp == "quit" or "q":
+    if inp == "quit" or inp == "q":
         exit()
-
-print(Fore.GREEN+Style.BRIGHT,"* "+Fore.WHITE+Style.NORMAL+"Let's go!")
-time.sleep(2)
-print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-
-for i in range(random.randint(4,8)):
-    names.append(str(random.choice(dirs)))
-    print(Fore.BLUE+Style.BRIGHT,names[i],end="         ")
+    if inp == "play" or inp == "p":
+        break
     
-for i in names:
+while True:
+    memory=[]
+    dir=[]
+    names=[]
+    names_memory=[]
+    gendir=[]
+    file=[]
+    file_memory=[]
+    layer = 1
+    wentbackempty=False
+    wentback=False
+    inemptydir=False
+    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
+    time.sleep(2)
+    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+
     for i in range(random.randint(4,8)):
-        gendir.append(str(random.choice(dirs)))
-    dir.append(list(gendir))
-    gendir.clear()
+        names.append(str(random.choice(dirs)))
+        print(Fore.BLUE+Style.BRIGHT,names[i],end="         ")
+        
+    for i in names:
+        for i in range(random.randint(4,8)):
+            gendir.append(str(random.choice(dirs)))
+        dir.append(list(gendir))
+        gendir.clear()
 
-while layer < 50:
-    
-    if wentbackempty == False:
-        print(Style.RESET_ALL)
-        inp = input("player@termadventure ~ ")
-        syntax = inp.split(" ")
-        syntax+=["..","cat"]
+    while layer < 50:
         
-        if inp == str(syntax[0])+" "+str(syntax[1]):
-            if syntax[1] in names: #cd dest
-                layer+=1
-                if layer == 50:
-                    break
-                empty_chance = random.randint(1,8)
-                print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-                
-                if empty_chance < 6:
-                    memory.clear()
-                    memory+=dir
-                    names_memory.clear()
-                    names_memory+=names
-                    names.clear()
-                    dir.clear()
-                    file_memory.clear()
-                    file_memory+=file
-                    file.clear()
-                    bonus_chance = random.randint(1,15)
-                    easter_chance = random.randint(1,15)
-                    readme_chance = random.randint(1,15)
-                    unknown_chance = random.randint(1,15)
-                    
-                    if syntax[1] == names_memory[0]:
-                        for i in range(len(memory[0])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[0][i],end="         ")
-                            names.append(memory[0][i])
-                        for i in memory[0]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[1]:
-                        for i in range(len(memory[1])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[1][i],end="         ")
-                            names.append(memory[1][i])
-                        for i in memory[1]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[2]:
-                        for i in range(len(memory[2])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[2][i],end="         ")
-                            names.append(memory[2][i])
-                        for i in memory[2]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[3]:
-                        for i in range(len(memory[3])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[3][i],end="         ")
-                            names.append(memory[3][i])
-                        for i in memory[3]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[4]:
-                        for i in range(len(memory[4])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[4][i],end="         ")
-                            names.append(memory[4][i])
-                        for i in memory[4]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[5]:
-                        for i in range(len(memory[5])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[5][i],end="         ")
-                            names.append(memory[5][i])
-                        for i in memory[5]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[6]:
-                        for i in range(len(memory[6])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[6][i],end="         ")
-                            names.append(memory[6][i])
-                        for i in memory[6]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                    
-                    if bonus_chance > 8:
-                        file.append(str(files[0]))
-                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                    if easter_chance > 14:
-                        file.append(str(files[1]))
-                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")                      
-                    if readme_chance > 10:
-                        readmenum = random.randint(1,3)
-                        if readmenum == 1:
-                            file.append(str(files[2]))
-                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
-                        elif readmenum == 2:
-                            file.append(str(files[2]))
-                            file.append(str(files[2]+"2"))
-                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                        elif readmenum == 3:
-                            file.append(str(files[2]))
-                            file.append(str(files[2]+"2"))
-                            file.append(str(files[2]+"3"))
-                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                            print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
-                    if unknown_chance > 8:
-                        file.append(str(files[3]))
-                        print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                        
-                elif empty_chance >= 6:
-                    if syntax[1] == names[0]:
-                        dir[0].append("empty")
-                    elif syntax[1] == names[1]:
-                        dir[1].append("empty")
-                    elif syntax[1] == names[2]:
-                        dir[2].append("empty")
-                    elif syntax[1] == names[3]:
-                        dir[3].append("empty")
-                    elif syntax[1] == names[4]:
-                        dir[4].append("empty")
-                    elif syntax[1] == names[5]:
-                        dir[5].append("empty")
-                    elif syntax[1] == names[6]:
-                        dir[6].append("empty")
-                        
-                    inemptydir=True
-                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                    
-            elif inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == True: #cd .. when entered empty
-                layer-=1
-                print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-                
-                for i in range(len(names)):
-                    print(Fore.BLUE+Style.BRIGHT,names[i], end="         ")
-                if "bonus" in file:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                if "easteregg" in file:
-                    print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                if "readme" in file:
-                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                if "readme2" in file:
-                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                if "readme3" in file:
-                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
-                if "unknown" in file:
-                    print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                    
-                wentbackempty=True
-                inemptydir=False
-                
-            elif inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == False: #cd ..
-                layer-=1
-                print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-                
-                for i in range(len(names_memory)):
-                    print(Fore.BLUE+Style.BRIGHT,names_memory[i], end="         ")
-                if "bonus" in file_memory:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                if "easteregg" in file_memory:
-                    print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                if "readme" in file_memory:
-                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                if "readme2" in file_memory:
-                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                if "readme3" in file_memory:
-                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
-                if "unknown" in file_memory:
-                    print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                    
-                wentback=True
-                
-        elif inp == files[0]:
-            if inp == "bonus" and syntax[0] in file: #bonus
-                bonusscore = random.choice(bonuses)
-                
-                if bonusscore == 1000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +1000pts",end="         ")
-                    score+=1000
-                    file.remove("bonus")
-                elif bonusscore == 2000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +2000pts",end="         ")
-                    score+=2000
-                    file.remove("bonus")
-                elif bonusscore == 3000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +3000pts",end="         ")
-                    score+=3000
-                    file.remove("bonus")
-                elif bonusscore == 4000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +4000pts",end="         ")
-                    score+=4000
-                    file.remove("bonus")
-                elif bonusscore == 5000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +5000pts",end="         ")
-                    score+=5000
-                    file.remove("bonus")
-                elif bonusscore == 6000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +6000pts",end="         ")
-                    score+=6000
-                    file.remove("bonus")
-                elif bonusscore == 7000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +7000pts",end="         ")
-                    score+=7000
-                    file.remove("bonus")
-                elif bonusscore == 8000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +8000pts",end="         ")
-                    score+=8000
-                    file.remove("bonus")
-                elif bonusscore == 9000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +9000pts",end="         ")
-                    score+=9000
-                    file.remove("bonus")
-                elif bonusscore == 10000:
-                    print(Fore.YELLOW+Style.BRIGHT,"* Bonus! +10000pts",end="         ")
-                    score+=10000
-                    file.remove("bonus")
-                    
-        elif inp == files[1]:
-            if inp == "easteregg" and syntax[0] in file: #easteregg
-                print(Fore.YELLOW+Style.BRIGHT,"* Easter egg found! +10000pts",end="         ")
-                score+=10000
-                file.remove("easteregg")
-                
-        elif inp == files[3]:
-            crash_chance = random.randint(1,15)
-            bonus_chance = random.randint(1,15)
-            if inp == "unknown" and syntax[0] in file:
-                wait = time.time() + 1
-                while time.time() < wait:
-                    print(".",end="", flush=True)
-                    time.sleep(0.003)
-                if crash_chance < 14:
-                    if bonus_chance >= 14:
-                        print("\n")
-                        bonusscore = random.choice(bonuses)
-                        
-                        if bonusscore == 1000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +1000pts",end="         ")
-                            score+=1000
-                            file.remove("unknown")
-                        elif bonusscore == 2000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +2000pts",end="         ")
-                            score+=2000
-                            file.remove("unknown")
-                        elif bonusscore == 3000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +3000pts",end="         ")
-                            score+=3000
-                            file.remove("unknown")
-                        elif bonusscore == 4000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +4000pts",end="         ")
-                            score+=4000
-                            file.remove("unknown")
-                        elif bonusscore == 5000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +5000pts",end="         ")
-                            score+=5000
-                            file.remove("unknown")
-                        elif bonusscore == 6000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +6000pts",end="         ")
-                            score+=6000
-                            file.remove("unknown")
-                        elif bonusscore == 7000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +7000pts",end="         ")
-                            score+=7000
-                            file.remove("unknown")
-                        elif bonusscore == 8000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +8000pts",end="         ")
-                            score+=8000
-                            file.remove("unknown")
-                        elif bonusscore == 9000:
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +9000pts",end="         ")
-                            score+=9000
-                            file.remove("unknown")
-                        elif bonusscore == 10000:
-                            print(Fore.YELLOW+Style.BRIGHT,"* Bonus! +10000pts",end="         ")
-                            score+=10000
-                            file.remove("unknown")
-                            
-                    elif bonus_chance < 14:
-                        print("nothing")
-                        file.remove("unknown")
-                        
-                elif crash_chance >= 14:
-                    layer=0
-                    print("\nplayer@termadventure ~ ", end="")
-                    time.sleep(0.1)
-                    print("sudo rm -rf /* --no-preserve-root")
-                    time.sleep(0.4)
-                    if sys.platform("win32"):
-                        os.system("cls")
-                    elif sys.platform("linux"):
-                        os.system("clear")
-                    time.sleep(1)
-                    print(Fore.RED+Style.BRIGHT,"* "+Fore.WHITE+Style.NORMAL+"Game over!")
-                    inp == input()
-                    
-    if wentback == True:
-        
-        print(Style.RESET_ALL)
-        inp = input("player@termadventure ~ ")
-        syntax = inp.split(" ")
-        syntax+=["..","cat"]
-        
-        if inp == str(syntax[0])+" "+str(syntax[1]):
-            if syntax[0] == "cd" and syntax[1] in names_memory:
-                
-                if empty_chance < 6:
-                    layer+=1
-                    names.clear()
-                    dir.clear()
-                    bonus_chance = random.randint(1,15)
-                    easter_chance = random.randint(1,15)
-                    readme_chance = random.randint(1,15)
-                    unknown_chance = random.randint(1,15)
-                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-                    
-                    if syntax[1] == names_memory[0]:
-                        for i in range(len(memory[0])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[0][i],end="         ")
-                            names.append(memory[0][i])
-                        for i in memory[0]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[1]:
-                        for i in range(len(memory[1])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[1][i],end="         ")
-                            names.append(memory[1][i])
-                        for i in memory[1]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[2]:
-                        for i in range(len(memory[2])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[2][i],end="         ")
-                            names.append(memory[2][i])
-                        for i in memory[2]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[3]:
-                        for i in range(len(memory[3])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[3][i],end="         ")
-                            names.append(memory[3][i])
-                        for i in memory[3]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[4]:
-                        for i in range(len(memory[4])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[4][i],end="         ")
-                            names.append(memory[4][i])
-                        for i in memory[4]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[5]:
-                        for i in range(len(memory[5])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[5][i],end="         ")
-                            names.append(memory[5][i])
-                        for i in memory[5]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    elif syntax[1] == names_memory[6]:
-                        for i in range(len(memory[6])):
-                            print(Fore.BLUE+Style.BRIGHT,memory[6][i],end="         ")
-                            names.append(memory[6][i])
-                        for i in memory[6]:
-                            for i in range(random.randint(4,8)):
-                                gendir.append(str(random.choice(dirs)))
-                            dir.append(list(gendir))
-                            gendir.clear()
-                            
-                    wentback=False
-                    
-                    if bonus_chance > 8:
-                            file.append(str(files[0]))
-                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                    if easter_chance > 14:
-                        file.append(str(files[1]))
-                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if readme_chance > 10:
-                        readmenum = random.randint(1,3)
-                        if readmenum == 1:
-                            file.append(str(files[2]))
-                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
-                        elif readmenum == 2:
-                            file.append(str(files[2]))
-                            file.append(str(files[2]+"2"))
-                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                        elif readmenum == 3:
-                            file.append(str(files[2]))
-                            file.append(str(files[2]+"2"))
-                            file.append(str(files[2]+"3"))
-                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                            print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                            print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
-                    if unknown_chance > 8:
-                        file.append(str(files[3]))
-                        print(Fore.RED+Style.BRIGHT,files[3],end="         ")
-                        
-                elif empty_chance >= 6:
-                    if syntax[1] == names_memory[0]:
-                        dir[0].append("empty")
-                    elif syntax[1] == names_memory[1]:
-                        dir[1].append("empty")
-                    elif syntax[1] == names_memory[2]:
-                        dir[2].append("empty")
-                    elif syntax[1] == names_memory[3]:
-                        dir[3].append("empty")
-                    elif syntax[1] == names_memory[4]:
-                        dir[4].append("empty")
-                    elif syntax[1] == names_memory[5]:
-                        dir[5].append("empty")
-                    elif syntax[1] == names_memory[6]:
-                        dir[6].append("empty")
-                        
-                    inemptydir=True
-                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                    
-    if wentbackempty == True:
-        print(Style.RESET_ALL)
-        inp = input("player@termadventure ~ ")
-        syntax = inp.split(" ")
-        syntax+=["..","cat"]
-        
-        if inp == str(syntax[0])+" "+str(syntax[1]):  
-            if syntax[0] == "cd" and syntax[1] in names: #cd (newdest)
-                
+        if wentbackempty == False:
+            print(Style.RESET_ALL)
+            inp = input("player@termadventure ~ ")
+            syntax = inp.split(" ")
+            syntax+=["..","cat"]
+            
+            if inp == str(syntax[0])+" "+str(syntax[1]):
                 if syntax[1] in names: #cd dest
                     layer+=1
-                    empty_chance = random.randint(1,8)
-                    bonus_chance = random.randint(1,15)
-                    easter_chance = random.randint(1,15)
-                    readme_chance = random.randint(1,15)
-                    unknown_chance = random.randint(1,15)
+                    if layer == 50:
+                        break
                     empty_chance = random.randint(1,8)
                     print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
                     
                     if empty_chance < 6:
-                        if syntax[1] == names[0]: #if name[x] print dir[x]
-                            if "empty" not in dir[0]:
-                                names_memory.clear()
-                                names_memory+=names
-                                names.clear()
-                                memory.clear()
-                                memory+=dir
-                                dir.clear()
-                                file_memory.clear()
-                                file_memory+=file
-                                file.clear()
-                                for i in range(len(memory[0])):
-                                    print(Fore.BLUE+Style.BRIGHT,memory[0][i], end="         ")
-                                    names.append(memory[0][i])
-                                    for i in names:
-                                        for i in range(random.randint(4,8)):
-                                            gendir.append(str(random.choice(dirs)))
-                                        dir.append(list(gendir))
-                                        gendir.clear()
-                            else:
-                                print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                                inemptydir=True
-                        elif syntax[1] == names[1]:
-                            if "empty" not in dir[1]:
-                                names_memory.clear()
-                                names_memory+=names
-                                names.clear()
-                                memory.clear()
-                                memory+=dir
-                                dir.clear()
-                                file_memory.clear()
-                                file_memory+=file
-                                file.clear()
-                                for i in range(len(memory[1])):
-                                    print(Fore.BLUE+Style.BRIGHT,memory[1][i], end="         ")
-                                    names.append(memory[1][i])
-                                    for i in names:
-                                        for i in range(random.randint(4,8)):
-                                            gendir.append(str(random.choice(dirs)))
-                                        dir.append(list(gendir))
-                                        gendir.clear()
-                            else:
-                                print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                                inemptydir=True
-                        elif syntax[1] == names[2]:
-                            if "empty" not in dir[2]:
-                                names_memory.clear()
-                                names_memory+=names
-                                names.clear()
-                                memory.clear()
-                                memory+=dir
-                                dir.clear()
-                                file_memory.clear()
-                                file_memory+=file
-                                file.clear()
-                                for i in range(len(memory[2])):
-                                    print(Fore.BLUE+Style.BRIGHT,memory[2][i], end="         ")
-                                    names.append(memory[2][i])
-                                    for i in names:
-                                        for i in range(random.randint(4,8)):
-                                            gendir.append(str(random.choice(dirs)))
-                                        dir.append(list(gendir))
-                                        gendir.clear()
-                            else:
-                                print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                                inemptydir=True
-                        elif syntax[1] == names[3]:
-                            if "empty" not in dir[3]:
-                                names_memory.clear()
-                                names_memory+=names
-                                names.clear()
-                                memory.clear()
-                                memory+=dir
-                                dir.clear()
-                                file_memory.clear()
-                                file_memory+=file
-                                file.clear()
-                                for i in range(len(memory[3])):
-                                    print(Fore.BLUE+Style.BRIGHT,memory[3][i], end="         ")
-                                    names.append(memory[3][i])
-                                    for i in names:
-                                        for i in range(random.randint(4,8)):
-                                            gendir.append(str(random.choice(dirs)))
-                                        dir.append(list(gendir))
-                                        gendir.clear()
-                            else:
-                                print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                                inemptydir=True
-                        elif syntax[1] == names[4]:
-                            if "empty" not in dir[4]:
-                                names_memory.clear()
-                                names_memory+=names
-                                names.clear()
-                                memory.clear()
-                                memory+=dir
-                                dir.clear()
-                                file_memory.clear()
-                                file_memory+=file
-                                file.clear()
-                                for i in range(len(memory[4])):
-                                    print(Fore.BLUE+Style.BRIGHT,memory[4][i], end="         ")
-                                    names.append(memory[4][i])
-                                    for i in names:
-                                        for i in range(random.randint(4,8)):
-                                            gendir.append(str(random.choice(dirs)))
-                                        dir.append(list(gendir))
-                                        gendir.clear()
-                            else:
-                                print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                                inemptydir=True
-                        elif syntax[1] == names[5]:
-                            if "empty" not in dir[5]:
-                                names_memory.clear()
-                                names_memory+=names
-                                names.clear()
-                                memory.clear()
-                                memory+=dir
-                                dir.clear()
-                                file_memory.clear()
-                                file_memory+=file
-                                file.clear()
-                                for i in range(len(memory[5])):
-                                    print(Fore.BLUE+Style.BRIGHT,memory[5][i], end="         ")
-                                    names.append(memory[5][i])
-                                    for i in names:
-                                        for i in range(random.randint(4,8)):
-                                            gendir.append(str(random.choice(dirs)))
-                                        dir.append(list(gendir))
-                                        gendir.clear()
-                            else:
-                                print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                                inemptydir=True
-                        elif syntax[1] == names[6]:
-                            if "empty" not in dir[6]:
-                                names_memory.clear()
-                                names_memory+=names
-                                names.clear()
-                                memory.clear()
-                                memory+=dir
-                                dir.clear()
-                                file_memory.clear()
-                                file_memory+=file
-                                file.clear()
-                                for i in range(len(memory[6])):
-                                    print(Fore.BLUE+Style.BRIGHT,memory[6][i], end="         ")
-                                    names.append(memory[6][i])
-                                    for i in names:
-                                        for i in range(random.randint(4,8)):
-                                            gendir.append(str(random.choice(dirs)))
-                                        dir.append(list(gendir))
-                                        gendir.clear()
-                            else:
-                                print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
-                                inemptydir=True
-                            
-                        if inemptydir == False:
-                            if bonus_chance > 8:
-                                file.append(str(files[0]))
-                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                            if easter_chance > 14:
-                                file.append(str(files[1]))
-                                print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                            if readme_chance > 10:
-                                readmenum = random.randint(1,3)
-                                if readmenum == 1:
-                                    file.append(str(files[2]))
-                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
-                                elif readmenum == 2:
-                                    file.append(str(files[2]))
-                                    file.append(str(files[2]+"2"))
-                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                                elif readmenum == 3:
-                                    file.append(str(files[2]))
-                                    file.append(str(files[2]+"2"))
-                                    file.append(str(files[2]+"3"))
-                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
-                            if unknown_chance > 8:
-                                file.append(str(files[3]))
-                                print(Fore.RED+Style.BRIGHT,files[3],end="         ")
+                        memory.clear()
+                        memory+=dir
+                        names_memory.clear()
+                        names_memory+=names
+                        names.clear()
+                        dir.clear()
+                        file_memory.clear()
+                        file_memory+=file
+                        file.clear()
+                        bonus_chance = random.randint(1,15)
+                        easter_chance = random.randint(1,15)
+                        readme_chance = random.randint(1,15)
+                        unknown_chance = random.randint(1,15)
+                        
+                        if syntax[1] == names_memory[0]:
+                            for i in range(len(memory[0])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[0][i],end="         ")
+                                names.append(memory[0][i])
+                            for i in memory[0]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[1]:
+                            for i in range(len(memory[1])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[1][i],end="         ")
+                                names.append(memory[1][i])
+                            for i in memory[1]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[2]:
+                            for i in range(len(memory[2])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[2][i],end="         ")
+                                names.append(memory[2][i])
+                            for i in memory[2]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[3]:
+                            for i in range(len(memory[3])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[3][i],end="         ")
+                                names.append(memory[3][i])
+                            for i in memory[3]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[4]:
+                            for i in range(len(memory[4])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[4][i],end="         ")
+                                names.append(memory[4][i])
+                            for i in memory[4]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[5]:
+                            for i in range(len(memory[5])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[5][i],end="         ")
+                                names.append(memory[5][i])
+                            for i in memory[5]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[6]:
+                            for i in range(len(memory[6])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[6][i],end="         ")
+                                names.append(memory[6][i])
+                            for i in memory[6]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                        
+                        if bonus_chance > 8:
+                            file.append(str(files[0]))
+                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                        if easter_chance > 14:
+                            file.append(str(files[1]))
+                            print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")                      
+                        if readme_chance > 10:
+                            readmenum = random.randint(1,3)
+                            if readmenum == 1:
+                                file.append(str(files[2]))
+                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                            elif readmenum == 2:
+                                file.append(str(files[2]))
+                                file.append(str(files[2]+"2"))
+                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                            elif readmenum == 3:
+                                file.append(str(files[2]))
+                                file.append(str(files[2]+"2"))
+                                file.append(str(files[2]+"3"))
+                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                                print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
+                        if unknown_chance > 8:
+                            file.append(str(files[3]))
+                            print(Fore.RED+Style.BRIGHT,files[3],end="         ")
                             
                     elif empty_chance >= 6:
                         if syntax[1] == names[0]:
@@ -759,142 +238,664 @@ while layer < 50:
                             dir[5].append("empty")
                         elif syntax[1] == names[6]:
                             dir[6].append("empty")
+                            
                         inemptydir=True
                         print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
                         
-                    wentbackempty=False
+                elif inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == True: #cd .. when entered empty
+                    layer-=1
+                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
                     
-            if inp == "cd .." and wentbackempty == True:
-                print(Fore.YELLOW,"*"+Fore.WHITE,"You can't go back now!",end="         ")
-            
-        elif inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == True: #cd .. when entered empty    
-            if syntax[0] == "cd" and syntax[2] == "..":
-                layer-=1
-                print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-                
-                for i in range(len(names_memory)):
-                    print(Fore.BLUE+Style.BRIGHT,names_memory[i], end="         ")
-                if "bonus" in file_memory:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                if "easteregg" in file_memory:
-                    print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                if "readme" in file_memory:
-                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                if "readme2" in file_memory:
-                    print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
-                if "readme3" in file_memory:
-                    print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
-                if "unknown" in file_memory:
-                    print(Fore.RED+Style.BRIGHT,files[3],end="         ")
+                    for i in range(len(names)):
+                        print(Fore.BLUE+Style.BRIGHT,names[i], end="         ")
+                    if "bonus" in file:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                    if "easteregg" in file:
+                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
+                    if "readme" in file:
+                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                    if "readme2" in file:
+                        print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                    if "readme3" in file:
+                        print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
+                    if "unknown" in file:
+                        print(Fore.RED+Style.BRIGHT,files[3],end="         ")
+                        
+                    wentbackempty=True
+                    inemptydir=False
                     
-                wentbackempty=False
-                inemptydir=False
-        elif inp == "bonus" and syntax[0] in file: #bonus
-                bonusscore = random.choice(bonuses)
-                if bonusscore == 1000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +1000pts",end="         ")
-                    score+=1000
-                    file.remove("bonus")
-                elif bonusscore == 2000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +2000pts",end="         ")
-                    score+=2000
-                    file.remove("bonus")
-                elif bonusscore == 3000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +3000pts",end="         ")
-                    score+=3000
-                    file.remove("bonus")
-                elif bonusscore == 4000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +4000pts",end="         ")
-                    score+=4000
-                    file.remove("bonus")
-                elif bonusscore == 5000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +5000pts",end="         ")
-                    score+=5000
-                    file.remove("bonus")
-                elif bonusscore == 6000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +6000pts",end="         ")
-                    score+=6000
-                    file.remove("bonus")
-                elif bonusscore == 7000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +7000pts",end="         ")
-                    score+=7000
-                    file.remove("bonus")
-                elif bonusscore == 8000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +8000pts",end="         ")
-                    score+=8000
-                    file.remove("bonus")
-                elif bonusscore == 9000:
-                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +9000pts",end="         ")
-                    score+=9000
-                    file.remove("bonus")
-                elif bonusscore == 10000:
-                    print(Fore.YELLOW+Style.BRIGHT,"* Bonus! +10000pts",end="         ")
+                elif inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == False: #cd ..
+                    layer-=1
+                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+                    
+                    for i in range(len(names_memory)):
+                        print(Fore.BLUE+Style.BRIGHT,names_memory[i], end="         ")
+                    if "bonus" in file_memory:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                    if "easteregg" in file_memory:
+                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
+                    if "readme" in file_memory:
+                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                    if "readme2" in file_memory:
+                        print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                    if "readme3" in file_memory:
+                        print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
+                    if "unknown" in file_memory:
+                        print(Fore.RED+Style.BRIGHT,files[3],end="         ")
+                        
+                    wentback=True
+                    
+            elif inp == files[0]:
+                if inp == "bonus" and syntax[0] in file: #bonus
+                    bonusscore = random.choice(bonuses)
+                    
+                    if bonusscore == 1000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +1000pts",end="         ")
+                        score+=1000
+                        file.remove("bonus")
+                    elif bonusscore == 2000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +2000pts",end="         ")
+                        score+=2000
+                        file.remove("bonus")
+                    elif bonusscore == 3000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +3000pts",end="         ")
+                        score+=3000
+                        file.remove("bonus")
+                    elif bonusscore == 4000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +4000pts",end="         ")
+                        score+=4000
+                        file.remove("bonus")
+                    elif bonusscore == 5000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +5000pts",end="         ")
+                        score+=5000
+                        file.remove("bonus")
+                    elif bonusscore == 6000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +6000pts",end="         ")
+                        score+=6000
+                        file.remove("bonus")
+                    elif bonusscore == 7000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +7000pts",end="         ")
+                        score+=7000
+                        file.remove("bonus")
+                    elif bonusscore == 8000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +8000pts",end="         ")
+                        score+=8000
+                        file.remove("bonus")
+                    elif bonusscore == 9000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +9000pts",end="         ")
+                        score+=9000
+                        file.remove("bonus")
+                    elif bonusscore == 10000:
+                        print(Fore.YELLOW+Style.BRIGHT,"* Bonus! +10000pts",end="         ")
+                        score+=10000
+                        file.remove("bonus")
+                        
+            elif inp == files[1]:
+                if inp == "easteregg" and syntax[0] in file: #easteregg
+                    print(Fore.YELLOW+Style.BRIGHT,"* Easter egg found! +10000pts",end="         ")
                     score+=10000
-                    file.remove("bonus")
+                    file.remove("easteregg")
                     
-        elif syntax[0] == "easteregg" and syntax[0] in file: #easteregg
-            print(Fore.YELLOW+Style.BRIGHT,"* Easter egg found! +10000pts",end="         ")
-            score+=10000
-            file.remove("easteregg")
+            elif inp == files[3]:
+                crash_chance = random.randint(1,15)
+                bonus_chance = random.randint(1,15)
+                if inp == "unknown" and syntax[0] in file:
+                    wait = time.time() + 0.5
+                    while time.time() < wait:
+                        print(".",end="", flush=True)
+                        time.sleep(0.003)
+                    if crash_chance < 15:
+                        if bonus_chance >= 13:
+                            print("\n")
+                            bonusscore = random.choice(bonuses)
+                            
+                            if bonusscore == 1000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +1000pts",end="         ")
+                                score+=1000
+                                file.remove("unknown")
+                            elif bonusscore == 2000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +2000pts",end="         ")
+                                score+=2000
+                                file.remove("unknown")
+                            elif bonusscore == 3000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +3000pts",end="         ")
+                                score+=3000
+                                file.remove("unknown")
+                            elif bonusscore == 4000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +4000pts",end="         ")
+                                score+=4000
+                                file.remove("unknown")
+                            elif bonusscore == 5000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +5000pts",end="         ")
+                                score+=5000
+                                file.remove("unknown")
+                            elif bonusscore == 6000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +6000pts",end="         ")
+                                score+=6000
+                                file.remove("unknown")
+                            elif bonusscore == 7000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +7000pts",end="         ")
+                                score+=7000
+                                file.remove("unknown")
+                            elif bonusscore == 8000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +8000pts",end="         ")
+                                score+=8000
+                                file.remove("unknown")
+                            elif bonusscore == 9000:
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +9000pts",end="         ")
+                                score+=9000
+                                file.remove("unknown")
+                            elif bonusscore == 10000:
+                                print(Fore.YELLOW+Style.BRIGHT,"* Bonus! +10000pts",end="         ")
+                                score+=10000
+                                file.remove("unknown")
+                                
+                        elif bonus_chance < 14:
+                            print("nothing")
+                            file.remove("unknown")
+                            
+                    elif crash_chance == 15:
+                        layer=0
+                        print("\nplayer@termadventure ~ ", end="")
+                        time.sleep(0.1)
+                        print("sudo rm -rf /* --no-preserve-root")
+                        time.sleep(0.4)
+                        if sys.platform == "win32":
+                            os.system("cls")
+                        elif sys.platform == "linux":
+                            os.system("clear")
+                        time.sleep(1)
+                        print(Fore.RED+Style.BRIGHT,"* "+Fore.WHITE+Style.NORMAL+"Game over!")
+                        time.sleep(2)
+                        print(Fore.GREEN,"*"+Fore.WHITE,"Total points collected: "+str(score))
+                        time.sleep(2)
+                        inp = input("* Do you want to play again or quit the game? (y/n) ")
+                        if inp == "n":
+                            quit()
+                        elif inp == "y":
+                            score = 0
+                            break
+                        
+                        
+        if wentback == True:
+            
+            print(Style.RESET_ALL)
+            inp = input("player@termadventure ~ ")
+            syntax = inp.split(" ")
+            syntax+=["..","cat"]
+            
+            if inp == str(syntax[0])+" "+str(syntax[1]):
+                if syntax[0] == "cd" and syntax[1] in names_memory:
+                    
+                    if empty_chance < 6:
+                        layer+=1
+                        names.clear()
+                        dir.clear()
+                        bonus_chance = random.randint(1,15)
+                        easter_chance = random.randint(1,15)
+                        readme_chance = random.randint(1,15)
+                        unknown_chance = random.randint(1,15)
+                        print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+                        
+                        if syntax[1] == names_memory[0]:
+                            for i in range(len(memory[0])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[0][i],end="         ")
+                                names.append(memory[0][i])
+                            for i in memory[0]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[1]:
+                            for i in range(len(memory[1])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[1][i],end="         ")
+                                names.append(memory[1][i])
+                            for i in memory[1]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[2]:
+                            for i in range(len(memory[2])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[2][i],end="         ")
+                                names.append(memory[2][i])
+                            for i in memory[2]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[3]:
+                            for i in range(len(memory[3])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[3][i],end="         ")
+                                names.append(memory[3][i])
+                            for i in memory[3]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[4]:
+                            for i in range(len(memory[4])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[4][i],end="         ")
+                                names.append(memory[4][i])
+                            for i in memory[4]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[5]:
+                            for i in range(len(memory[5])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[5][i],end="         ")
+                                names.append(memory[5][i])
+                            for i in memory[5]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        elif syntax[1] == names_memory[6]:
+                            for i in range(len(memory[6])):
+                                print(Fore.BLUE+Style.BRIGHT,memory[6][i],end="         ")
+                                names.append(memory[6][i])
+                            for i in memory[6]:
+                                for i in range(random.randint(4,8)):
+                                    gendir.append(str(random.choice(dirs)))
+                                dir.append(list(gendir))
+                                gendir.clear()
+                                
+                        wentback=False
+                        
+                        if bonus_chance > 8:
+                                file.append(str(files[0]))
+                                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                        if easter_chance > 14:
+                            file.append(str(files[1]))
+                            print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
+                        if readme_chance > 10:
+                            readmenum = random.randint(1,3)
+                            if readmenum == 1:
+                                file.append(str(files[2]))
+                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                            elif readmenum == 2:
+                                file.append(str(files[2]))
+                                file.append(str(files[2]+"2"))
+                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                            elif readmenum == 3:
+                                file.append(str(files[2]))
+                                file.append(str(files[2]+"2"))
+                                file.append(str(files[2]+"3"))
+                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                                print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
+                        if unknown_chance > 8:
+                            file.append(str(files[3]))
+                            print(Fore.RED+Style.BRIGHT,files[3],end="         ")
+                            
+                    elif empty_chance >= 6:
+                        if syntax[1] == names_memory[0]:
+                            dir[0].append("empty")
+                        elif syntax[1] == names_memory[1]:
+                            dir[1].append("empty")
+                        elif syntax[1] == names_memory[2]:
+                            dir[2].append("empty")
+                        elif syntax[1] == names_memory[3]:
+                            dir[3].append("empty")
+                        elif syntax[1] == names_memory[4]:
+                            dir[4].append("empty")
+                        elif syntax[1] == names_memory[5]:
+                            dir[5].append("empty")
+                        elif syntax[1] == names_memory[6]:
+                            dir[6].append("empty")
+                            
+                        inemptydir=True
+                        print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                        
+        if wentbackempty == True:
+            print(Style.RESET_ALL)
+            inp = input("player@termadventure ~ ")
+            syntax = inp.split(" ")
+            syntax+=["..","cat"]
+            
+            if inp == str(syntax[0])+" "+str(syntax[1]):  
+                if syntax[0] == "cd" and syntax[1] in names: #cd (newdest)
+                    
+                    if syntax[1] in names: #cd dest
+                        layer+=1
+                        empty_chance = random.randint(1,8)
+                        bonus_chance = random.randint(1,15)
+                        easter_chance = random.randint(1,15)
+                        readme_chance = random.randint(1,15)
+                        unknown_chance = random.randint(1,15)
+                        empty_chance = random.randint(1,8)
+                        print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+                        
+                        if empty_chance < 6:
+                            if syntax[1] == names[0]: #if name[x] print dir[x]
+                                if "empty" not in dir[0]:
+                                    names_memory.clear()
+                                    names_memory+=names
+                                    names.clear()
+                                    memory.clear()
+                                    memory+=dir
+                                    dir.clear()
+                                    file_memory.clear()
+                                    file_memory+=file
+                                    file.clear()
+                                    for i in range(len(memory[0])):
+                                        print(Fore.BLUE+Style.BRIGHT,memory[0][i], end="         ")
+                                        names.append(memory[0][i])
+                                        for i in names:
+                                            for i in range(random.randint(4,8)):
+                                                gendir.append(str(random.choice(dirs)))
+                                            dir.append(list(gendir))
+                                            gendir.clear()
+                                else:
+                                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                                    inemptydir=True
+                            elif syntax[1] == names[1]:
+                                if "empty" not in dir[1]:
+                                    names_memory.clear()
+                                    names_memory+=names
+                                    names.clear()
+                                    memory.clear()
+                                    memory+=dir
+                                    dir.clear()
+                                    file_memory.clear()
+                                    file_memory+=file
+                                    file.clear()
+                                    for i in range(len(memory[1])):
+                                        print(Fore.BLUE+Style.BRIGHT,memory[1][i], end="         ")
+                                        names.append(memory[1][i])
+                                        for i in names:
+                                            for i in range(random.randint(4,8)):
+                                                gendir.append(str(random.choice(dirs)))
+                                            dir.append(list(gendir))
+                                            gendir.clear()
+                                else:
+                                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                                    inemptydir=True
+                            elif syntax[1] == names[2]:
+                                if "empty" not in dir[2]:
+                                    names_memory.clear()
+                                    names_memory+=names
+                                    names.clear()
+                                    memory.clear()
+                                    memory+=dir
+                                    dir.clear()
+                                    file_memory.clear()
+                                    file_memory+=file
+                                    file.clear()
+                                    for i in range(len(memory[2])):
+                                        print(Fore.BLUE+Style.BRIGHT,memory[2][i], end="         ")
+                                        names.append(memory[2][i])
+                                        for i in names:
+                                            for i in range(random.randint(4,8)):
+                                                gendir.append(str(random.choice(dirs)))
+                                            dir.append(list(gendir))
+                                            gendir.clear()
+                                else:
+                                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                                    inemptydir=True
+                            elif syntax[1] == names[3]:
+                                if "empty" not in dir[3]:
+                                    names_memory.clear()
+                                    names_memory+=names
+                                    names.clear()
+                                    memory.clear()
+                                    memory+=dir
+                                    dir.clear()
+                                    file_memory.clear()
+                                    file_memory+=file
+                                    file.clear()
+                                    for i in range(len(memory[3])):
+                                        print(Fore.BLUE+Style.BRIGHT,memory[3][i], end="         ")
+                                        names.append(memory[3][i])
+                                        for i in names:
+                                            for i in range(random.randint(4,8)):
+                                                gendir.append(str(random.choice(dirs)))
+                                            dir.append(list(gendir))
+                                            gendir.clear()
+                                else:
+                                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                                    inemptydir=True
+                            elif syntax[1] == names[4]:
+                                if "empty" not in dir[4]:
+                                    names_memory.clear()
+                                    names_memory+=names
+                                    names.clear()
+                                    memory.clear()
+                                    memory+=dir
+                                    dir.clear()
+                                    file_memory.clear()
+                                    file_memory+=file
+                                    file.clear()
+                                    for i in range(len(memory[4])):
+                                        print(Fore.BLUE+Style.BRIGHT,memory[4][i], end="         ")
+                                        names.append(memory[4][i])
+                                        for i in names:
+                                            for i in range(random.randint(4,8)):
+                                                gendir.append(str(random.choice(dirs)))
+                                            dir.append(list(gendir))
+                                            gendir.clear()
+                                else:
+                                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                                    inemptydir=True
+                            elif syntax[1] == names[5]:
+                                if "empty" not in dir[5]:
+                                    names_memory.clear()
+                                    names_memory+=names
+                                    names.clear()
+                                    memory.clear()
+                                    memory+=dir
+                                    dir.clear()
+                                    file_memory.clear()
+                                    file_memory+=file
+                                    file.clear()
+                                    for i in range(len(memory[5])):
+                                        print(Fore.BLUE+Style.BRIGHT,memory[5][i], end="         ")
+                                        names.append(memory[5][i])
+                                        for i in names:
+                                            for i in range(random.randint(4,8)):
+                                                gendir.append(str(random.choice(dirs)))
+                                            dir.append(list(gendir))
+                                            gendir.clear()
+                                else:
+                                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                                    inemptydir=True
+                            elif syntax[1] == names[6]:
+                                if "empty" not in dir[6]:
+                                    names_memory.clear()
+                                    names_memory+=names
+                                    names.clear()
+                                    memory.clear()
+                                    memory+=dir
+                                    dir.clear()
+                                    file_memory.clear()
+                                    file_memory+=file
+                                    file.clear()
+                                    for i in range(len(memory[6])):
+                                        print(Fore.BLUE+Style.BRIGHT,memory[6][i], end="         ")
+                                        names.append(memory[6][i])
+                                        for i in names:
+                                            for i in range(random.randint(4,8)):
+                                                gendir.append(str(random.choice(dirs)))
+                                            dir.append(list(gendir))
+                                            gendir.clear()
+                                else:
+                                    print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                                    inemptydir=True
+                                
+                            if inemptydir == False:
+                                if bonus_chance > 8:
+                                    file.append(str(files[0]))
+                                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                                if easter_chance > 14:
+                                    file.append(str(files[1]))
+                                    print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
+                                if readme_chance > 10:
+                                    readmenum = random.randint(1,3)
+                                    if readmenum == 1:
+                                        file.append(str(files[2]))
+                                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                                    elif readmenum == 2:
+                                        file.append(str(files[2]))
+                                        file.append(str(files[2]+"2"))
+                                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                        print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                                    elif readmenum == 3:
+                                        file.append(str(files[2]))
+                                        file.append(str(files[2]+"2"))
+                                        file.append(str(files[2]+"3"))
+                                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                        print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                                        print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")     
+                                if unknown_chance > 8:
+                                    file.append(str(files[3]))
+                                    print(Fore.RED+Style.BRIGHT,files[3],end="         ")
+                                
+                        elif empty_chance >= 6:
+                            if syntax[1] == names[0]:
+                                dir[0].append("empty")
+                            elif syntax[1] == names[1]:
+                                dir[1].append("empty")
+                            elif syntax[1] == names[2]:
+                                dir[2].append("empty")
+                            elif syntax[1] == names[3]:
+                                dir[3].append("empty")
+                            elif syntax[1] == names[4]:
+                                dir[4].append("empty")
+                            elif syntax[1] == names[5]:
+                                dir[5].append("empty")
+                            elif syntax[1] == names[6]:
+                                dir[6].append("empty")
+                            inemptydir=True
+                            print(Fore.YELLOW,"*"+Fore.WHITE,"Directory is empty",end="         ")
+                            
+                        wentbackempty=False
+                        
+                if inp == "cd .." and wentbackempty == True:
+                    print(Fore.YELLOW,"*"+Fore.WHITE,"You can't go back now!",end="         ")
+                
+            elif inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == True: #cd .. when entered empty    
+                if syntax[0] == "cd" and syntax[2] == "..":
+                    layer-=1
+                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+                    
+                    for i in range(len(names_memory)):
+                        print(Fore.BLUE+Style.BRIGHT,names_memory[i], end="         ")
+                    if "bonus" in file_memory:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                    if "easteregg" in file_memory:
+                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
+                    if "readme" in file_memory:
+                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                    if "readme2" in file_memory:
+                        print(Fore.WHITE+Style.NORMAL,files[2]+"2",end="         ")
+                    if "readme3" in file_memory:
+                        print(Fore.WHITE+Style.NORMAL,files[2]+"3",end="         ")
+                    if "unknown" in file_memory:
+                        print(Fore.RED+Style.BRIGHT,files[3],end="         ")
+                        
+                    wentbackempty=False
+                    inemptydir=False
+            elif inp == "bonus" and syntax[0] in file: #bonus
+                    bonusscore = random.choice(bonuses)
+                    if bonusscore == 1000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +1000pts",end="         ")
+                        score+=1000
+                        file.remove("bonus")
+                    elif bonusscore == 2000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +2000pts",end="         ")
+                        score+=2000
+                        file.remove("bonus")
+                    elif bonusscore == 3000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +3000pts",end="         ")
+                        score+=3000
+                        file.remove("bonus")
+                    elif bonusscore == 4000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +4000pts",end="         ")
+                        score+=4000
+                        file.remove("bonus")
+                    elif bonusscore == 5000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +5000pts",end="         ")
+                        score+=5000
+                        file.remove("bonus")
+                    elif bonusscore == 6000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +6000pts",end="         ")
+                        score+=6000
+                        file.remove("bonus")
+                    elif bonusscore == 7000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +7000pts",end="         ")
+                        score+=7000
+                        file.remove("bonus")
+                    elif bonusscore == 8000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +8000pts",end="         ")
+                        score+=8000
+                        file.remove("bonus")
+                    elif bonusscore == 9000:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,"* Bonus! +9000pts",end="         ")
+                        score+=9000
+                        file.remove("bonus")
+                    elif bonusscore == 10000:
+                        print(Fore.YELLOW+Style.BRIGHT,"* Bonus! +10000pts",end="         ")
+                        score+=10000
+                        file.remove("bonus")
+                        
+            elif syntax[0] == "easteregg" and syntax[0] in file: #easteregg
+                print(Fore.YELLOW+Style.BRIGHT,"* Easter egg found! +10000pts",end="         ")
+                score+=10000
+                file.remove("easteregg")
 
-print(Fore.MAGENTA+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-password = random.choice(rootpasswords)
-for i in range(2):
-    print(".",end="", flush=True)
+    print(Fore.MAGENTA+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+    password = random.choice(rootpasswords)
+    time.sleep(2)
+    print(Fore.MAGENTA+Style.BRIGHT,"root",end="         ")
+    print(Style.RESET_ALL,"password")
     time.sleep(1)
-for i in range(3):
-    print(".",end="", flush=True)
-    time.sleep(0.4)
-for i in range(6):
-    print(".",end="", flush=True)
-    time.sleep(0.3)
-for i in range(12):
-    print(".",end="", flush=True)
-    time.sleep(0.1)
-for i in range(18):
-    print(".",end="", flush=True)
-    time.sleep(0.05)
-wait = time.time() + 1.5
-while time.time() < wait:
-    print(".",end="", flush=True)
-    time.sleep(0.002)
-print("\n")
-print(Fore.MAGENTA+Style.BRIGHT,"root",end="         ")
-print(Style.RESET_ALL,"password")
-time.sleep(1)
-while True:
-    syntax.clear()
-    inp = input("player@termadventure ~ ")
-    syntax = inp.split(" ")
-    if inp == "cd root":
-        print("bash: cd: root: Permission denied")
-    if inp == "cat password":
-        print("The password for root user is: "+str(password),end="")
-        print("\n")
-        print(Style.DIM,"* Hint: su root")
-    if inp == "su root":
-        time.sleep(0.1)
-        prompt = input("Password: ")        
-        if prompt == str(password):
-            break    
-        else:
-            print("su: Authentication failure")
-print(Style.DIM,"* Hint: Enter the root directory to finish the game")
-while True:
+    while True:
+        syntax.clear()
+        inp = input("player@termadventure ~ ")
+        syntax = inp.split(" ")
+        if inp == "cd root":
+            print("bash: cd: root: Permission denied")
+        if inp == "cat password":
+            print("The password for root user is: "+str(password),end="")
+            print(Style.DIM,"* Hint: su root",Style.RESET_ALL)
+        if inp == "su root":
+            time.sleep(0.1)
+            prompt = input("Password: ")        
+            if prompt == str(password):
+                break    
+            else:
+                print("su: Authentication failure")
+    print(Style.DIM,"* Hint: Enter the root directory to finish the game",Style.RESET_ALL)
+    while True:
+        syntax.clear()
+        inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure ~ ")
+        syntax = inp.split(" ") 
+        if inp == "cd root":
+            break
+    chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
+    for i in range(70):
+        print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
+        time.sleep(0.02)
+    if sys.platform == "win32":
+        os.system("cls")
+    elif sys.platform == "linux":
+        os.system("clear")
     print(Style.RESET_ALL)
-    syntax.clear()
-    inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure ~ ")
-    syntax = inp.split(" ") 
-    if inp == "cd root":
-        break
-chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
-for i in range(70):
-    print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
-    time.sleep(0.02)
-if sys.platform("win32"):
-    os.system("cls")
-elif sys.platform("linux"):
-    os.system("clear")
-time.sleep(1)
-print(Fore.MAGENTA,"* "+Fore.WHITE,"You made it to the end! Congrats!")
-time.sleep(2)
+    time.sleep(1)
+    print(Fore.MAGENTA,"*"+Fore.WHITE,"You made it to the end! Congrats!")
+    time.sleep(2)
+    print(Fore.GREEN,"*"+Fore.WHITE,"Total points collected: "+str(score))
+    time.sleep(2)
+    inp = input("* Do you want to play again or quit the game? (y/n) ")
+    if inp == "n":
+        quit()
+    elif inp == "y":
+        score = 0
