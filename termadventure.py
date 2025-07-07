@@ -23,8 +23,8 @@ dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp",
       "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
       "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4"]   
 files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode"]
-specialreadmetexts=["""Linux linux 6.15.2-zen1-1-zen x86_64 GNU/Linux""","""
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+specialreadmetexts=["Linux termadventure 6.15.2-zen1-1-zen x86_64 GNU/Linux",
+"""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -36,7 +36,7 @@ To do list:
 - get rid of windows
 - install arch linux on first drive
 - install gentoo on second drive
-"""]
+""","your score is currently "+str(score),]
 rootpasswords=["********","123","root","admin","password","administrator"]
 bonuses = [1000,2000,3000,4000,5000]
 
@@ -50,8 +50,8 @@ print(Fore.GREEN+Style.BRIGHT,r"""
 print(Fore.WHITE,"Written in Python by Atomix, June 2025                         Version 0.1")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show info about the game")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- exit the game")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- leave the game")
 
 while True:
     inp = input("\nplayer@termadventure ~ ")
@@ -61,7 +61,7 @@ while True:
 * Explore the seemingly infinite Linux kernel containing directories and files.
 * You may find a lot of interesting things, which can give you points.
 * But unknown files may delete your system (not literally), so be careful!
-* There are also readme files, which can contain codes for specific puzzle programs.
+* There are also readme files, which can contain codes for specific programs.
 * Reach layer 50 to get to the root directory. 
 * For the full guidebook, check out the README file in the repository.
             """)
@@ -82,6 +82,8 @@ while True:
     readme2=[]
     readme3=[]
     layer = 1
+    codexprg_chance=0
+    kernelcodeprg_chance=0
     wentbackempty=False
     inemptydir=False
     kernelread=False
@@ -89,13 +91,22 @@ while True:
     print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
     time.sleep(2)
     print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-
-    for i in range(random.randint(3,6)):
+    
+    print(Fore.BLUE+Style.BRIGHT,"home",end="         ")
+    while True:
+        print(Style.RESET_ALL)
+        inp = input("player@termadventure ~ ")
+        if inp == "cd home":
+            break
+    
+    layer+=1
+    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+    for i in range(random.randint(4,7)):
         names.append(str(random.choice(dirs)))
         print(Fore.BLUE+Style.BRIGHT,names[i],end="         ")
         
     for i in names:
-        for i in range(random.randint(3,6)):
+        for i in range(random.randint(4,7)):
             gendir.append(str(random.choice(dirs)))
         dir.append(list(gendir))
         gendir.clear()
@@ -118,6 +129,10 @@ while True:
                   print(Fore.BLUE+Style.BRIGHT,names[i],end="         ")
             if "bonus" in file:
                 print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+            if "codex" in file:
+                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[5],end="         ")
+            if "kernelcode" in file:
+                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
             if "easteregg" in file:
                 print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
             if "unknown" in file:
@@ -128,14 +143,10 @@ while True:
                 print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
             if "readme3" in file:
                 print(Fore.WHITE+Style.NORMAL,files[4],end="         ")
-            if "codex" in file:
-                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[5],end="         ")
-            if "kernelcode" in file:
-                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
                 
         if wentbackempty == False:
             print(Style.RESET_ALL)
-            inp = input("player@linux ~ ")
+            inp = input("player@termadventure ~ ")
             syntax = inp.split(" ")
             syntax+=[".."]
             
@@ -166,13 +177,17 @@ while True:
                         easter_chance = random.randint(1,15)
                         readme_chance = random.randint(1,15)
                         unknown_chance = random.randint(1,15)
-                        
+                        if codexread == True:
+                            codexprg_chance = random.randint(1,15)
+                        if kernelread == True:
+                            kernelcodeprg_chance = random.randint(1,15)
+                            
                         if syntax[1] == names_memory[0]:
                             for i in range(len(memory[0])):
                                 print(Fore.BLUE+Style.BRIGHT,memory[0][i],end="         ")
                                 names.append(memory[0][i])
                             for i in memory[0]:
-                                for i in range(random.randint(3,6)):
+                                for i in range(random.randint(4,7)):
                                     gendir.append(str(random.choice(dirs)))
                                 dir.append(list(gendir))
                                 gendir.clear()
@@ -182,7 +197,7 @@ while True:
                                 print(Fore.BLUE+Style.BRIGHT,memory[1][i],end="         ")
                                 names.append(memory[1][i])
                             for i in memory[1]:
-                                for i in range(random.randint(3,6)):
+                                for i in range(random.randint(4,7)):
                                     gendir.append(str(random.choice(dirs)))
                                 dir.append(list(gendir))
                                 gendir.clear()
@@ -192,7 +207,7 @@ while True:
                                 print(Fore.BLUE+Style.BRIGHT,memory[2][i],end="         ")
                                 names.append(memory[2][i])
                             for i in memory[2]:
-                                for i in range(random.randint(3,6)):
+                                for i in range(random.randint(4,7)):
                                     gendir.append(str(random.choice(dirs)))
                                 dir.append(list(gendir))
                                 gendir.clear()
@@ -202,7 +217,7 @@ while True:
                                 print(Fore.BLUE+Style.BRIGHT,memory[3][i],end="         ")
                                 names.append(memory[3][i])
                             for i in memory[3]:
-                                for i in range(random.randint(3,6)):
+                                for i in range(random.randint(4,7)):
                                     gendir.append(str(random.choice(dirs)))
                                 dir.append(list(gendir))
                                 gendir.clear()
@@ -212,7 +227,7 @@ while True:
                                 print(Fore.BLUE+Style.BRIGHT,memory[4][i],end="         ")
                                 names.append(memory[4][i])
                             for i in memory[4]:
-                                for i in range(random.randint(3,6)):
+                                for i in range(random.randint(4,7)):
                                     gendir.append(str(random.choice(dirs)))
                                 dir.append(list(gendir))
                                 gendir.clear()
@@ -222,7 +237,7 @@ while True:
                                 print(Fore.BLUE+Style.BRIGHT,memory[5][i],end="         ")
                                 names.append(memory[5][i])
                             for i in memory[5]:
-                                for i in range(random.randint(3,6)):
+                                for i in range(random.randint(4,7)):
                                     gendir.append(str(random.choice(dirs)))
                                 dir.append(list(gendir))
                                 gendir.clear()
@@ -232,7 +247,7 @@ while True:
                                 print(Fore.BLUE+Style.BRIGHT,memory[6][i],end="         ")
                                 names.append(memory[6][i])
                             for i in memory[6]:
-                                for i in range(random.randint(3,6)):
+                                for i in range(random.randint(4,7)):
                                     gendir.append(str(random.choice(dirs)))
                                 dir.append(list(gendir))
                                 gendir.clear()
@@ -240,6 +255,12 @@ while True:
                         if bonus_chance > 8:
                             file.append(str(files[0]))
                             print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                        if codexprg_chance == 15:
+                            file.append(str(files[6]))
+                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
+                        if kernelcodeprg_chance == 15:
+                            file.append(str(files[7]))
+                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
                         if easter_chance > 14:
                             file.append(str(files[1]))
                             print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")                      
@@ -263,7 +284,6 @@ while True:
                                 print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
                                 print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
                                 print(Fore.WHITE+Style.NORMAL,files[4],end="         ")     
-                            
                     elif empty_chance >= 7:
                         if syntax[1] == names[0]:
                             dir[0].append("empty")
@@ -291,6 +311,10 @@ while True:
                         print(Fore.BLUE+Style.BRIGHT,names[i], end="         ")
                     if "bonus" in file:
                         print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                    if "codex" in file:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[5],end="         ")
+                    if "kernelcode" in file:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
                     if "easteregg" in file:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                     if "unknown" in file:
@@ -339,11 +363,11 @@ while True:
             if inp == "cat "+str(files[2]):
                 if files[2] in file:  #readme files
                     if not readme:
-                        kernelcode_chance = random.randint(1,15)
-                        codex_chance = random.randint(1,15)
+                        kernelcode_chance = random.randint(1,20)
+                        codex_chance = random.randint(1,20)
                         bonus_chance = random.randint(1,15)
                             
-                        if kernelcode_chance == 15:
+                        if kernelcode_chance == 20:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
                                 for i in range(3):
@@ -352,7 +376,7 @@ while True:
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 
-                        elif codex_chance == 15:
+                        elif codex_chance == 20:
                             if codexread == False:
                                 print(specialreadmetexts[1])
                                 codex={}
@@ -385,7 +409,7 @@ while True:
                                 score+=5000
                             readme.append(str(specialreadmetexts[2]+str(bonusscore)))
                             
-                        elif kernelcode_chance != 15 or codex_chance != 15 or bonus_chance != 15:
+                        elif kernelcode_chance != 20 or codex_chance != 20 or bonus_chance != 15:
                             readme.append(str(random.choice(readmetexts)))
                             print(*readme,end="\r")
                     else:
@@ -394,11 +418,11 @@ while True:
             if inp == "cat "+str(files[3]):
                 if files[3] in file:
                     if not readme2:
-                        kernelcode_chance = random.randint(1,15)
-                        codex_chance = random.randint(1,15)
+                        kernelcode_chance = random.randint(1,20)
+                        codex_chance = random.randint(1,20)
                         bonus_chance = random.randint(1,15)
                         
-                        if kernelcode_chance == 15:
+                        if kernelcode_chance == 20:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
                                 for i in range(3):
@@ -407,7 +431,7 @@ while True:
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                             
-                        elif codex_chance == 15:
+                        elif codex_chance == 20:
                             if codexread == False:
                                 print(specialreadmetexts[1])
                                 codex={}
@@ -440,7 +464,7 @@ while True:
                                 score+=5000
                             readme2.append(str(specialreadmetexts[2]+str(bonusscore)))
                         
-                        elif kernelcode_chance != 15 or codex_chance != 15 or bonus_chance != 15:
+                        elif kernelcode_chance != 20 or codex_chance != 20 or bonus_chance != 15:
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
@@ -449,11 +473,11 @@ while True:
             if inp == "cat "+str(files[4]):
                 if files[4] in file:
                     if not readme3:
-                        kernelcode_chance = random.randint(1,15)
-                        codex_chance = random.randint(1,15)
+                        kernelcode_chance = random.randint(1,20)
+                        codex_chance = random.randint(1,20)
                         bonus_chance = random.randint(1,15)
 
-                        if kernelcode_chance == 15:
+                        if kernelcode_chance == 20:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
                                 for i in range(3):
@@ -462,7 +486,7 @@ while True:
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 
-                        elif codex_chance == 15:
+                        elif codex_chance == 20:
                             if codexread == False:
                                 print(specialreadmetexts[1])
                                 codex={}
@@ -495,7 +519,7 @@ while True:
                                 score+=5000
                             readme3.append(str(specialreadmetexts[2]+str(bonusscore)))
                                 
-                        elif kernelcode_chance != 15 or codex_chance != 15 or bonus_chance != 15:
+                        elif kernelcode_chance != 20 or codex_chance != 20 or bonus_chance != 15:
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
@@ -540,7 +564,7 @@ while True:
                             
                     elif crash_chance == 14:
                         layer=0
-                        print("\nplayer@linux ~ ", end="")
+                        print("\nplayer@termadventure ~ ", end="")
                         time.sleep(0.1)
                         print("sudo rm -rf /* --no-preserve-root")
                         time.sleep(0.4)
@@ -562,7 +586,7 @@ while True:
                                 
         if wentbackempty == True:
             print(Style.RESET_ALL)
-            inp = input("player@linux ~ ")
+            inp = input("player@termadventure ~ ")
             syntax = inp.split(" ")
             syntax+=["..","cat"]
             
@@ -576,9 +600,12 @@ while True:
                         easter_chance = random.randint(1,15)
                         readme_chance = random.randint(1,15)
                         unknown_chance = random.randint(1,15)
-                        empty_chance = random.randint(1,8)
+                        if codexread == True:
+                            codexprg_chance = random.randint(1,15)
+                        if kernelread == True:
+                            kernelcodeprg_chance = random.randint(1,15)
+                            
                         print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
-                        
                         if empty_chance < 7:
                             if syntax[1] == names[0]: #if name[x] print dir[x]
                                 if "empty" not in dir[0]:
@@ -597,7 +624,7 @@ while True:
                                         print(Fore.BLUE+Style.BRIGHT,memory[0][i], end="         ")
                                         names.append(memory[0][i])
                                         for i in names:
-                                            for i in range(random.randint(3,6)):
+                                            for i in range(random.randint(4,7)):
                                                 gendir.append(str(random.choice(dirs)))
                                             dir.append(list(gendir))
                                             gendir.clear()
@@ -621,7 +648,7 @@ while True:
                                         print(Fore.BLUE+Style.BRIGHT,memory[1][i], end="         ")
                                         names.append(memory[1][i])
                                         for i in names:
-                                            for i in range(random.randint(3,6)):
+                                            for i in range(random.randint(4,7)):
                                                 gendir.append(str(random.choice(dirs)))
                                             dir.append(list(gendir))
                                             gendir.clear()
@@ -645,7 +672,7 @@ while True:
                                         print(Fore.BLUE+Style.BRIGHT,memory[2][i], end="         ")
                                         names.append(memory[2][i])
                                         for i in names:
-                                            for i in range(random.randint(3,6)):
+                                            for i in range(random.randint(4,7)):
                                                 gendir.append(str(random.choice(dirs)))
                                             dir.append(list(gendir))
                                             gendir.clear()
@@ -669,7 +696,7 @@ while True:
                                         print(Fore.BLUE+Style.BRIGHT,memory[3][i], end="         ")
                                         names.append(memory[3][i])
                                         for i in names:
-                                            for i in range(random.randint(3,6)):
+                                            for i in range(random.randint(4,7)):
                                                 gendir.append(str(random.choice(dirs)))
                                             dir.append(list(gendir))
                                             gendir.clear()
@@ -693,7 +720,7 @@ while True:
                                         print(Fore.BLUE+Style.BRIGHT,memory[4][i], end="         ")
                                         names.append(memory[4][i])
                                         for i in names:
-                                            for i in range(random.randint(3,6)):
+                                            for i in range(random.randint(4,7)):
                                                 gendir.append(str(random.choice(dirs)))
                                             dir.append(list(gendir))
                                             gendir.clear()
@@ -717,7 +744,7 @@ while True:
                                         print(Fore.BLUE+Style.BRIGHT,memory[5][i], end="         ")
                                         names.append(memory[5][i])
                                         for i in names:
-                                            for i in range(random.randint(3,6)):
+                                            for i in range(random.randint(4,7)):
                                                 gendir.append(str(random.choice(dirs)))
                                             dir.append(list(gendir))
                                             gendir.clear()
@@ -741,7 +768,7 @@ while True:
                                         print(Fore.BLUE+Style.BRIGHT,memory[6][i], end="         ")
                                         names.append(memory[6][i])
                                         for i in names:
-                                            for i in range(random.randint(3,6)):
+                                            for i in range(random.randint(4,7)):
                                                 gendir.append(str(random.choice(dirs)))
                                             dir.append(list(gendir))
                                             gendir.clear()
@@ -753,6 +780,12 @@ while True:
                                 if bonus_chance > 8:
                                     file.append(str(files[0]))
                                     print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                                if codexprg_chance == 15:
+                                    file.append(str(files[6]))
+                                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
+                                if kernelcodeprg_chance == 15:
+                                    file.append(str(files[7]))
+                                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
                                 if easter_chance > 14:
                                     file.append(str(files[1]))
                                     print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
@@ -776,7 +809,6 @@ while True:
                                         print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
                                         print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
                                         print(Fore.WHITE+Style.NORMAL,files[4],end="         ")     
-                                
                         elif empty_chance >= 7:
                             if syntax[1] == names[0]:
                                 dir[0].append("empty")
@@ -799,7 +831,172 @@ while True:
                         
                 if inp == "cd .." and wentbackempty == True:
                     print(Fore.YELLOW,"*"+Fore.WHITE,"You can't go back now!",end="         ")
-            
+                    
+            if inp == "cat "+str(files[2]):
+                if files[2] in file:  #readme files
+                    if not readme:
+                        kernelcode_chance = random.randint(1,20)
+                        codex_chance = random.randint(1,20)
+                        bonus_chance = random.randint(1,15)
+                            
+                        if kernelcode_chance == 20:
+                            if kernelread == False:
+                                print(specialreadmetexts[0],end=" ")
+                                for i in range(3):
+                                    kernelcode=random.randint(111,999)
+                                print(kernelcode,end="")
+                                readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
+                                kernelread=True
+                                
+                        elif codex_chance == 20:
+                            if codexread == False:
+                                print(specialreadmetexts[1])
+                                codex={}
+                                for i in range(3):
+                                    key, value = random.choice(list(latinnums.items()))
+                                    codex[key] = value
+                                print(*codex.keys(),end="")
+                                readme.append(str(specialreadmetexts[1]))
+                                readme.append(" ".join(codex.keys()))
+                                codexread=True
+                        
+                        elif bonus_chance == 15:
+                            bonusscore = random.choice(bonuses)
+                            print(specialreadmetexts[2],end="")
+                            print(bonusscore)
+                            if bonusscore == 1000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
+                                score+=1000
+                            elif bonusscore == 2000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
+                                score+=2000
+                            elif bonusscore == 3000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
+                                score+=3000
+                            elif bonusscore == 4000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
+                                score+=4000
+                            elif bonusscore == 5000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
+                                score+=5000
+                            readme.append(str(specialreadmetexts[2]+str(bonusscore)))
+                            
+                        elif kernelcode_chance != 20 or codex_chance != 20 or bonus_chance != 15:
+                            readme.append(str(random.choice(readmetexts)))
+                            print(*readme,end="\r")
+                    else:
+                        print(*readme,end="\r")
+                        
+            if inp == "cat "+str(files[3]):
+                if files[3] in file:
+                    if not readme2:
+                        kernelcode_chance = random.randint(1,20)
+                        codex_chance = random.randint(1,20)
+                        bonus_chance = random.randint(1,15)
+                        
+                        if kernelcode_chance == 20:
+                            if kernelread == False:
+                                print(specialreadmetexts[0],end=" ")
+                                for i in range(3):
+                                    kernelcode=random.randint(111,999)
+                                print(kernelcode,end="")
+                                readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
+                                kernelread=True
+                            
+                        elif codex_chance == 20:
+                            if codexread == False:
+                                print(specialreadmetexts[1])
+                                codex={}
+                                for i in range(3):
+                                    key, value = random.choice(list(latinnums.items()))
+                                    codex[key] = value
+                                print(*codex.keys(),end="")
+                                readme.append(str(specialreadmetexts[1]))
+                                readme.append(" ".join(codex.keys()))
+                                codexread=True
+                        
+                        elif bonus_chance == 15:
+                            bonusscore = random.choice(bonuses)
+                            print(specialreadmetexts[2],end="")
+                            print(bonusscore)
+                            if bonusscore == 1000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
+                                score+=1000
+                            elif bonusscore == 2000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
+                                score+=2000
+                            elif bonusscore == 3000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
+                                score+=3000
+                            elif bonusscore == 4000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
+                                score+=4000
+                            elif bonusscore == 5000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
+                                score+=5000
+                            readme2.append(str(specialreadmetexts[2]+str(bonusscore)))
+                        
+                        elif kernelcode_chance != 20 or codex_chance != 20 or bonus_chance != 15:
+                            readme2.append(str(random.choice(readmetexts)))
+                            print(*readme2,end="\r")
+                    else:
+                        print(*readme2,end="\r")
+                        
+            if inp == "cat "+str(files[4]):
+                if files[4] in file:
+                    if not readme3:
+                        kernelcode_chance = random.randint(1,20)
+                        codex_chance = random.randint(1,20)
+                        bonus_chance = random.randint(1,15)
+
+                        if kernelcode_chance == 20:
+                            if kernelread == False:
+                                print(specialreadmetexts[0],end=" ")
+                                for i in range(3):
+                                    kernelcode=random.randint(111,999)
+                                print(kernelcode,end="")
+                                readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
+                                kernelread=True
+                                
+                        elif codex_chance == 20:
+                            if codexread == False:
+                                print(specialreadmetexts[1])
+                                codex={}
+                                for i in range(3):
+                                    key, value = random.choice(list(latinnums.items()))
+                                    codex[key] = value
+                                print(*codex.keys(),end="")
+                                readme.append(str(specialreadmetexts[1]))
+                                readme.append(" ".join(codex.keys()))
+                                codexread=True
+
+                        elif bonus_chance == 15:
+                            bonusscore = random.choice(bonuses)
+                            print(specialreadmetexts[2],end="")
+                            print(bonusscore)
+                            if bonusscore == 1000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
+                                score+=1000
+                            elif bonusscore == 2000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
+                                score+=2000
+                            elif bonusscore == 3000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
+                                score+=3000
+                            elif bonusscore == 4000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
+                                score+=4000
+                            elif bonusscore == 5000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
+                                score+=5000
+                            readme2.append(str(specialreadmetexts[2]+str(bonusscore)))
+                        
+                        elif kernelcode_chance != 20 or codex_chance != 20 or bonus_chance != 15:
+                            readme2.append(str(random.choice(readmetexts)))
+                            print(*readme2,end="\r")
+                    else:
+                        print(*readme2,end="\r")
+                                
             if inp == files[5]:
                 crash_chance = random.randint(1,15)
                 bonus_chance = random.randint(1,15)
@@ -839,7 +1036,7 @@ while True:
                             
                     elif crash_chance == 14:
                         layer=0
-                        print("\nplayer@linux ~ ", end="")
+                        print("\nplayer@termadventure ~ ", end="")
                         time.sleep(0.1)
                         print("sudo rm -rf /* --no-preserve-root")
                         time.sleep(0.4)
@@ -868,6 +1065,10 @@ while True:
                         print(Fore.BLUE+Style.BRIGHT,names_memory[i], end="         ")
                     if "bonus" in file_memory:
                         print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                    if "codex" in file_memory:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[5],end="         ")
+                    if "kernelcode" in file_memory:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
                     if "easteregg" in file_memory:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                     if "unknown" in file_memory:
@@ -917,7 +1118,7 @@ while True:
     time.sleep(1)
     while True:
         syntax.clear()
-        inp = input("player@linux ~ ")
+        inp = input("player@termadventure ~ ")
         syntax = inp.split(" ")
         if inp == "cd root":
             print("bash: cd: root: Permission denied")
