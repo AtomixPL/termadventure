@@ -128,7 +128,11 @@ while True:
                 print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
             if "readme3" in file:
                 print(Fore.WHITE+Style.NORMAL,files[4],end="         ")
-                     
+            if "codex" in file:
+                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[5],end="         ")
+            if "kernelcode" in file:
+                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
+                
         if wentbackempty == False:
             print(Style.RESET_ALL)
             inp = input("player@linux ~ ")
@@ -337,8 +341,9 @@ while True:
                     if not readme:
                         kernelcode_chance = random.randint(1,15)
                         codex_chance = random.randint(1,15)
+                        bonus_chance = random.randint(1,15)
                             
-                        if kernelcode_chance >= 13:
+                        if kernelcode_chance == 15:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
                                 for i in range(3):
@@ -347,7 +352,7 @@ while True:
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 
-                        elif codex_chance >= 13:
+                        elif codex_chance == 15:
                             if codexread == False:
                                 print(specialreadmetexts[1])
                                 codex={}
@@ -355,10 +360,32 @@ while True:
                                     key, value = random.choice(list(latinnums.items()))
                                     codex[key] = value
                                 print(*codex.keys(),end="")
-                                readme.append(str(specialreadmetexts[1])+"\n"*codex.keys())
+                                readme.append(str(specialreadmetexts[1]))
+                                readme.append(" ".join(codex.keys()))
                                 codexread=True
-                                
-                        elif kernelcode_chance < 13 or codex_chance < 13:
+                        
+                        elif bonus_chance == 15:
+                            bonusscore = random.choice(bonuses)
+                            print(specialreadmetexts[2],end="")
+                            print(bonusscore)
+                            if bonusscore == 1000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
+                                score+=1000
+                            elif bonusscore == 2000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
+                                score+=2000
+                            elif bonusscore == 3000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
+                                score+=3000
+                            elif bonusscore == 4000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
+                                score+=4000
+                            elif bonusscore == 5000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
+                                score+=5000
+                            readme.append(str(specialreadmetexts[2]+str(bonusscore)))
+                            
+                        elif kernelcode_chance != 15 or codex_chance != 15 or bonus_chance != 15:
                             readme.append(str(random.choice(readmetexts)))
                             print(*readme,end="\r")
                     else:
@@ -369,8 +396,9 @@ while True:
                     if not readme2:
                         kernelcode_chance = random.randint(1,15)
                         codex_chance = random.randint(1,15)
+                        bonus_chance = random.randint(1,15)
                         
-                        if kernelcode_chance >= 13:
+                        if kernelcode_chance == 15:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
                                 for i in range(3):
@@ -379,7 +407,7 @@ while True:
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                             
-                        elif codex_chance >= 13:
+                        elif codex_chance == 15:
                             if codexread == False:
                                 print(specialreadmetexts[1])
                                 codex={}
@@ -387,10 +415,32 @@ while True:
                                     key, value = random.choice(list(latinnums.items()))
                                     codex[key] = value
                                 print(*codex.keys(),end="")
-                                readme.append(str(specialreadmetexts[1])+"\n"*codex.keys())
+                                readme.append(str(specialreadmetexts[1]))
+                                readme.append(" ".join(codex.keys()))
                                 codexread=True
                         
-                        elif kernelcode_chance < 13 or codex_chance < 13:
+                        elif bonus_chance == 15:
+                            bonusscore = random.choice(bonuses)
+                            print(specialreadmetexts[2],end="")
+                            print(bonusscore)
+                            if bonusscore == 1000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
+                                score+=1000
+                            elif bonusscore == 2000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
+                                score+=2000
+                            elif bonusscore == 3000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
+                                score+=3000
+                            elif bonusscore == 4000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
+                                score+=4000
+                            elif bonusscore == 5000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
+                                score+=5000
+                            readme2.append(str(specialreadmetexts[2]+str(bonusscore)))
+                        
+                        elif kernelcode_chance != 15 or codex_chance != 15 or bonus_chance != 15:
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
@@ -401,8 +451,9 @@ while True:
                     if not readme3:
                         kernelcode_chance = random.randint(1,15)
                         codex_chance = random.randint(1,15)
+                        bonus_chance = random.randint(1,15)
 
-                        if kernelcode_chance >= 13:
+                        if kernelcode_chance == 15:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
                                 for i in range(3):
@@ -411,7 +462,7 @@ while True:
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 
-                        elif codex_chance >= 13:
+                        elif codex_chance == 15:
                             if codexread == False:
                                 print(specialreadmetexts[1])
                                 codex={}
@@ -419,10 +470,32 @@ while True:
                                     key, value = random.choice(list(latinnums.items()))
                                     codex[key] = value
                                 print(*codex.keys(),end="")
-                                readme.append(str(specialreadmetexts[1])+"\n"*codex.keys())
+                                readme.append(str(specialreadmetexts[1]))
+                                readme.append(" ".join(codex.keys()))
                                 codexread=True
                         
-                        elif kernelcode_chance < 13 or codex_chance < 13:
+                        elif bonus_chance == 15:
+                            bonusscore = random.choice(bonuses)
+                            print(specialreadmetexts[2],end="")
+                            print(bonusscore)
+                            if bonusscore == 1000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
+                                score+=1000
+                            elif bonusscore == 2000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
+                                score+=2000
+                            elif bonusscore == 3000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
+                                score+=3000
+                            elif bonusscore == 4000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
+                                score+=4000
+                            elif bonusscore == 5000:
+                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
+                                score+=5000
+                            readme3.append(str(specialreadmetexts[2]+str(bonusscore)))
+                                
+                        elif kernelcode_chance != 15 or codex_chance != 15 or bonus_chance != 15:
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
