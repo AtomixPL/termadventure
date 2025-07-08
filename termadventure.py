@@ -386,12 +386,9 @@ su root - switch to the root user""")
                                 
                         elif codex_chance == 20 and codexsolved==False:
                             if codexread == False:
-                                codex={}
-                                for i in range(3):
-                                    key, value = random.choice(list(latinnums.items()))
-                                    codex[key] = value
+                                codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
-                                print(*codex.keys(),end="")
+                                print(*codex.keys(), end="")
                                 readme.append(str(specialreadmetexts[1]))
                                 readme.append("".join(codex.keys()))
                                 codexnum = list(codex.values())
@@ -438,12 +435,9 @@ su root - switch to the root user""")
                                 
                         elif codex_chance == 20:
                             if codexread == False:
-                                codex={}
-                                for i in range(3):
-                                    key, value = random.choice(list(latinnums.items()))
-                                    codex[key] = value
+                                codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
-                                print(*codex.keys(),end="")
+                                print(*codex.keys(), end="")
                                 readme2.append(str(specialreadmetexts[1]))
                                 readme2.append("".join(codex.keys()))
                                 codexnum = list(codex.values())
@@ -490,12 +484,9 @@ su root - switch to the root user""")
                                 
                         elif codex_chance == 20:
                             if codexread == False:
-                                codex={}
-                                for i in range(3):
-                                    key, value = random.choice(list(latinnums.items()))
-                                    codex[key] = value
+                                codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
-                                print(*codex.keys(),end="")
+                                print(*codex.keys(), end="")
                                 readme3.append(str(specialreadmetexts[1]))
                                 readme3.append("".join(codex.keys()))
                                 codexnum = list(codex.values())
@@ -870,12 +861,9 @@ gratulationes! XXX punctorum""")
                                 
                         elif codex_chance == 20 and codexsolved==False:
                             if codexread == False:
-                                codex={}
-                                for i in range(3):
-                                    key, value = random.choice(list(latinnums.items()))
-                                    codex[key] = value
+                                codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
-                                print(*codex.keys(),end="")
+                                print(*codex.keys(), end="")
                                 readme.append(str(specialreadmetexts[1]))
                                 readme.append("".join(codex.keys()))
                                 codexnum = list(codex.values())
@@ -922,12 +910,9 @@ gratulationes! XXX punctorum""")
                                 
                         elif codex_chance == 20:
                             if codexread == False:
-                                codex={}
-                                for i in range(3):
-                                    key, value = random.choice(list(latinnums.items()))
-                                    codex[key] = value
+                                codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
-                                print(*codex.keys(),end="")
+                                print(*codex.keys(), end="")
                                 readme2.append(str(specialreadmetexts[1]))
                                 readme2.append("".join(codex.keys()))
                                 codexnum = list(codex.values())
@@ -974,12 +959,9 @@ gratulationes! XXX punctorum""")
                                 
                         elif codex_chance == 20:
                             if codexread == False:
-                                codex={}
-                                for i in range(3):
-                                    key, value = random.choice(list(latinnums.items()))
-                                    codex[key] = value
+                                codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
-                                print(*codex.keys(),end="")
+                                print(*codex.keys(), end="")
                                 readme3.append(str(specialreadmetexts[1]))
                                 readme3.append("".join(codex.keys()))
                                 codexnum = list(codex.values())
@@ -1109,7 +1091,6 @@ gratulationes! XXX punctorum""")
                     wentbackempty=False
                     inemptydir=False
             if inp == "bonus" and syntax[0] in file: #bonus
-                    bonusscore = random.choice(bonuses)
                     bonusscore = random.choice(bonuses)
                     print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end="         ")
                     score+=bonusscore
