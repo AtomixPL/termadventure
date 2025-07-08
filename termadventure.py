@@ -515,27 +515,9 @@ while True:
                         if bonus_chance >= 12:
                             print("\n")
                             bonusscore = random.choice(bonuses)
-                            
-                            if bonusscore == 1000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
-                                score+=1000
-                                file.remove("unknown")
-                            elif bonusscore == 2000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
-                                score+=2000
-                                file.remove("unknown")
-                            elif bonusscore == 3000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
-                                score+=3000
-                                file.remove("unknown")
-                            elif bonusscore == 4000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
-                                score+=4000
-                                file.remove("unknown")
-                            elif bonusscore == 5000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
-                                score+=5000
-                                file.remove("unknown")
+                            print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end="         ")
+                            score+=bonusscore
+                            file.remove("unknown")
                                 
                         elif bonus_chance < 12:
                             file.remove("unknown")
@@ -1017,27 +999,9 @@ gratulationes! XXX punctorum""")
                         if bonus_chance >= 12:
                             print("\n")
                             bonusscore = random.choice(bonuses)
-                            
-                            if bonusscore == 1000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +1000 pts",end="         ")
-                                score+=1000
-                                file.remove("unknown")
-                            elif bonusscore == 2000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +2000 pts",end="         ")
-                                score+=2000
-                                file.remove("unknown")
-                            elif bonusscore == 3000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +3000 pts",end="         ")
-                                score+=3000
-                                file.remove("unknown")
-                            elif bonusscore == 4000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +4000 pts",end="         ")
-                                score+=4000
-                                file.remove("unknown")
-                            elif bonusscore == 5000:
-                                print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +5000 pts",end="         ")
-                                score+=5000
-                                file.remove("unknown")
+                            print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end="         ")
+                            score+=bonusscore
+                            file.remove("unknown")
                                 
                         elif bonus_chance < 12:
                             file.remove("unknown")
@@ -1186,3 +1150,5 @@ gratulationes! XXX punctorum""")
         quit()
     elif inp == "y":
         score = 0
+        
+#hex program and "windows terminal" to be added
