@@ -15,13 +15,13 @@ latinnums={"unus": 1,
            "octo": 8,
            "novem": 9}
 dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
-      "lost+found","include","man","log","cache","lock","spool",
+      "lost+found","include","man","log","cache","lock","spool","sda1","sdb1","sdc1",
       "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",
-      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2",
+      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2","sda2","sdb2","sdc2",
       "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3",
-      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3",
+      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3","sda3","sdb3","sdc3",
       "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
-      "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4"]   
+      "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4","sda4","sdb4","sdc4"]   
 files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode"]
 specialreadmetexts=["Linux termadventure 6.15.2-zen1-1-zen x86_64 GNU/Linux",
 """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -30,7 +30,7 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 ""","here are some points for you: ","your score is currently "]
 readmetexts=["hello world","nothing to find here","thank you player, but the thing you're looking for is in another readme file!",
-"embrace arch","nothing","if it works, don't touch it","it's free real estate","open source for the win","i was chosen by God to build his temple","""
+"penguin is watching","nothing","if it works, don't touch it","it's free real estate","open source for the win","what's up","""
 To do list:
 - buy amd gpu
 - get rid of windows
@@ -47,7 +47,7 @@ print(Fore.GREEN+Style.BRIGHT,r"""
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Written in Python by Atomix, June 2025                         Version 0.1")
+print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                         Version 0.1")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
@@ -548,7 +548,7 @@ while True:
                 if files[6] in file:
                     print("""
 ============
-|  lorem!  |
+|| lorem! ||
 ============""")
                     time.sleep(0.5)
                     print(Style.RESET_ALL)
@@ -1032,7 +1032,7 @@ gratulationes! XXX punctorum""")
                 if files[6] in file:
                     print("""
 ============
-|  lorem!  |
+|| lorem! ||
 ============""")
                     time.sleep(0.5)
                     print(Style.RESET_ALL)
@@ -1132,8 +1132,9 @@ gratulationes! XXX punctorum""")
         syntax = inp.split(" ") 
         if inp == "cd root":
             break
+    chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
     for i in range(70):
-        print(Fore.MAGENTA+Style.BRIGHT,3*i*str("*"))
+        print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
         time.sleep(0.02)
     if sys.platform == "win32":
         os.system("cls")
@@ -1150,5 +1151,3 @@ gratulationes! XXX punctorum""")
         quit()
     elif inp == "y":
         score = 0
-        
-#hex program and "windows terminal" to be added
