@@ -47,7 +47,7 @@ print(Fore.GREEN+Style.BRIGHT,r"""
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                         Version 0.1")
+print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                      Version 0.1.1")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
@@ -125,7 +125,7 @@ su root - switch to the root user""")
 
     while layer < 50:
         
-        if inp == "cd .." and wentbackempty == False:
+        if inp == "cd .." and inemptydir == False and wentbackempty == False:
             print(Fore.YELLOW,"*"+Fore.WHITE,"Sorry, you can't go back",end="         ")
             
         if inp == "quit" or inp == "q":
@@ -165,7 +165,39 @@ su root - switch to the root user""")
             if "readme3" in file:
                 print(Fore.WHITE+Style.NORMAL,files[4],end="         ")
                 
-        if wentbackempty == False:
+        if inemptydir == True:
+            print(Style.RESET_ALL)
+            inp = input("player@termadventure ~ ")
+            syntax = inp.split(" ")
+            syntax+=[".."]
+            
+            if inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == True and wentbackempty == False: #cd .. when entered empty
+                    layer-=1
+                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+                    
+                    for i in range(len(names)):
+                        print(Fore.BLUE+Style.BRIGHT,names[i], end="         ")
+                    if "bonus" in file:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
+                    if "codex" in file:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
+                    if "kernelcode" in file:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
+                    if "easteregg" in file:
+                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
+                    if "unknown" in file:
+                        print(Fore.RED+Style.BRIGHT,files[5],end="         ")
+                    if "readme" in file:
+                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                    if "readme2" in file:
+                        print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
+                    if "readme3" in file:
+                        print(Fore.WHITE+Style.NORMAL,files[4],end="         ")
+                        
+                    wentbackempty=True
+                    inemptydir=False
+
+        if wentbackempty == False and inemptydir == False:
             print(Style.RESET_ALL)
             inp = input("player@termadventure ~ ")
             syntax = inp.split(" ")
@@ -324,33 +356,7 @@ su root - switch to the root user""")
                             
                         inemptydir=True
                         print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end="         ")
-                        
-                elif inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == True or names == 0: #cd .. when entered empty
-                    layer-=1
-                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
                     
-                    for i in range(len(names)):
-                        print(Fore.BLUE+Style.BRIGHT,names[i], end="         ")
-                    if "bonus" in file:
-                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                    if "codex" in file:
-                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
-                    if "kernelcode" in file:
-                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
-                    if "easteregg" in file:
-                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "unknown" in file:
-                        print(Fore.RED+Style.BRIGHT,files[5],end="         ")
-                    if "readme" in file:
-                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "readme2" in file:
-                        print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
-                    if "readme3" in file:
-                        print(Fore.WHITE+Style.NORMAL,files[4],end="         ")
-                        
-                    wentbackempty=True
-                    inemptydir=False
-
             if inp == files[0]:
                 if inp == "bonus" and syntax[0] in file: #bonus
                     bonusscore = random.choice(bonuses)
@@ -591,7 +597,7 @@ gratulationes! XXX punctorum""")
                 kernelcodeprg_chance = 0
                 file.remove("kernelcode")
                     
-        if wentbackempty == True:
+        if wentbackempty == True and inemptydir == False:
             print(Style.RESET_ALL)
             inp = input("player@termadventure ~ ")
             syntax = inp.split(" ")
@@ -1064,32 +1070,6 @@ gratulationes! XXX punctorum""")
                 kernelcodeprg_chance=0
                 file.remove("kernelcode")
                     
-            if inp == str(syntax[0])+" "+str(syntax[2]) and inemptydir == True: #cd .. when entered empty    
-                if syntax[0] == "cd" and syntax[2] == "..":
-                    layer-=1
-                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-                    
-                    for i in range(len(names_memory)):
-                        print(Fore.BLUE+Style.BRIGHT,names_memory[i], end="         ")
-                    if "bonus" in file_memory:
-                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                    if "codex" in file_memory:
-                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[5],end="         ")
-                    if "kernelcode" in file_memory:
-                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
-                    if "easteregg" in file_memory:
-                        print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                    if "unknown" in file_memory:
-                        print(Fore.RED+Style.BRIGHT,files[5],end="         ")
-                    if "readme" in file_memory:
-                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                    if "readme2" in file_memory:
-                        print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
-                    if "readme3" in file_memory:
-                        print(Fore.WHITE+Style.NORMAL,files[4],end="         ")
-                        
-                    wentbackempty=False
-                    inemptydir=False
             if inp == "bonus" and syntax[0] in file: #bonus
                     bonusscore = random.choice(bonuses)
                     print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end="         ")
