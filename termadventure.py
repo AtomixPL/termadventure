@@ -526,14 +526,14 @@ su root - switch to the root user""")
                         print(".",end="", flush=True)
                         time.sleep(0.003)
                     if crash_chance < 12:
-                        if bonus_chance >= 12:
+                        if bonus_chance >= 14:
                             print("\n")
                             bonusscore = random.choice(bonuses)
                             print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end="         ")
                             score+=bonusscore
                             file.remove("unknown")
                                 
-                        elif bonus_chance < 12:
+                        elif bonus_chance < 14:
                             file.remove("unknown")
                             
                     elif crash_chance == 12:
@@ -569,7 +569,7 @@ su root - switch to the root user""")
                     print("typus in codice ",end="")
                     while True:
                         inp = input("-> ")
-                        if inp == str(codexnum[0])+str(codexnum[1])+str(codexnum[2]) or inp == "q":
+                        if inp == str(codexnum[0])+str(codexnum[1])+str(codexnum[2]):
                             break
                         else:
                             print("codicem invalidum",end="\n")
@@ -589,7 +589,7 @@ gratulationes! XXX punctorum""")
                         if inp == str(kernelcode):
                             break
                         else:
-                            print(Fore.RED,"* "+Fore.WHITE,"Incorrect code")
+                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code")
                     print("kernelcode: +20000 pts")
                 score+=20000
                 kernelsolved=True
@@ -1001,14 +1001,14 @@ gratulationes! XXX punctorum""")
                         print(".",end="", flush=True)
                         time.sleep(0.003)
                     if crash_chance < 12:
-                        if bonus_chance >= 12:
+                        if bonus_chance >= 14:
                             print("\n")
                             bonusscore = random.choice(bonuses)
                             print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end="         ")
                             score+=bonusscore
                             file.remove("unknown")
                                 
-                        elif bonus_chance < 12:
+                        elif bonus_chance < 14:
                             file.remove("unknown")
                             
                     elif crash_chance == 12:
@@ -1044,7 +1044,7 @@ gratulationes! XXX punctorum""")
                     print("typus in codice ",end="")
                     while True:
                         inp = input("-> ")
-                        if inp == str(codexnum[0])+str(codexnum[1])+str(codexnum[2]) or inp == "q":
+                        if inp == str(codexnum[0])+str(codexnum[1])+str(codexnum[2]):
                             break
                         else:
                             print("codicem invalidum",end="\n")
@@ -1063,7 +1063,7 @@ gratulationes! XXX punctorum""")
                         if inp == str(kernelcode):
                             break
                         else:
-                            print(Fore.RED,"* "+Fore.WHITE,"Incorrect code")
+                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code")
                     print("kernelcode: +20000 pts")   
                 score+=20000
                 codexsolved=False
