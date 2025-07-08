@@ -23,7 +23,7 @@ dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp",
       "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
       "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4","sda4","sdb4","sdc4"]   
 files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode"]
-specialreadmetexts=["Linux termadventure 6.15.2-zen1-1-zen x86_64 GNU/Linux",
+specialreadmetexts=["Linux termadventure 6.15.5-zen1-1-zen x86_64 GNU/Linux",
 """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -36,8 +36,8 @@ To do list:
 - get rid of windows
 - install arch linux on first drive
 - install gentoo on second drive
-""","i am king terry the terrible",";-)"]
-rootpasswords=["********","123","root","admin","password","administrator"]
+""","i am king terry the terrible",";-)","herzlich wilkommen","no looking back"]
+rootpasswords=["********","123","root","admin","password","administrator","linuxthebest"]
 bonuses = [1000,2000,3000,4000,5000]
 
 print(Fore.GREEN+Style.BRIGHT,r"""
@@ -47,14 +47,14 @@ print(Fore.GREEN+Style.BRIGHT,r"""
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                      Version 0.1.1")
+print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                        Version 0.2")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- leave the game")
 
 while True:
-    inp = input("\nplayer@termadventure ~ ")
+    inp = input(Style.RESET_ALL+"\nplayer@termadventure ~ ")
 
     if inp == "info" or inp == "i":
         print("""
@@ -90,7 +90,23 @@ while True:
     codexread=False
     kernelsolved=False
     codexsolved=False
-    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
+    print("\n")
+    print("Generating directories")
+    for i in range (101):
+        print("\r"+str(int(i/2))+"/50"+" "+i*"=",end=">",flush=True)
+        time.sleep(0.003)
+    print("\n")
+    print(Fore.CYAN+Style.NORMAL,"dir          "+Fore.WHITE,"|"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading directories ...                                                         "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    time.sleep(0.3)
+    print(Fore.CYAN+Style.NORMAL,"bonus        "+Fore.WHITE,"|"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading bonuses ...                                                             "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    time.sleep(0.05)
+    print(Fore.CYAN+Style.NORMAL,"easteregg    "+Fore.WHITE,"|"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading eastereggs ...                                                          "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    time.sleep(0.1)
+    print(Fore.CYAN+Style.NORMAL,"unknown      "+Fore.WHITE,"|"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading unknown files ...                                                       "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    time.sleep(0.2)
+    print(Fore.CYAN+Style.NORMAL,"readme       "+Fore.WHITE,"|"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading readme files ...                                                        "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    time.sleep(0.5)
+    print("\n"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
     time.sleep(2)
     print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
     
@@ -309,10 +325,10 @@ su root - switch to the root user""")
                         if bonus_chance > 8:
                             file.append(str(files[0]))
                             print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                        if codexprg_chance == 20:
+                        if codexprg_chance >= 17:
                             file.append(str(files[6]))
                             print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
-                        if kernelcodeprg_chance == 20:
+                        if kernelcodeprg_chance >= 17:
                             file.append(str(files[7]))
                             print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
                         if easter_chance > 14:
@@ -575,6 +591,7 @@ su root - switch to the root user""")
                             print("codicem invalidum",end="\n")
                     print("""               ___
 gratulationes! XXX punctorum""")
+                print("codex: +30000 pts")
                 score+=30000
                 codexsolved=True
                 codexread=False
@@ -793,10 +810,10 @@ gratulationes! XXX punctorum""")
                                 if bonus_chance > 8:
                                     file.append(str(files[0]))
                                     print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
-                                if codexprg_chance >= 13:
+                                if codexprg_chance >= 17:
                                     file.append(str(files[6]))
                                     print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
-                                if kernelcodeprg_chance >= 13:
+                                if kernelcodeprg_chance >= 17:
                                     file.append(str(files[7]))
                                     print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
                                 if easter_chance > 14:
@@ -1050,6 +1067,7 @@ gratulationes! XXX punctorum""")
                             print("codicem invalidum",end="\n")
                             print("""               ___
 gratulationes! XXX punctorum""")
+                print("codex: +30000 pts")
                 score+=30000
                 kernelsolved=False
                 codexprg_chance=0
