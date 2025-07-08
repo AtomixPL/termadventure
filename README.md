@@ -24,4 +24,5 @@ Inside those text files there are random contents written, but you can encounter
 Kernelcode is an executable where you must type in correct 3-digit code which you can find in the text file beginning with the Linux kernel version. By successfully solving the program you can get 20 000 points. Codex is an extrordinary latin program, which works the same as kernelcode, but you need to know numbers in latin. When you'll encounter a readme file with "lorem ipsum" text inside it, there are numbers written in latin below, eg. unus, duo, tres etc. By correctly typing the 3-digit code as in kernelcode you can get 30 000 points.
 ## Changelog
 0.1 (08-07-2025) - initial release
+
 0.1.1 (08-07-2025) - codex and inemptydir fix
