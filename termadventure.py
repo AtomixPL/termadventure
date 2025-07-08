@@ -100,7 +100,15 @@ while True:
         inp = input("player@termadventure ~ ")
         if inp == "cd home":
             break
-    
+        elif inp == "help":
+            print("""
+ls - list directories
+cd (dir) - change directory
+cd .. - leave the directory
+cat (text file) - read the content of the text file
+(executable) - run the program or claim bonus
+su root - switch to the root user""")
+        
     layer+=1
     score+=100
     print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
@@ -127,6 +135,15 @@ while True:
             time.sleep(0.1)
             prompt = input("Password: ")
             print("su: Authentication failure",end="")
+            
+        if inp == "help":
+            print("""
+ls - list directories
+cd (dir) - change directory
+cd .. - leave the directory
+cat (text file) - read the content of the text file
+(executable) - run the program or claim bonus
+su root - switch to the root user""")
             
         if inp == "ls":
             for i in range(len(names)):
