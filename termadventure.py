@@ -1111,7 +1111,7 @@ gratulationes! XXX punctorum""")
         if inp == "cd root":
             break
     chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
-    for i in range(70):
+    for i in range(50):
         print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
         time.sleep(0.02)
     if sys.platform == "win32":
