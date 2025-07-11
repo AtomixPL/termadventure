@@ -25,6 +25,4 @@ Kernelcode is an executable where you must type in correct 3-digit code which yo
 ## Changelog
 0.1 (08-07-2025) - initial release
 
-0.1.1 (08-07-2025) - codex and inemptydir fix
-
 0.2 (09-07-2025) - added "loading screen"
