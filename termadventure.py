@@ -141,6 +141,14 @@ su root - switch to the root user""")
 
     while layer < 50:
         
+        if kernelsolved == True and codexsolved == True:
+            if "readme" in file:
+                file.remove("readme")
+            if "readme2" in file:
+                file.remove("readme2")
+            if "readme3" in file:
+                file.remove("readme3")
+
         if inp == "cd .." and inemptydir == False and wentbackempty == False:
             print(Fore.YELLOW,"*"+Fore.WHITE,"Sorry, you can't go back",end="         ")
             
