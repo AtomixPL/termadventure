@@ -54,7 +54,7 @@ print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show descri
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- leave the game")
 
 while True:
-    inp = input(Style.RESET_ALL+"\nplayer@termadventure ~ ")
+    inp = input(Style.RESET_ALL+"\nplayer@termadventure $ ")
 
     if inp == "info" or inp == "i":
         print("""
@@ -113,7 +113,7 @@ while True:
     print(Fore.BLUE+Style.BRIGHT,"home",end="         ")
     while True:
         print(Style.RESET_ALL)
-        inp = input("player@termadventure ~ ")
+        inp = input("player@termadventure $ ")
         if inp == "cd home":
             break
         elif inp == "help":
@@ -183,7 +183,7 @@ su root - switch to the root user""")
                 
         if inemptydir == True:
             print(Style.RESET_ALL)
-            inp = input("player@termadventure ~ ")
+            inp = input("player@termadventure $ ")
             syntax = inp.split(" ")
             syntax+=[".."]
             
@@ -215,7 +215,7 @@ su root - switch to the root user""")
 
         if wentbackempty == False and inemptydir == False:
             print(Style.RESET_ALL)
-            inp = input("player@termadventure ~ ")
+            inp = input("player@termadventure $ ")
             syntax = inp.split(" ")
             syntax+=[".."]
             
@@ -554,7 +554,7 @@ su root - switch to the root user""")
                             
                     elif crash_chance == 12:
                         layer=0
-                        print("\nplayer@termadventure ~ ", end="")
+                        print("\nplayer@termadventure $ ", end="")
                         time.sleep(0.1)
                         print("sudo rm -rf /* --no-preserve-root")
                         time.sleep(0.4)
@@ -616,7 +616,7 @@ gratulationes! XXX punctorum""")
                     
         if wentbackempty == True and inemptydir == False:
             print(Style.RESET_ALL)
-            inp = input("player@termadventure ~ ")
+            inp = input("player@termadventure $ ")
             syntax = inp.split(" ")
             syntax+=["..","cat"]
             
@@ -1030,7 +1030,7 @@ gratulationes! XXX punctorum""")
                             
                     elif crash_chance == 12:
                         layer=0
-                        print("\nplayer@termadventure ~ ", end="")
+                        print("\nplayer@termadventure $ ", end="")
                         time.sleep(0.1)
                         print("sudo rm -rf /* --no-preserve-root")
                         time.sleep(0.4)
@@ -1107,7 +1107,7 @@ gratulationes! XXX punctorum""")
     time.sleep(1)
     while True:
         syntax.clear()
-        inp = input("player@termadventure ~ ")
+        inp = input("player@termadventure $ ")
         syntax = inp.split(" ")
         if inp == "cd root":
             print("bash: cd: root: Permission denied")
@@ -1124,7 +1124,7 @@ gratulationes! XXX punctorum""")
     print(Style.DIM,"* Hint: Enter the root directory to finish the game",Style.RESET_ALL)
     while True:
         syntax.clear()
-        inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure ~ ")
+        inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure $ ")
         syntax = inp.split(" ") 
         if inp == "cd root":
             break
