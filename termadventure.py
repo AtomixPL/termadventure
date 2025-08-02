@@ -2,7 +2,13 @@ import time
 import random
 import os
 import sys
-from colorama import Fore, Style
+try:
+    from colorama import Fore, Style
+except ModuleNotFoundError:
+    import subprocess
+    import sys
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "colorama"])
+    from colorama import Fore, Style
 
 score = 0
 latinnums={"unus": 1,
@@ -47,7 +53,7 @@ print(Fore.GREEN+Style.BRIGHT,r"""
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                        Version 0.2")
+print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                  Version 0.3 Alpha")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
