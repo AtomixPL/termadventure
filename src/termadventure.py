@@ -119,6 +119,7 @@ while True:
     kernelsolved=False
     codexsolved=False
     chromasolved=False
+    solvedall=False
     print("\n")
     print("Generating directories")
     for i in range (101):
@@ -384,7 +385,7 @@ su root - switch to the root user""")
                             file.append(str(files[5]))
                             print(Fore.RED+Style.BRIGHT,files[5],end="         ")
                         if readme_chance > 7:
-                            if kernelsolved==False and codexsolved==False and chromasolved==False:
+                            if solvedall==False:
                                 readmenum = random.randint(1,3)
                                 if readmenum == 1:
                                     file.append(str(files[2]))
@@ -740,6 +741,7 @@ gratulationes! XXX punctorum""")
                     chromaread=True
                     chromaprg_chance = 0
                     file.remove("chroma")
+                    solvedall=True
             
         if wentbackempty == True and inemptydir == False:
             print(Style.RESET_ALL)
@@ -955,7 +957,7 @@ gratulationes! XXX punctorum""")
                                     file.append(str(files[5]))
                                     print(Fore.RED+Style.BRIGHT,files[5],end="         ")
                                 if readme_chance > 7:
-                                    if kernelsolved==False and codexsolved==False and chromasolved==False:
+                                    if solvedall==False:
                                         readmenum = random.randint(1,3)
                                         if readmenum == 1:
                                             file.append(str(files[2]))
@@ -1302,6 +1304,7 @@ gratulationes! XXX punctorum""")
                     chromaread=True
                     chromaprg_chance = 0
                     file.remove("chroma")
+                    solvedall=True
                     
             if inp == "bonus" and syntax[0] in file: #bonus
                     bonusscore = random.choice(bonuses)
