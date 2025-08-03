@@ -6,13 +6,18 @@ import time
 import random
 import os
 import sys
+import subprocess
 try:
     from colorama import Fore, Style
 except ModuleNotFoundError:
-    import subprocess
-    import sys
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--user", "colorama"])
-    from colorama import Fore, Style
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "--user", "colorama"])
+        from colorama import Fore, Style
+    except subprocess.CalledProcessError:
+        if sys.platform == "linux":
+            print("Please install colorama module using pip or your package manager.")
+            time.sleep(3)
+            exit()
 
 score = 0
 latinnums={"unus": 1,
