@@ -178,14 +178,6 @@ su root - switch to the root user""")
                
     while layer < 50:
         
-        if kernelsolved == True and codexsolved == True and chromasolved == True:
-            if "readme" in file:
-                file.remove("readme")
-            if "readme2" in file:
-                file.remove("readme2")
-            if "readme3" in file:
-                file.remove("readme3")
-
         if inp == "cd .." and inemptydir == False and wentbackempty == False:
             print(Fore.YELLOW,"*"+Fore.WHITE,"Sorry, you can't go back",end="         ")
             
@@ -392,22 +384,24 @@ su root - switch to the root user""")
                             file.append(str(files[5]))
                             print(Fore.RED+Style.BRIGHT,files[5],end="         ")
                         if readme_chance > 7:
-                            readmenum = random.randint(1,3)
-                            if readmenum == 1:
-                                file.append(str(files[2]))
-                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
-                            elif readmenum == 2:
-                                file.append(str(files[2]))
-                                file.append(str(files[3]))
-                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                                print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
-                            elif readmenum == 3:
-                                file.append(str(files[2]))
-                                file.append(str(files[3]))
-                                file.append(str(files[4]))
-                                print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                                print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
-                                print(Fore.WHITE+Style.NORMAL,files[4],end="         ")     
+                            if kernelsolved==False and codexsolved==False and chromasolved==False:
+                                readmenum = random.randint(1,3)
+                                if readmenum == 1:
+                                    file.append(str(files[2]))
+                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                                elif readmenum == 2:
+                                    file.append(str(files[2]))
+                                    file.append(str(files[3]))
+                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                    print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
+                                elif readmenum == 3:
+                                    file.append(str(files[2]))
+                                    file.append(str(files[3]))
+                                    file.append(str(files[4]))
+                                    print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                    print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
+                                    print(Fore.WHITE+Style.NORMAL,files[4],end="         ")     
+                                    
                     elif empty_chance >= 7:
                         if syntax[1] == names[0]:
                             dir[0].append("empty")
@@ -713,7 +707,7 @@ gratulationes! XXX punctorum""")
                         if inp == str(kernelcode):
                             break
                         else:
-                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code",end="")
+                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code ",end="")
                     print("kernelcode: +20000 pts")
                 score+=20000
                 kernelsolved=True
@@ -961,22 +955,24 @@ gratulationes! XXX punctorum""")
                                     file.append(str(files[5]))
                                     print(Fore.RED+Style.BRIGHT,files[5],end="         ")
                                 if readme_chance > 7:
-                                    readmenum = random.randint(1,3)
-                                    if readmenum == 1:
-                                        file.append(str(files[2]))
-                                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
-                                    elif readmenum == 2:
-                                        file.append(str(files[2]))
-                                        file.append(str(files[3]))
-                                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                                        print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
-                                    elif readmenum == 3:
-                                        file.append(str(files[2]))
-                                        file.append(str(files[3]))
-                                        file.append(str(files[4]))
-                                        print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
-                                        print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
-                                        print(Fore.WHITE+Style.NORMAL,files[4],end="         ")     
+                                    if kernelsolved==False and codexsolved==False and chromasolved==False:
+                                        readmenum = random.randint(1,3)
+                                        if readmenum == 1:
+                                            file.append(str(files[2]))
+                                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")   
+                                        elif readmenum == 2:
+                                            file.append(str(files[2]))
+                                            file.append(str(files[3]))
+                                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                            print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
+                                        elif readmenum == 3:
+                                            file.append(str(files[2]))
+                                            file.append(str(files[3]))
+                                            file.append(str(files[4]))
+                                            print(Fore.WHITE+Style.NORMAL,files[2],end="         ")
+                                            print(Fore.WHITE+Style.NORMAL,files[3],end="         ")
+                                            print(Fore.WHITE+Style.NORMAL,files[4],end="         ")   
+                                              
                         elif empty_chance >= 7:
                             if syntax[1] == names[0]:
                                 dir[0].append("empty")
@@ -1256,7 +1252,7 @@ gratulationes! XXX punctorum""")
                             break
                         else:
                             print("codicem invalidum ",end="")
-                            print("""               ___
+                    print("""               ___
 gratulationes! XXX punctorum""")
                 print("codex: +30000 pts")
                 score+=30000
@@ -1267,13 +1263,13 @@ gratulationes! XXX punctorum""")
                     
             if inp == files[7]:
                 if files[7] in file:
-                    print(Fore.YELLOW,"*"+Fore.WHITE,"Kernel code check ")
+                    print(Fore.GREEN,"*"+Fore.WHITE,"Kernel code check ",end="")
                     while True:
                         inp = input("> ")
                         if inp == str(kernelcode):
                             break
                         else:
-                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code",end="")
+                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code ",end="")
                     print("kernelcode: +20000 pts")   
                 score+=20000
                 kernelsolved=True
