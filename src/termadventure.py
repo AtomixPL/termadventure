@@ -15,8 +15,7 @@ except ModuleNotFoundError:
         from colorama import Fore, Style
     except subprocess.CalledProcessError:
         if sys.platform == "linux":
-            print("Please install colorama module using pip or your package manager.")
-            time.sleep(3)
+            print("Please install pip using your package manager.")
             exit()
 
 score = 0
@@ -29,6 +28,13 @@ latinnums={"unus": 1,
            "septem": 7,
            "octo": 8,
            "novem": 9}
+colors_map = {
+    'r': Fore.RED,
+    'g': Fore.GREEN,
+    'y': Fore.YELLOW,
+    'b': Fore.BLUE,
+    'm': Fore.MAGENTA,
+    'c': Fore.CYAN}
 dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
       "lost+found","include","man","log","cache","lock","spool","sda1","sdb1","sdc1",
       "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",
@@ -38,6 +44,8 @@ dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp",
       "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
       "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4","sda4","sdb4","sdc4"]   
 files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode","chroma","hex","window"]
+colors=["r","g","y","b","m","c"]
+coloramas=[Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
 specialreadmetexts=["Linux termadventure 6.15.5-zen1-1-zen x86_64 GNU/Linux",
 """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -62,7 +70,7 @@ print(Fore.GREEN+Style.BRIGHT,r"""
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Copyright (c) 2025 Atomix                               Version 0.3 Alpha")
+print(Fore.WHITE,"Copyright (c) 2025 Atomix")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
@@ -73,6 +81,8 @@ while True:
 
     if inp == "info" or inp == "i":
         print("""
+Version 0.4 Alpha (03-08-2025)   
+           
 * Explore the seemingly infinite Linux kernel containing directories and files.
 * You may find a lot of interesting things, which can give you points.
 * But unknown files may delete your system (not literally), so be careful!
@@ -96,15 +106,19 @@ while True:
     readme=[]
     readme2=[]
     readme3=[]
+    chromacode=0
     layer = 1
     codexprg_chance=0
     kernelcodeprg_chance=0
+    chromaprg_chance=0
     wentbackempty=False
     inemptydir=False
     kernelread=False
     codexread=False
+    chromaread=False
     kernelsolved=False
     codexsolved=False
+    chromasolved=False
     print("\n")
     print("Generating directories")
     for i in range (101):
@@ -161,10 +175,10 @@ su root - switch to the root user""")
             gendir.append(str(random.choice(dirs)))
         dir.append(list(gendir))
         gendir.clear()
-
+               
     while layer < 50:
         
-        if kernelsolved == True and codexsolved == True:
+        if kernelsolved == True and codexsolved == True and chromasolved == True:
             if "readme" in file:
                 file.remove("readme")
             if "readme2" in file:
@@ -198,9 +212,11 @@ su root - switch to the root user""")
             if "bonus" in file:
                 print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end="         ")
             if "codex" in file:
-                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[5],end="         ")
-            if "kernelcode" in file:
                 print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
+            if "kernelcode" in file:
+                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
+            if "chroma" in file:
+                print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[8],end="         ")
             if "easteregg" in file:
                 print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
             if "unknown" in file:
@@ -230,6 +246,8 @@ su root - switch to the root user""")
                         print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end="         ")
                     if "kernelcode" in file:
                         print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
+                    if "chroma" in file:
+                        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[8],end="         ")
                     if "easteregg" in file:
                         print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                     if "unknown" in file:
@@ -278,10 +296,12 @@ su root - switch to the root user""")
                         easter_chance = random.randint(1,15)
                         readme_chance = random.randint(1,15)
                         unknown_chance = random.randint(1,15)
-                        if codexread==True:
+                        if codexread==True and codexsolved==False:
                             codexprg_chance = random.randint(1,20)
-                        if kernelread==True:
+                        if kernelread==True and kernelsolved==False:
                             kernelcodeprg_chance = random.randint(1,20)
+                        if chromaread==True and chromasolved==False:
+                            chromaprg_chance = random.randint(1,20)
                             
                         if syntax[1] == names_memory[0]:
                             for i in range(len(memory[0])):
@@ -362,13 +382,16 @@ su root - switch to the root user""")
                         if kernelcodeprg_chance >= 17:
                             file.append(str(files[7]))
                             print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
+                        if chromaprg_chance >= 17:
+                            file.append(str(files[8]))
+                            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[8],end="         ")
                         if easter_chance > 14:
                             file.append(str(files[1]))
                             print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")                      
                         if unknown_chance > 10:
                             file.append(str(files[5]))
                             print(Fore.RED+Style.BRIGHT,files[5],end="         ")
-                        if readme_chance > 10:
+                        if readme_chance > 7:
                             readmenum = random.randint(1,3)
                             if readmenum == 1:
                                 file.append(str(files[2]))
@@ -421,23 +444,24 @@ su root - switch to the root user""")
                 if files[2] in file:  #readme files
                     if not readme:
                         if kernelread==False:
-                            kernelcode_chance = random.randint(1,20)
+                            kernelcode_chance = random.randint(1,40)
                         if codexread==False:
-                            codex_chance = random.randint(1,20)    
+                            codex_chance = random.randint(1,40) 
+                        if chromaread==False:
+                            chroma_chance = random.randint(1,40)
                         bonus_chance = random.randint(1,20)
                         readmescore = random.randint(1,20)
                         
-                        if kernelcode_chance == 20 and kernelsolved==False:
+                        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
-                                for i in range(3):
-                                    kernelcode=random.randint(111,999)
+                                kernelcode=random.randint(111,999)
                                 print(kernelcode,end="")
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 kernelcode_chance = 0
                                 
-                        elif codex_chance == 20 and codexsolved==False:
+                        elif codex_chance >= 30 and codexsolved==False and codexread==False and kernelsolved==True:
                             if codexread == False:
                                 codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
@@ -448,6 +472,17 @@ su root - switch to the root user""")
                                 codexread=True
                                 codex_chance = 0
                                 
+                        elif chroma_chance >= 35 and chromasolved==False and chromaread==False and kernelsolved==True and codexsolved==True:
+                            if chromaread == False:
+                                chroma = random.sample(colors,len(colors))
+                                for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                                readme.append(''.join(chroma))
+                                chromacode = ''.join(chroma)
+                                chromaread=True
+                                chroma_chance = 0
+                                        
                         elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
                             print(specialreadmetexts[2],end="")
@@ -460,11 +495,16 @@ su root - switch to the root user""")
                             readme.append(specialreadmetexts[3]+str(score))
                             print(*readme,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  < 25 or codex_chance < 30 or chroma_chance < 35 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme.append(str(random.choice(readmetexts)))
                             print(*readme,end="\r")
                     else:
-                        print(*readme,end="\r")
+                        if chromacode != 0:
+                           for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                        else: 
+                            print(*readme,end="\r")
                         
             if inp == "cat "+str(files[3]):
                 if files[3] in file:
@@ -472,21 +512,22 @@ su root - switch to the root user""")
                         if kernelread==False:
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
-                            codex_chance = random.randint(1,20)    
+                            codex_chance = random.randint(1,30) 
+                        if chromaread==False:
+                            chroma_chance = random.randint(1,40)
                         bonus_chance = random.randint(1,20)
                         readmescore = random.randint(1,20)
                         
-                        if kernelcode_chance == 20:
+                        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
-                                for i in range(3):
-                                    kernelcode=random.randint(111,999)
+                                kernelcode=random.randint(111,999)
                                 print(kernelcode,end="")
                                 readme2.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 kernelcode_chance = 0
                                 
-                        elif codex_chance == 20:
+                        elif codex_chance >= 30 and codexsolved==False and codexread==False and kernelsolved==True:
                             if codexread == False:
                                 codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
@@ -496,6 +537,18 @@ su root - switch to the root user""")
                                 codexnum = list(codex.values())
                                 codexread=True
                                 codex_chance = 0
+                        
+                        elif chroma_chance >= 35 and chromasolved==False and chromaread==False and kernelsolved==True and codexsolved==True:
+                            if chromaread == False:
+                                chroma = random.sample(colors,len(colors))
+                                for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                                print(Style.RESET_ALL)
+                                readme2.append(''.join(chroma))
+                                chromacode = ''.join(chroma)
+                                chromaread=True
+                                chroma_chance = 0
                         
                         elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
@@ -509,11 +562,16 @@ su root - switch to the root user""")
                             readme2.append(specialreadmetexts[3]+str(score))
                             print(*readme2,end="")
                         
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  < 25 or codex_chance < 30 or chroma_chance < 35 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
-                        print(*readme2,end="\r")
+                        if readme2[1] == chroma:
+                           for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                        else: 
+                            print(*readme2,end="\r")
                         
             if inp == "cat "+str(files[4]):
                 if files[4] in file:
@@ -521,21 +579,22 @@ su root - switch to the root user""")
                         if kernelread==False:
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
-                            codex_chance = random.randint(1,20)    
+                            codex_chance = random.randint(1,30) 
+                        if chromaread==False:
+                            chroma_chance = random.randint(1,40)
                         bonus_chance = random.randint(1,20)
                         readmescore = random.randint(1,20)
                         
-                        if kernelcode_chance == 20:
+                        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
-                                for i in range(3):
-                                    kernelcode=random.randint(111,999)
+                                kernelcode=random.randint(111,999)
                                 print(kernelcode,end="")
                                 readme3.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 kernelcode_chance = 0
                                 
-                        elif codex_chance == 20:
+                        elif codex_chance >= 30 and codexsolved==False and codexread==False and kernelsolved==True:
                             if codexread == False:
                                 codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
@@ -545,6 +604,18 @@ su root - switch to the root user""")
                                 codexnum = list(codex.values())
                                 codexread=True
                                 codex_chance = 0
+                            
+                        elif chroma_chance >= 35 and chromasolved==False and chromaread==False and kernelsolved==True and codexsolved==True:
+                            if chromaread == False:
+                                chroma = random.sample(colors,len(colors))
+                                for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                                print(Style.RESET_ALL)
+                                readme3.append(''.join(chroma))
+                                chromacode = ''.join(chroma)
+                                chromaread=True
+                                chroma_chance = 0
                         
                         elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
@@ -558,11 +629,16 @@ su root - switch to the root user""")
                             readme3.append(specialreadmetexts[3]+str(score))
                             print(*readme3,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  < 25 or codex_chance < 30 or chroma_chance < 35 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
-                         print(*readme3,end="\r")
+                        if readme3[1] == chroma:
+                           for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                        else: 
+                            print(*readme3,end="\r")
                          
             if inp == files[5]:
                 crash_chance = random.randint(1,15)
@@ -619,32 +695,58 @@ su root - switch to the root user""")
                         if inp == str(codexnum[0])+str(codexnum[1])+str(codexnum[2]):
                             break
                         else:
-                            print("codicem invalidum",end="\n")
+                            print("codicem invalidum ",end="")
                     print("""               ___
 gratulationes! XXX punctorum""")
                 print("codex: +30000 pts")
                 score+=30000
                 codexsolved=True
-                codexread=False
+                codexread=True
                 codexprg_chance = 0
                 file.remove("codex")
                     
             if inp == files[7]:
                 if files[7] in file:
-                    print(Fore.GREEN,"*"+Fore.WHITE,"Kernel code check ")
+                    print(Fore.GREEN,"*"+Fore.WHITE,"Kernel code check ",end="")
                     while True:
                         inp = input("> ")
                         if inp == str(kernelcode):
                             break
                         else:
-                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code")
+                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code",end="")
                     print("kernelcode: +20000 pts")
                 score+=20000
                 kernelsolved=True
-                kernelread=False
+                kernelread=True
                 kernelcodeprg_chance = 0
                 file.remove("kernelcode")
-                    
+                
+            if inp == files[8]:
+                if files[8] in file:
+                    greeter=("***chroma***")
+                    for color in coloramas:
+                        print(color + greeter, end='\r', flush=True)
+                        time.sleep(0.1)
+                    print(Fore.CYAN,"\nEnter code: ",end="")
+                    while True:
+                        inp = input("=> ")
+                        if inp == str(chromacode):
+                            break
+                        else:
+                            print(Fore.CYAN,"* Incorrect code ",end="")
+                    goodjob=("*****GOOD JOB!*****")
+                    for i in range(3):
+                        for color in coloramas:
+                            print(color + goodjob, end='\r', flush=True)
+                            time.sleep(0.03)
+                    print("\n")
+                    print(Fore.WHITE+"chroma: +50000 pts")
+                    score+=50000
+                    chromasolved=True
+                    chromaread=True
+                    chromaprg_chance = 0
+                    file.remove("chroma")
+            
         if wentbackempty == True and inemptydir == False:
             print(Style.RESET_ALL)
             inp = input("player@termadventure $ ")
@@ -661,10 +763,12 @@ gratulationes! XXX punctorum""")
                         easter_chance = random.randint(1,15)
                         readme_chance = random.randint(1,15)
                         unknown_chance = random.randint(1,15)
-                        if codexread==True:
+                        if codexread==True and codexsolved==False:
                             codexprg_chance = random.randint(1,20)
-                        if kernelread==True:
+                        if kernelread==True and kernelsolved==False:
                             kernelcodeprg_chance = random.randint(1,20)
+                        if chromaread==True and chromasolved==False:
+                            chromaprg_chance = random.randint(1,20)
                             
                         print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
                         if empty_chance < 7:
@@ -847,13 +951,16 @@ gratulationes! XXX punctorum""")
                                 if kernelcodeprg_chance >= 17:
                                     file.append(str(files[7]))
                                     print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end="         ")
+                                if chromaprg_chance >= 17:
+                                    file.append(str(files[8]))
+                                    print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[8],end="         ")
                                 if easter_chance > 14:
                                     file.append(str(files[1]))
                                     print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
                                 if unknown_chance > 10:
                                     file.append(str(files[5]))
                                     print(Fore.RED+Style.BRIGHT,files[5],end="         ")
-                                if readme_chance > 10:
+                                if readme_chance > 7:
                                     readmenum = random.randint(1,3)
                                     if readmenum == 1:
                                         file.append(str(files[2]))
@@ -899,21 +1006,22 @@ gratulationes! XXX punctorum""")
                         if kernelread==False:
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
-                            codex_chance = random.randint(1,20)    
+                            codex_chance = random.randint(1,30) 
+                        if chromaread==False:
+                            chroma_chance = random.randint(1,40)
                         bonus_chance = random.randint(1,20)
                         readmescore = random.randint(1,20)
                         
-                        if kernelcode_chance == 20 and kernelsolved==False:
+                        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
-                                for i in range(3):
-                                    kernelcode=random.randint(111,999)
+                                kernelcode=random.randint(111,999)
                                 print(kernelcode,end="")
                                 readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 kernelcode_chance = 0
                                 
-                        elif codex_chance == 20 and codexsolved==False:
+                        elif codex_chance >= 30 and codexsolved==False and codexread==False and kernelsolved==True:
                             if codexread == False:
                                 codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
@@ -923,6 +1031,17 @@ gratulationes! XXX punctorum""")
                                 codexnum = list(codex.values())
                                 codexread=True
                                 codex_chance = 0
+                            
+                        elif chroma_chance >= 35 and chromasolved==False and chromaread==False and kernelsolved==True and codexsolved==True:
+                            if chromaread == False:
+                                chroma = random.sample(colors,len(colors))
+                                for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                                readme.append(''.join(chroma))
+                                chromacode = ''.join(chroma)
+                                chromaread=True
+                                chroma_chance = 0
                                 
                         elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
@@ -936,11 +1055,16 @@ gratulationes! XXX punctorum""")
                             readme.append(specialreadmetexts[3]+str(score))
                             print(*readme,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  < 25 or codex_chance < 30 or chroma_chance < 35 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme.append(str(random.choice(readmetexts)))
                             print(*readme,end="\r")
                     else:
-                        print(*readme,end="\r")
+                        if chromacode != 0:
+                           for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                        else: 
+                            print(*readme,end="\r")
                         
             if inp == "cat "+str(files[3]):
                 if files[3] in file:
@@ -948,21 +1072,22 @@ gratulationes! XXX punctorum""")
                         if kernelread==False:
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
-                            codex_chance = random.randint(1,20)    
+                            codex_chance = random.randint(1,30) 
+                        if chromaread==False:
+                            chroma_chance = random.randint(1,40)
                         bonus_chance = random.randint(1,20)
                         readmescore = random.randint(1,20)
                         
-                        if kernelcode_chance == 20:
+                        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
-                                for i in range(3):
-                                    kernelcode=random.randint(111,999)
+                                kernelcode=random.randint(111,999)
                                 print(kernelcode,end="")
                                 readme2.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 kernelcode_chance = 0
                                 
-                        elif codex_chance == 20:
+                        elif codex_chance >= 30 and codexsolved==False and codexread==False and kernelsolved==True:
                             if codexread == False:
                                 codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
@@ -972,6 +1097,18 @@ gratulationes! XXX punctorum""")
                                 codexnum = list(codex.values())
                                 codexread=True
                                 codex_chance = 0
+                            
+                        elif chroma_chance >= 35 and chromasolved==False and chromaread==False and kernelsolved==True and codexsolved==True:
+                            if chromaread == False:
+                                chroma = random.sample(colors,len(colors))
+                                for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                                print(Style.RESET_ALL)
+                                readme2.append(''.join(chroma))
+                                chromacode = ''.join(chroma)
+                                chromaread=True
+                                chroma_chance = 0
                         
                         elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
@@ -985,11 +1122,16 @@ gratulationes! XXX punctorum""")
                             readme2.append(specialreadmetexts[3]+str(score))
                             print(*readme2,end="")
                         
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  < 25 or codex_chance < 30 or chroma_chance < 35 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
-                        print(*readme2,end="\r")
+                        if readme2[1] == chroma:
+                           for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                        else: 
+                            print(*readme2,end="\r")
                         
             if inp == "cat "+str(files[4]):
                 if files[4] in file:
@@ -997,21 +1139,22 @@ gratulationes! XXX punctorum""")
                         if kernelread==False:
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
-                            codex_chance = random.randint(1,20)    
+                            codex_chance = random.randint(1,30) 
+                        if chromaread==False:
+                            chroma_chance = random.randint(1,40)
                         bonus_chance = random.randint(1,20)
                         readmescore = random.randint(1,20)
                         
-                        if kernelcode_chance == 20:
+                        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
                             if kernelread == False:
                                 print(specialreadmetexts[0],end=" ")
-                                for i in range(3):
-                                    kernelcode=random.randint(111,999)
+                                kernelcode=random.randint(111,999)
                                 print(kernelcode,end="")
                                 readme3.append(str(specialreadmetexts[0])+" "+str(kernelcode))
                                 kernelread=True
                                 kernelcode_chance = 0
                                 
-                        elif codex_chance == 20:
+                        elif codex_chance >= 30 and codexsolved==False and codexread==False and kernelsolved==True:
                             if codexread == False:
                                 codex = dict(random.sample(list(latinnums.items()), 3))
                                 print(specialreadmetexts[1])
@@ -1021,6 +1164,18 @@ gratulationes! XXX punctorum""")
                                 codexnum = list(codex.values())
                                 codexread=True
                                 codex_chance = 0
+                        
+                        elif chroma_chance >= 35 and chromasolved==False and chromaread==False and kernelsolved==True and codexsolved==True:
+                            if chromaread == False:
+                                chroma = random.sample(colors,len(colors))
+                                for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                                print(Style.RESET_ALL)
+                                readme3.append(''.join(chroma))
+                                chromacode = ''.join(chroma)
+                                chromaread=True
+                                chroma_chance = 0
                         
                         elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
@@ -1034,11 +1189,16 @@ gratulationes! XXX punctorum""")
                             readme3.append(specialreadmetexts[3]+str(score))
                             print(*readme3,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  < 25 or codex_chance < 30 or chroma_chance < 35 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
-                         print(*readme3,end="\r")
+                        if readme3[1] == chroma:
+                           for i in range(len(chroma)):
+                                    color = colors_map.get(chroma[i], Fore.WHITE)
+                                    print(color + chroma[i], end='')
+                        else: 
+                            print(*readme3,end="\r")
              
             if inp == files[5]:
                 crash_chance = random.randint(1,15)
@@ -1095,12 +1255,13 @@ gratulationes! XXX punctorum""")
                         if inp == str(codexnum[0])+str(codexnum[1])+str(codexnum[2]):
                             break
                         else:
-                            print("codicem invalidum",end="\n")
+                            print("codicem invalidum ",end="")
                             print("""               ___
 gratulationes! XXX punctorum""")
                 print("codex: +30000 pts")
                 score+=30000
-                kernelsolved=False
+                codexsolved=True
+                codexread=True
                 codexprg_chance=0
                 file.remove("codex")
                     
@@ -1112,12 +1273,39 @@ gratulationes! XXX punctorum""")
                         if inp == str(kernelcode):
                             break
                         else:
-                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code")
+                            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code",end="")
                     print("kernelcode: +20000 pts")   
                 score+=20000
-                codexsolved=False
+                kernelsolved=True
+                kernelread=True
                 kernelcodeprg_chance=0
                 file.remove("kernelcode")
+            
+            if inp == files[8]:
+                if files[8] in file:
+                    greeter=("***chroma***")
+                    for color in coloramas:
+                        print(color + greeter, end='\r', flush=True)
+                        time.sleep(0.1)
+                    print(Fore.CYAN,"\nEnter code: ",end="")
+                    while True:
+                        inp = input("=> ")
+                        if inp == str(chromacode):
+                            break
+                        else:
+                            print(Fore.CYAN,"* Incorrect code ",end="")
+                    goodjob=("*****GOOD JOB!*****")
+                    for i in range(3):
+                        for color in coloramas:
+                            print(color + goodjob, end='\r', flush=True)
+                            time.sleep(0.03)
+                    print("\n")
+                    print(Fore.WHITE+"chroma: +50000 pts")
+                    score+=50000
+                    chromasolved=True
+                    chromaread=True
+                    chromaprg_chance = 0
+                    file.remove("chroma")
                     
             if inp == "bonus" and syntax[0] in file: #bonus
                     bonusscore = random.choice(bonuses)
