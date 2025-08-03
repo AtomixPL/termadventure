@@ -566,7 +566,7 @@ su root - switch to the root user""")
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
-                        if readme2[1] == chroma:
+                        if chromacode != 0:
                            for i in range(len(chroma)):
                                     color = colors_map.get(chroma[i], Fore.WHITE)
                                     print(color + chroma[i], end='')
@@ -633,7 +633,7 @@ su root - switch to the root user""")
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
-                        if readme3[1] == chroma:
+                        if chromacode != 0:
                            for i in range(len(chroma)):
                                     color = colors_map.get(chroma[i], Fore.WHITE)
                                     print(color + chroma[i], end='')
@@ -1126,7 +1126,7 @@ gratulationes! XXX punctorum""")
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
-                        if readme2[1] == chroma:
+                        if chromacode != 0:
                            for i in range(len(chroma)):
                                     color = colors_map.get(chroma[i], Fore.WHITE)
                                     print(color + chroma[i], end='')
@@ -1193,7 +1193,7 @@ gratulationes! XXX punctorum""")
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
-                        if readme3[1] == chroma:
+                        if chromacode != 0:
                            for i in range(len(chroma)):
                                     color = colors_map.get(chroma[i], Fore.WHITE)
                                     print(color + chroma[i], end='')
