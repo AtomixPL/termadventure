@@ -1317,51 +1317,52 @@ gratulationes! XXX punctorum""")
                 score+=10000
                 file.remove("easteregg")
 
-    print(Fore.MAGENTA+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-    password = random.choice(rootpasswords)
-    time.sleep(2)
-    print(Fore.MAGENTA+Style.BRIGHT,"root",end="         ")
-    print(Style.RESET_ALL,"password")
-    time.sleep(1)
-    while True:
-        syntax.clear()
-        inp = input("player@termadventure $ ")
-        syntax = inp.split(" ")
-        if inp == "cd root":
-            print("bash: cd: root: Permission denied")
-        if inp == "cat password":
-            print("The password for root user is: "+str(password),end="")
-            print(Style.DIM,"* Hint: su root",Style.RESET_ALL)
-        if inp == "su root":
-            time.sleep(0.1)
-            prompt = input("Password: ")        
-            if prompt == str(password):
-                break    
-            else:
-                print("su: Authentication failure")
-    print(Style.DIM,"* Hint: Enter the root directory to finish the game",Style.RESET_ALL)
-    while True:
-        syntax.clear()
-        inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure $ ")
-        syntax = inp.split(" ") 
-        if inp == "cd root":
-            break
-    chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
-    for i in range(50):
-        print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
-        time.sleep(0.02)
-    if sys.platform == "win32":
-        os.system("cls")
-    elif sys.platform == "linux":
-        os.system("clear")
-    print(Style.RESET_ALL)
-    time.sleep(1)
-    print(Fore.MAGENTA,"*"+Fore.WHITE,"You made it to the end! Congrats!")
-    time.sleep(2)
-    print(Fore.GREEN,"*"+Fore.WHITE,"Total points collected: "+str(score))
-    time.sleep(2)
-    inp = input("* Do you want to play again or quit the game? (y/n) ")
-    if inp == "n":
-        quit()
-    elif inp == "y":
-        score = 0
+    if layer == 50:
+        print(Fore.MAGENTA+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+        password = random.choice(rootpasswords)
+        time.sleep(2)
+        print(Fore.MAGENTA+Style.BRIGHT,"root",end="         ")
+        print(Style.RESET_ALL,"password")
+        time.sleep(1)
+        while True:
+            syntax.clear()
+            inp = input("player@termadventure $ ")
+            syntax = inp.split(" ")
+            if inp == "cd root":
+                print("bash: cd: root: Permission denied")
+            if inp == "cat password":
+                print("The password for root user is: "+str(password),end="")
+                print(Style.DIM,"* Hint: su root",Style.RESET_ALL)
+            if inp == "su root":
+                time.sleep(0.1)
+                prompt = input("Password: ")        
+                if prompt == str(password):
+                    break    
+                else:
+                    print("su: Authentication failure")
+        print(Style.DIM,"* Hint: Enter the root directory to finish the game",Style.RESET_ALL)
+        while True:
+            syntax.clear()
+            inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure $ ")
+            syntax = inp.split(" ") 
+            if inp == "cd root":
+                break
+        chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
+        for i in range(50):
+            print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
+            time.sleep(0.02)
+        if sys.platform == "win32":
+            os.system("cls")
+        elif sys.platform == "linux":
+            os.system("clear")
+        print(Style.RESET_ALL)
+        time.sleep(1)
+        print(Fore.MAGENTA,"*"+Fore.WHITE,"You made it to the end! Congrats!")
+        time.sleep(2)
+        print(Fore.GREEN,"*"+Fore.WHITE,"Total points collected: "+str(score))
+        time.sleep(2)
+        inp = input("* Do you want to play again or quit the game? (y/n) ")
+        if inp == "n":
+            quit()
+        elif inp == "y":
+            score = 0
