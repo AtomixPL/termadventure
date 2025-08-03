@@ -1,3 +1,7 @@
+# TermAdventure
+# Copyright (c) 2025 Atomix
+# Licensed under the MIT License
+
 import time
 import random
 import os
@@ -6,7 +10,6 @@ try:
     from colorama import Fore, Style
 except ModuleNotFoundError:
     import subprocess
-    import sys
     subprocess.check_call([sys.executable, "-m", "pip", "install", "colorama"])
     from colorama import Fore, Style
 
