@@ -11,7 +11,7 @@ try:
 except ModuleNotFoundError:
     import subprocess
     import sys
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "colorama"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--user", "colorama"])
     from colorama import Fore, Style
 
 score = 0
