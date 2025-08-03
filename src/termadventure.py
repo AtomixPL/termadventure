@@ -10,6 +10,7 @@ try:
     from colorama import Fore, Style
 except ModuleNotFoundError:
     import subprocess
+    import sys
     subprocess.check_call([sys.executable, "-m", "pip", "install", "colorama"])
     from colorama import Fore, Style
 
@@ -31,7 +32,7 @@ dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp",
       "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3","sda3","sdb3","sdc3",
       "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
       "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4","sda4","sdb4","sdc4"]   
-files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode"]
+files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode","chroma","hex","window"]
 specialreadmetexts=["Linux termadventure 6.15.5-zen1-1-zen x86_64 GNU/Linux",
 """Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -56,7 +57,7 @@ print(Fore.GREEN+Style.BRIGHT,r"""
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Written in Python by Atomix, 8.07.2025                  Version 0.3 Alpha")
+print(Fore.WHITE,"Copyright (c) 2025 Atomix                               Version 0.3 Alpha")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
@@ -114,7 +115,11 @@ while True:
     print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading unknown files ...                                                                         "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
     time.sleep(0.2)
     print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading readme files ...                                                                          "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
-    time.sleep(0.5)
+    time.sleep(0.3)
+    if sys.platform == "win32":
+        os.system("cls")
+    elif sys.platform == "linux":
+        os.system("clear")
     print("\n"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
     time.sleep(2)
     print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
@@ -125,6 +130,10 @@ while True:
         inp = input("player@termadventure $ ")
         if inp == "cd home":
             break
+        
+        elif inp == "quit" or inp == "q":
+            quit()
+            
         elif inp == "help":
             print("""
 ls - list directories
@@ -351,7 +360,7 @@ su root - switch to the root user""")
                         if easter_chance > 14:
                             file.append(str(files[1]))
                             print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")                      
-                        if unknown_chance > 8:
+                        if unknown_chance > 10:
                             file.append(str(files[5]))
                             print(Fore.RED+Style.BRIGHT,files[5],end="         ")
                         if readme_chance > 10:
@@ -410,8 +419,8 @@ su root - switch to the root user""")
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
                             codex_chance = random.randint(1,20)    
-                        bonus_chance = random.randint(1,15)
-                        readmescore = random.randint(1,15)
+                        bonus_chance = random.randint(1,20)
+                        readmescore = random.randint(1,20)
                         
                         if kernelcode_chance == 20 and kernelsolved==False:
                             if kernelread == False:
@@ -434,7 +443,7 @@ su root - switch to the root user""")
                                 codexread=True
                                 codex_chance = 0
                                 
-                        elif bonus_chance == 15:
+                        elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
                             print(specialreadmetexts[2],end="")
                             print(bonusscore)
@@ -442,11 +451,11 @@ su root - switch to the root user""")
                             score+=bonusscore
                             readme.append(str(specialreadmetexts[2]+str(bonusscore)))
                             
-                        elif readmescore >= 13:
+                        elif readmescore == 20:
                             readme.append(specialreadmetexts[3]+str(score))
                             print(*readme,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 15 or readmescore < 13 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme.append(str(random.choice(readmetexts)))
                             print(*readme,end="\r")
                     else:
@@ -459,8 +468,8 @@ su root - switch to the root user""")
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
                             codex_chance = random.randint(1,20)    
-                        bonus_chance = random.randint(1,15)
-                        readmescore = random.randint(1,15)
+                        bonus_chance = random.randint(1,20)
+                        readmescore = random.randint(1,20)
                         
                         if kernelcode_chance == 20:
                             if kernelread == False:
@@ -483,7 +492,7 @@ su root - switch to the root user""")
                                 codexread=True
                                 codex_chance = 0
                         
-                        elif bonus_chance == 15:
+                        elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
                             print(specialreadmetexts[2],end="")
                             print(bonusscore)
@@ -491,11 +500,11 @@ su root - switch to the root user""")
                             score+=bonusscore
                             readme2.append(str(specialreadmetexts[2]+str(bonusscore)))
                         
-                        elif readmescore >= 13:
+                        elif readmescore == 20:
                             readme2.append(specialreadmetexts[3]+str(score))
                             print(*readme2,end="")
                         
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 15 or readmescore < 13 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
@@ -508,8 +517,8 @@ su root - switch to the root user""")
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
                             codex_chance = random.randint(1,20)    
-                        bonus_chance = random.randint(1,15)
-                        readmescore = random.randint(1,15)
+                        bonus_chance = random.randint(1,20)
+                        readmescore = random.randint(1,20)
                         
                         if kernelcode_chance == 20:
                             if kernelread == False:
@@ -532,7 +541,7 @@ su root - switch to the root user""")
                                 codexread=True
                                 codex_chance = 0
                         
-                        elif bonus_chance == 15:
+                        elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
                             print(specialreadmetexts[2],end="")
                             print(bonusscore)
@@ -540,11 +549,11 @@ su root - switch to the root user""")
                             score+=bonusscore
                             readme3.append(str(specialreadmetexts[2]+str(bonusscore)))
                         
-                        elif readmescore >= 13:
+                        elif readmescore == 20:
                             readme3.append(specialreadmetexts[3]+str(score))
                             print(*readme3,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 15 or readmescore < 13 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
@@ -836,7 +845,7 @@ gratulationes! XXX punctorum""")
                                 if easter_chance > 14:
                                     file.append(str(files[1]))
                                     print(Fore.YELLOW+Style.BRIGHT,files[1],end="         ")
-                                if unknown_chance > 8:
+                                if unknown_chance > 10:
                                     file.append(str(files[5]))
                                     print(Fore.RED+Style.BRIGHT,files[5],end="         ")
                                 if readme_chance > 10:
@@ -886,8 +895,8 @@ gratulationes! XXX punctorum""")
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
                             codex_chance = random.randint(1,20)    
-                        bonus_chance = random.randint(1,15)
-                        readmescore = random.randint(1,15)
+                        bonus_chance = random.randint(1,20)
+                        readmescore = random.randint(1,20)
                         
                         if kernelcode_chance == 20 and kernelsolved==False:
                             if kernelread == False:
@@ -910,7 +919,7 @@ gratulationes! XXX punctorum""")
                                 codexread=True
                                 codex_chance = 0
                                 
-                        elif bonus_chance == 15:
+                        elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
                             print(specialreadmetexts[2],end="")
                             print(bonusscore)
@@ -918,11 +927,11 @@ gratulationes! XXX punctorum""")
                             score+=bonusscore
                             readme.append(str(specialreadmetexts[2]+str(bonusscore)))
                             
-                        elif readmescore >= 13:
+                        elif readmescore == 20:
                             readme.append(specialreadmetexts[3]+str(score))
                             print(*readme,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 15 or readmescore < 13 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme.append(str(random.choice(readmetexts)))
                             print(*readme,end="\r")
                     else:
@@ -935,8 +944,8 @@ gratulationes! XXX punctorum""")
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
                             codex_chance = random.randint(1,20)    
-                        bonus_chance = random.randint(1,15)
-                        readmescore = random.randint(1,15)
+                        bonus_chance = random.randint(1,20)
+                        readmescore = random.randint(1,20)
                         
                         if kernelcode_chance == 20:
                             if kernelread == False:
@@ -959,7 +968,7 @@ gratulationes! XXX punctorum""")
                                 codexread=True
                                 codex_chance = 0
                         
-                        elif bonus_chance == 15:
+                        elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
                             print(specialreadmetexts[2],end="")
                             print(bonusscore)
@@ -967,11 +976,11 @@ gratulationes! XXX punctorum""")
                             score+=bonusscore
                             readme2.append(str(specialreadmetexts[2]+str(bonusscore)))
                         
-                        elif readmescore >= 13:
+                        elif readmescore == 20:
                             readme2.append(specialreadmetexts[3]+str(score))
                             print(*readme2,end="")
                         
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 15 or readmescore < 13 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme2.append(str(random.choice(readmetexts)))
                             print(*readme2,end="\r")
                     else:
@@ -984,8 +993,8 @@ gratulationes! XXX punctorum""")
                             kernelcode_chance = random.randint(1,20)
                         if codexread==False:
                             codex_chance = random.randint(1,20)    
-                        bonus_chance = random.randint(1,15)
-                        readmescore = random.randint(1,15)
+                        bonus_chance = random.randint(1,20)
+                        readmescore = random.randint(1,20)
                         
                         if kernelcode_chance == 20:
                             if kernelread == False:
@@ -1008,7 +1017,7 @@ gratulationes! XXX punctorum""")
                                 codexread=True
                                 codex_chance = 0
                         
-                        elif bonus_chance == 15:
+                        elif bonus_chance == 20:
                             bonusscore = random.choice(bonuses)
                             print(specialreadmetexts[2],end="")
                             print(bonusscore)
@@ -1016,11 +1025,11 @@ gratulationes! XXX punctorum""")
                             score+=bonusscore
                             readme3.append(str(specialreadmetexts[2]+str(bonusscore)))
                         
-                        elif readmescore >= 13:
+                        elif readmescore == 20:
                             readme3.append(specialreadmetexts[3]+str(score))
                             print(*readme3,end="")
                             
-                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 15 or readmescore < 13 or kernelsolved == True or codexsolved == True:
+                        elif kernelcode_chance  != 20 or codex_chance != 20 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
                             readme3.append(str(random.choice(readmetexts)))
                             print(*readme3,end="\r")
                     else:
