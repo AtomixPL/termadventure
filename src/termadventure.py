@@ -15,7 +15,7 @@ except ModuleNotFoundError:
         from colorama import Fore, Style
     except subprocess.CalledProcessError:
         if sys.platform == "linux":
-            print("Please install pip using your package manager.")
+            print("Please install colorama module using your package manager.")
             exit()
 
 score = 0
