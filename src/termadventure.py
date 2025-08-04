@@ -81,9 +81,9 @@ print(Fore.GREEN+Style.BRIGHT,r"""
 """, end="")
 print(Fore.WHITE,"Copyright (c) 2025 Atomix")
 print(Style.RESET_ALL)
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the game")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- show description")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- leave the game")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the adventure")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- about the game")
+print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- exit the program")
 
 while True:
     inp = input(Style.RESET_ALL+"\nplayer@termadventure $ ")
@@ -92,12 +92,12 @@ while True:
         print("""
 Version 0.5 Alpha (04-08-2025)   
            
-* Explore the seemingly infinite Linux kernel containing directories and files.
-* You may find a lot of interesting things, which can give you points.
-* But unknown files may delete your system (not literally), so be careful!
-* There are also readme files, which can contain codes for specific programs.
-* Reach layer 50 to get to the root directory. 
-* For the full guidebook, check out the README file in the repository.""")
+Explore the seemingly infinite Linux kernel containing directories and files.
+You may find a lot of interesting things, which can give you points.
+But unknown files may delete your system (not literally), so be careful!
+There are also readme files, which can contain codes for specific programs.
+Reach layer 50 to get to the root directory. 
+For the full guidebook, check out the README file in the repository.""")
     if inp == "quit" or inp == "q":
         exit()
     if inp == "play" or inp == "p":
@@ -120,6 +120,7 @@ while True:
     kernelcodeprg_chance=0
     chromaprg_chance=0
     hexprg_chance=0
+    prgfound=0
     wentbackempty=False
     inemptydir=False
     kernelread=False
@@ -696,32 +697,26 @@ su root - switch to the root user""")
                         print(Fore.GREEN,"\r*"+Fore.WHITE,"Total points collected: "+str(score))
                         time.sleep(2)
                         if kernelsolved==True:
-                            print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end="")
+                            print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end=" ")
                         else:
-                            print(Fore.WHITE+Style.DIM,"\rkernelcode",end="")
+                            print(Fore.WHITE+Style.DIM,"\rkernelcode",end=" ")
                         if chromasolved==True:
                             for letter in ch:
                                 print(colors_map2.get(letter, Fore.WHITE) + letter, end='')
                         else:
-                            print(Fore.WHITE+Style.DIM,"chroma",end="")
+                            print(Fore.WHITE+Style.DIM,"chroma",end=" ")
                         if codexsolved==True:
-                            print(Fore.WHITE+Style.BRIGHT,"codex",end="")
+                            print(Fore.WHITE+Style.BRIGHT,"codex ",end="")
                         else:
-                            print(Fore.WHITE+Style.DIM,"codex",end="")
+                            print(Fore.WHITE+Style.DIM,"codex ",end="")
                         if hexsolved==True:
-                            print(Fore.GREEN+Style.BRIGHT,"hex",end="")
+                            print(Fore.GREEN+Style.BRIGHT,"hex",end=" ")
                         else:
-                            print(Fore.WHITE+Style.DIM,"hex",end="")
-                        if kernelsolved==True:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"1/4 special programs found")
-                        elif kernelsolved==True and chromasolved==True:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"2/4 special programs found")
-                        elif kernelsolved==True and chromasolved==True and codexsolved==True:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"3/4 special programs found")
-                        elif kernelsolved==True and chromasolved==True and codexsolved==True and hexsolved==True:
-                            print(Fore.YELLOW+Style.NORMAL,"\n* 4/4 special programs found")
-                        elif kernelsolved==False and chromasolved==False and codexsolved==False and hexsolved==False:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"0/4 special programs found")
+                            print(Fore.WHITE+Style.DIM,"hex",end=" ")
+                        if prgfound < 4:
+                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,str(prgfound)+"/4 special programs found")
+                        elif prgfound == 4:
+                            print(Fore.YELLOW+Style.NORMAL,"\n*"+str(prgfound)+"/4 special programs found")
                         time.sleep(2) 
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
@@ -746,8 +741,8 @@ su root - switch to the root user""")
                             break
                         else:
                             print("codicem invalidum ",end="")
-                    print("""               ___
-gratulationes! XXX punctorum""")
+                    print("""               _
+gratulationes! L punctorum""")
                 print("codex: +50 000 pts")
                 score+=30000
                 codexsolved=True
@@ -755,7 +750,8 @@ gratulationes! XXX punctorum""")
                 codexprg_chance = 0
                 file.remove("codex")
                 solvedreadme=True
-                    
+                prgfound+=1
+                
             if inp == files[7]:
                 if files[7] in file:
                     print(Fore.GREEN,"*"+Fore.WHITE,"Kernel code check ",end="")
@@ -771,10 +767,11 @@ gratulationes! XXX punctorum""")
                 kernelread=True
                 kernelcodeprg_chance = 0
                 file.remove("kernelcode")
+                prgfound+=1
                 
             if inp == files[8]:
                 if files[8] in file:
-                    greeter=("***chroma***")
+                    greeter=("---===chroma===---")
                     for color in coloramas:
                         print(color + greeter, end='\r', flush=True)
                         time.sleep(0.1)
@@ -786,7 +783,7 @@ gratulationes! XXX punctorum""")
                             break
                         else:
                             print(Fore.CYAN,"\r* Incorrect code ",end="")
-                    goodjob=("*****GOOD JOB!*****")
+                    goodjob=("------======GOOD JOB!======------")
                     for i in range(3):
                         for color in coloramas:
                             print(color + goodjob, end='\r', flush=True)
@@ -798,6 +795,8 @@ gratulationes! XXX punctorum""")
                     chromaread=True
                     chromaprg_chance = 0
                     file.remove("chroma")
+                    chromacode=0
+                    prgfound+=1
             
             if inp == files[9]:
                 if files[9] in file:
@@ -893,6 +892,7 @@ gratulationes! XXX punctorum""")
                     print(Fore.YELLOW,"\r* Correct!")
                     print(Fore.WHITE,"hex: 100 000 pts")
                     solvedall=True
+                    prgfound+=1
                     print(Fore.YELLOW+Style.BRIGHT,"* All special programs found! +200 000 pts")
             
         if wentbackempty == True and inemptydir == False:
@@ -1389,32 +1389,26 @@ gratulationes! XXX punctorum""")
                         print(Fore.GREEN,"\r*"+Fore.WHITE,"Total points collected: "+str(score))
                         time.sleep(2)
                         if kernelsolved==True:
-                            print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end="")
+                            print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end=" ")
                         else:
-                            print(Fore.WHITE+Style.DIM,"\rkernelcode",end="")
+                            print(Fore.WHITE+Style.DIM,"\rkernelcode",end=" ")
                         if chromasolved==True:
                             for letter in ch:
                                 print(colors_map2.get(letter, Fore.WHITE) + letter, end='')
                         else:
-                            print(Fore.WHITE+Style.DIM,"chroma",end="")
+                            print(Fore.WHITE+Style.DIM,"chroma",end=" ")
                         if codexsolved==True:
-                            print(Fore.WHITE+Style.BRIGHT,"codex",end="")
+                            print(Fore.WHITE+Style.BRIGHT,"codex ",end="")
                         else:
-                            print(Fore.WHITE+Style.DIM,"codex",end="")
+                            print(Fore.WHITE+Style.DIM,"codex ",end="")
                         if hexsolved==True:
-                            print(Fore.GREEN+Style.BRIGHT,"hex",end="")
+                            print(Fore.GREEN+Style.BRIGHT,"hex",end=" ")
                         else:
-                            print(Fore.WHITE+Style.DIM,"hex",end="")
-                        if kernelsolved==True:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"1/4 special programs found")
-                        elif kernelsolved==True and chromasolved==True:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"2/4 special programs found")
-                        elif kernelsolved==True and chromasolved==True and codexsolved==True:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"3/4 special programs found")
-                        elif kernelsolved==True and chromasolved==True and codexsolved==True and hexsolved==True:
-                            print(Fore.YELLOW+Style.NORMAL,"\n* 4/4 special programs found")
-                        elif kernelsolved==False and chromasolved==False and codexsolved==False and hexsolved==False:
-                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"0/4 special programs found")
+                            print(Fore.WHITE+Style.DIM,"hex",end=" ")
+                        if prgfound < 4:
+                            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,str(prgfound)+"/4 special programs found")
+                        elif prgfound == 4:
+                            print(Fore.YELLOW+Style.NORMAL,"\n*"+str(prgfound)+"/4 special programs found")
                         time.sleep(2) 
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
@@ -1439,8 +1433,8 @@ gratulationes! XXX punctorum""")
                             break
                         else:
                             print("codicem invalidum ",end="")
-                    print("""               ___
-gratulationes! XXX punctorum""")
+                    print("""               _
+gratulationes! L punctorum""")
                 print("codex: +50 000 pts")
                 score+=30000
                 codexsolved=True
@@ -1448,6 +1442,7 @@ gratulationes! XXX punctorum""")
                 codexprg_chance=0
                 file.remove("codex")
                 solvedreadme=True
+                prgfound+=1
                     
             if inp == files[7]:
                 if files[7] in file:
@@ -1464,10 +1459,11 @@ gratulationes! XXX punctorum""")
                 kernelread=True
                 kernelcodeprg_chance=0
                 file.remove("kernelcode")
+                prgfound+=1
             
             if inp == files[8]:
                 if files[8] in file:
-                    greeter=("***chroma***")
+                    greeter=("---===chroma===---")
                     for color in coloramas:
                         print(color + greeter, end='\r', flush=True)
                         time.sleep(0.1)
@@ -1479,7 +1475,7 @@ gratulationes! XXX punctorum""")
                             break
                         else:
                             print(Fore.CYAN,"\r* Incorrect code ",end="")
-                    goodjob=("*****GOOD JOB!*****")
+                    goodjob=("------======GOOD JOB!======------")
                     for i in range(3):
                         for color in coloramas:
                             print(color + goodjob, end='\r', flush=True)
@@ -1491,6 +1487,8 @@ gratulationes! XXX punctorum""")
                     chromaread=True
                     chromaprg_chance = 0
                     file.remove("chroma")
+                    chromacode=0
+                    prgfound+=1
             
             if inp == files[9]:
                 if files[9] in file:
@@ -1586,6 +1584,7 @@ gratulationes! XXX punctorum""")
                     print(Fore.YELLOW,"\r* Correct!")
                     print(Fore.WHITE,"hex: 100 000 pts")
                     solvedall=True
+                    prgfound+=1
                     print(Fore.YELLOW+Style.BRIGHT,"* All special programs found! +200 000 pts")
                     
             if inp == "bonus" and syntax[0] in file: #bonus
@@ -1644,32 +1643,26 @@ gratulationes! XXX punctorum""")
         print(Fore.GREEN,"\r*"+Fore.WHITE,"Total points collected: "+str(score))
         time.sleep(2)
         if kernelsolved==True:
-            print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end="")
+            print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end=" ")
         else:
-            print(Fore.WHITE+Style.DIM,"\rkernelcode",end="")
+            print(Fore.WHITE+Style.DIM,"\rkernelcode",end=" ")
         if chromasolved==True:
             for letter in ch:
                 print(colors_map2.get(letter, Fore.WHITE) + letter, end='')
         else:
-            print(Fore.WHITE+Style.DIM,"chroma",end="")
+            print(Fore.WHITE+Style.DIM,"chroma",end=" ")
         if codexsolved==True:
             print(Fore.WHITE+Style.BRIGHT,"codex",end="")
         else:
             print(Fore.WHITE+Style.DIM,"codex",end="")
         if hexsolved==True:
-            print(Fore.GREEN+Style.BRIGHT,"hex",end="")
+            print(Fore.GREEN+Style.BRIGHT,"hex",end=" ")
         else:
-            print(Fore.WHITE+Style.DIM,"hex",end="")
-        if kernelsolved==True:
-            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"1/4 special programs found")
-        elif kernelsolved==True and chromasolved==True:
-            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"2/4 special programs found")
-        elif kernelsolved==True and chromasolved==True and codexsolved==True:
-            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"3/4 special programs found")
-        elif kernelsolved==True and chromasolved==True and codexsolved==True and hexsolved==True:
-            print(Fore.YELLOW+Style.NORMAL,"\n* 4/4 special programs found")
-        elif kernelsolved==False and chromasolved==False and codexsolved==False and hexsolved==False:
-            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,"0/4 special programs found")
+            print(Fore.WHITE+Style.DIM,"hex",end=" ")
+        if prgfound < 4:
+            print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,str(prgfound)+"/4 special programs found")
+        elif prgfound == 4:
+            print(Fore.YELLOW+Style.NORMAL,"\n*"+str(prgfound)+"/4 special programs found")
         time.sleep(2) 
         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
         if inp == "n":
