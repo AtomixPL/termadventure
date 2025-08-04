@@ -106,7 +106,7 @@ def loading():
     print("\n")
     print("Generating directories")
     for i in range (101):
-        print("\r"+str(int(i/2))+"/50"+" "+i*"=",end=">",flush=True)
+        print("\r"+str(int(i/2))+"/50"+" "+int(i/2)*"=",end=">",flush=True)
         time.sleep(0.003)
     print("\n")
     print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading directories ... "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
@@ -945,7 +945,7 @@ su root - switch to the root user""")
                     while time.time() < wait:
                         print(".",end="", flush=True)
                         time.sleep(0.003)
-                    if crash_chance < 8:
+                    if crash_chance < 10:
                         if bonus_chance >= 14:
                             print("\n")
                             bonusscore = random.choice(bonuses)
@@ -956,7 +956,7 @@ su root - switch to the root user""")
                         elif bonus_chance < 14:
                             file.remove("unknown")
                             
-                    elif crash_chance > 8:
+                    elif crash_chance > 10:
                         crash()
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
@@ -1043,7 +1043,7 @@ su root - switch to the root user""")
                     while time.time() < wait:
                         print(".",end="", flush=True)
                         time.sleep(0.003)
-                    if crash_chance < 8:
+                    if crash_chance < 10:
                         if bonus_chance >= 14:
                             print("\n")
                             bonusscore = random.choice(bonuses)
@@ -1054,7 +1054,7 @@ su root - switch to the root user""")
                         elif bonus_chance < 14:
                             file.remove("unknown")
                             
-                    elif crash_chance > 8:
+                    elif crash_chance > 10:
                         crash()
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
