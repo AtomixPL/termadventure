@@ -17,7 +17,7 @@ _(executable)_ - run the program or claim bonus
 
 _su root_ - switch to the root user (if you know the password)
 ## Bonuses, eastereggs and unknown files
-Bonuses are common executables that can give you from 1 000 to 5 000 points. Eastereggs are less common, and they are worth 10 000 points. However unknown files are more dangerous, they can ~~steal your points or~~ delete your whole system, and this is where the game ends. But rarely they can give you some points.
+Bonuses are common executables that can give you from 1 000 to 5 000 points. Eastereggs are less common, and they are worth 10 000 points. However unknown files are more dangerous - they can delete your whole system. But rarely they can give you some points.
 ## Readme files
 Inside those text files there are random contents written, but you can encounter mysterious codes, which can hint to more worthy and interesting programs, that can contain up to 100 000 points. They can only appear after finding such codes.
 ## Kernelcode, chroma, codex and hex
@@ -32,3 +32,5 @@ Kernelcode is an executable where you must type in correct 3-digit code which yo
 0.4 (03-08-2025) - the game can be now ran as an executable and new special program Chroma
 
 0.5 (04-08-2025) - new special program Hex, revamped game over screen and minor improvements
+
+0.6 (05-08-2025) - game results are now automatically being saved in json file (scoreboard.json)
