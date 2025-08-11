@@ -23,14 +23,14 @@ Inside those text files there are random contents written, but you can encounter
 ## Kernelcode, chroma, codex and hex
 Kernelcode is an executable where you must type in correct 3-digit code which you can find in the text file beginning with the Linux kernel version. By successfully solving the program you can get 20 000 points. Another special program is Chroma, which is an alternative to kernelcode, and it needs a special six-letter color code, which you can also find in one of the readme files. You will get awarded 30 000 points for the solve. Codex is an extrordinary latin program, which works the same as kernelcode, but you need to know numbers in latin. When you'll encounter a readme file with "lorem ipsum" text inside it, there are numbers written in latin below, eg. unus, duo, tres etc. By correctly typing the 3-digit code as in kernelcode you can get 50 000 points. The last and the hardest of the four programs is Hex, where you must find five reiterations of the same hex number in a grid of those numbers. Be aware, that you must complete it three times, and after finding the number the grid becomes larger, and it will be harder to find the correct number. If you manage to find those numbers, the award is 100 000 points. After solving all of the four special programs, you get an extra bonus of 200 000 points.
 ## Changelog
-0.1 (08-07-2025) - initial release
+v0.1.0-alpha (08-07-2025) - initial release
 
-0.2 (09-07-2025) - added loading screen
+v0.2.0-alpha (09-07-2025) - added loading screen
 
-0.3 (02-08-2025) - added automatic module installation needed to run the game
+v0.3.0-alpha (02-08-2025) - added automatic module installation needed to run the game
 
-0.4 (03-08-2025) - the game can be now ran as an executable and new special program Chroma
+v0.4.0-alpha (03-08-2025) - the game can be now ran as an executable and new special program Chroma
 
-0.5 (04-08-2025) - new special program Hex, revamped game over screen and minor improvements
+v0.5.0-alpha (04-08-2025) - new special program Hex, revamped game over screen and minor improvements
 
-0.6 (05-08-2025) - game results are now automatically being saved in json file (scoreboard.json)
+v0.6.0-beta (05-08-2025) - game results are now automatically being saved in json file (scoreboard.json)
