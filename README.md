@@ -1,4 +1,13 @@
+## Build dependencies
+Python:
+    colorama
+    PyInstaller
+
+# How to build?
+Just run the run.py file, and select option "1", the dependencies will be installed automatically
+
 # TermAdventure
+
 A small Python console game where you travel through a lot of directories and find various things.
 
 This is my second Python game and it's based on the original ProgressDOS minigame from Progressbar95. It's slightly different and it makes you feel you're exploring an Linux system. This game took me about 1 month to create from my knowledge of Python (sometimes i needed chatgpt). All you need to do is to collect as many bonuses as you can while exploring directories. You can also find codes inside readme files for various code programs, which can give you a lot of points. To finish the game, you need to get to the 50th directory. The game is in Alpha, so many features are missing and the game is still work in progress.
