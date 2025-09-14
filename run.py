@@ -9,7 +9,7 @@ def create_venv():
     if not os.path.exists(".venv"):
         print("Creating virtual environment...")
         if os.name == 'nt':
-            subprocess.run(["cmd.exe ", "/c", "python -m venv .venv && .venv\\Scripts\\activate"], check=True)
+            subprocess.run(["cmd.exe ", "/c", "python -m venv .venv && .venv\\Scripts\\activate"], check=True, cwd=str(current_dir))
         elif os.name == 'posix':
             subprocess.run(["/bin/bash", "-c", "python3 -m venv .venv && source .venv/bin/activate && .venv/bin/pip install --upgrade pip colorama pyinstaller"], check=True)
         else:
