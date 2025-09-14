@@ -35,20 +35,14 @@ def venv_python():
 
 def run_build_in_venv():
     py = venv_python()
-    # ensure pyinstaller is present
     subprocess.run([py, "-m", "pip", "install", "pyinstaller"], check=True, cwd=str(current_dir))
-    # import the module and call build_executable(); adjust module path if needed
     subprocess.run([py, "-c", "import src.compile as compile; compile.build_executable()"], check=True, cwd=str(current_dir))
 
 if __name__ == "__main__":
     create_venv()
     print("in venv now")
     py = venv_python()
-    # example: run a script inside the venv (script path relative to project root)
-    # use 'src/compile.py' if that's the script file, or call run_build_in_venv() to call the function
     subprocess.run([py, "src/compile.py"], check=True, cwd=str(current_dir))
-    # or to call the function directly:
-    # run_build_in_venv()
     exit(0)
 
 os.run("/src/compile.py")
