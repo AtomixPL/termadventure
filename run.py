@@ -1,12 +1,15 @@
 import subprocess
 import os
 import sys
+from pathlib import Path
+
+current_dir = Path(__file__).parent.resolve()
 
 def create_venv():
     if not os.path.exists(".venv"):
         print("Creating virtual environment...")
         if os.name == 'nt':
-            subprocess.run(["cmd.exe", "/c", "python -m venv .venv && .venv\\Scripts\\activate"], check=True)
+            subprocess.run(["cmd.exe ", "/c", "python -m venv .venv && .venv\\Scripts\\activate"], check=True)
         elif os.name == 'posix':
             subprocess.run(["/bin/bash", "-c", "python3 -m venv .venv && source .venv/bin/activate && .venv/bin/pip install --upgrade pip colorama pyinstaller"], check=True)
         else:
@@ -19,7 +22,7 @@ def remove_venv():
     if os.path.exists(".venv"):
         print("Removing virtual environment...")
         if os.name == 'nt':
-            subprocess.run(["cmd.exe", "/c", "rmdir /s /q .venv"], check=True)
+            subprocess.run(['cmd.exe', "/c", "rmdir /s /q .venv"], check=True, cwd=str(current_dir))
         elif os.name == 'posix':
             subprocess.run(["/bin/bash", "-c", "rm -rf .venv"], check=True)
         else:
