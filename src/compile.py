@@ -20,15 +20,6 @@ def remove_venv():
     else:
         print("No virtual environment to remove.")
 
-def check_os():
-    print(f"Operating System: {os.name}") 
-    if os.name == 'nt' or os.name == 'posix':
-        print("this is a valid OS")
-    else:
-        print("this is not a valid OS")
-
-
-
 def build_executable():
     from PyInstaller.__main__ import run
     args = ['--onefile', '--name', 'termadventure', 'src/termadventure.py']
@@ -57,18 +48,20 @@ def clean_except_executable():
         os.remove("termadventure.spec")
 
 def main():
-    print("Welcome to termadventure compiler")
-    print("Please sekect an option:")
+    print("")
+    print("")
+    print("Welcome to the termadventure compiler")
+    print("Please select an option:")
     print("1. Build Executable")
     print("2. Clean build files")
-    print("3. Check OS and Python version")
-    print("4. Exit")
-    choice = input("Enter your choice (1/2/3/4): ")
+    print("3. Exit")
+    choice = input("Enter your choice (1/2/3): ")
     if choice == "1":
         build_executable()
         print("")
-        print("Would you like to keep the build files (not nassary)? (y/n)")
+        print("Would you like to keep the build files? (y/N)")
         keep_files = input().lower()
+        keep_files = (input().strip() or "n").lower()
         if keep_files == 'n':
             clean_except_executable()
             print("Build files cleaned, only executable kept.")
@@ -83,11 +76,6 @@ def main():
         print("")
         main()
     elif choice == "3":
-        print("")
-        check_os()
-        print("")
-        main()
-    elif choice == "4":
         print("")
         print("Exiting.")
         print("")
