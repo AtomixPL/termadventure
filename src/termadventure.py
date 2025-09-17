@@ -6,7 +6,6 @@ import time
 import random
 import os
 import sys
-import subprocess
 import datetime
 import json
     
