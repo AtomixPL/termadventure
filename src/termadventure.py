@@ -11,9 +11,10 @@ try:
     from colorama import Fore, Style
 except ModuleNotFoundError:
     if sys.platform=="win32":
-        print("Please launch the game using Python from \venv\Scripts directory.")
+        print(r"""Please launch the game using Python from \venv\Scripts directory.""")
     elif sys.platform=="linux":
         print("Please launch the game using Python from /venv/bin directory.")
+    quit()
     
 score = 0
 latinnums={"unus": 1,
