@@ -10,8 +10,10 @@ import sys
 try:
     from colorama import Fore, Style
 except ModuleNotFoundError:
-    if not os.path.exists("venv"):
-        print("No venv directory found. Maybe try running build.py?")
+    if sys.platform=="win32":
+        print("Please launch the game using Python from \venv\Scripts directory.")
+    elif sys.platform=="linux":
+        print("Please launch the game using Python from /venv/bin directory.")
     
 score = 0
 latinnums={"unus": 1,
