@@ -9,13 +9,16 @@ def installdeps():
     if sys.platform=="win32":
         venv_python = os.path.join("venv","Scripts","python.exe")
     else:
-        venv_python = os.path.join("venv","bin","python")
+        venv_python = "./"+os.path.join("venv","bin","python")
     print("* Installing colorama and PyInstaller modules...")
     subprocess.run([venv_python,"-m","pip","install","colorama","pyinstaller"],text=True,check=True)
 
 def build():
     print("* Building executable...")
-    subprocess.run(["python","-m","PyInstaller","-F","src/termadventure.py"],text=True,check=True)
+    if sys.platform=="win32":
+        subprocess.run([sys.executable,"-m","PyInstaller","-F","src/termadventure.py"],text=True,check=True)
+    elif sys.platform=="linux":
+        subprocess.run([".venv/bin/python","-m","PyInstaller","-F","src/termadventure.py"],text=True,check=True)
     print("* Cleaning up...")
     if sys.platform=="win32":
         subprocess.run(["powershell.exe", "-Command", "Remove-Item","-Recurse","build"],text=True,check=True)
