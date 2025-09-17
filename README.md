@@ -1,16 +1,9 @@
-## Build dependencies
-Python:
-    colorama
-    PyInstaller
-
-# How to build?
-Just run the run.py file, and select option "1", the dependencies will be installed automatically
-
 # TermAdventure
-
 A small Python console game where you travel through a lot of directories and find various things.
 
 This is my second Python game and it's based on the original ProgressDOS minigame from Progressbar95. It's slightly different and it makes you feel you're exploring an Linux system. This game took me about 1 month to create from my knowledge of Python (sometimes i needed chatgpt). All you need to do is to collect as many bonuses as you can while exploring directories. You can also find codes inside readme files for various code programs, which can give you a lot of points. To finish the game, you need to get to the 50th directory. The game is in Alpha, so many features are missing and the game is still work in progress.
+## Setup
+To ensure the proper execution of the game, please run the "build.py" file located in the repository. It will automatically install necessary modules needed for the game, build the executable file from source code and create the scoreboard json file inside the data directory.
 ## Navigating the system
 While exploring the system **you cannot go back by one directory** until you will find an empty one. Remember to always claim bonuses when you'll encounter them, otherwise they will be gone.
 ### Available commands
@@ -43,3 +36,5 @@ v0.4.0-alpha (03-08-2025) - the game can be now ran as an executable and new spe
 v0.5.0-alpha (04-08-2025) - new special program Hex, revamped game over screen and minor improvements
 
 v0.6.0-beta (05-08-2025) - game results are now automatically being saved in json file (scoreboard.json)
+
+v0.7.0-beta (17-09-2025) - added build.py file for user to automatically install dependencies and properly setup the game

@@ -9,18 +9,40 @@ import sys
 import subprocess
 import datetime
 import json
-
+    
 try:
     from colorama import Fore, Style
 except ModuleNotFoundError:
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "--user", "colorama"])
-        from colorama import Fore, Style
-    except subprocess.CalledProcessError:
-        if sys.platform == "linux":
-            print("Please install colorama module using your package manager.")
-            exit()
-
+    if not os.path.exists("venv"):
+        print("No venv directory found. Maybe try running build.py?")
+    
+def readscores():
+    width_date = 15
+    width_time = 14
+    width_score = 14
+    width_layer = 14
+    width_specprogs = 14
+    header_format = "{:^{}}{:^{}}{:^{}}{:^{}}{:^{}}".format(
+        'Date', width_date,
+        'Time', width_time,
+        'Score', width_score,
+        'Layer', width_layer,
+        'Spec.prog.', width_specprogs
+    )
+    print("\n" + header_format)
+    total_width = width_date + width_time + width_score + width_layer + width_specprogs
+    print("-" * total_width)
+    for item in data:
+        row_format = "{:^{}}{:^{}}{:^{}}{:^{}}{:^{}}".format(
+            item['date'], width_date,
+            item['time'], width_time,
+            str(item['score']), width_score,
+            str(item['layer']), width_layer,
+            item['specprogs'], width_specprogs
+        )
+        print(row_format)
+    print("-" * total_width)
+    
 score = 0
 latinnums={"unus": 1,
            "duo": 2,
@@ -110,42 +132,18 @@ For the full guidebook, check out the README file in the repository.""")
         
     if inp == "scores" or inp == "s":
         filename='scoreboard.json'
-        scoreoutput='scoreboard'
+        scoreoutput='data'
         filepath=os.path.join(scoreoutput,filename)
         os.makedirs(scoreoutput, exist_ok=True)
         try:
             with open(filepath, 'r') as scorefile:
                 data = json.load(scorefile)
-            width_date = 15
-            width_time = 14
-            width_score = 14
-            width_layer = 14
-            width_specprogs = 14
-            header_format = "{:^{}}{:^{}}{:^{}}{:^{}}{:^{}}".format(
-                'Date', width_date,
-                'Time', width_time,
-                'Score', width_score,
-                'Layer', width_layer,
-                'Spec.prog.', width_specprogs
-            )
-            print("\n" + header_format)
-            total_width = width_date + width_time + width_score + width_layer + width_specprogs
-            print("-" * total_width)
-            for item in data:
-                row_format = "{:^{}}{:^{}}{:^{}}{:^{}}{:^{}}".format(
-                    item['date'], width_date,
-                    item['time'], width_time,
-                    str(item['score']), width_score,
-                    str(item['layer']), width_layer,
-                    item['specprogs'], width_specprogs
-                )
-                print(row_format)
-            print("-" * total_width)
+            readscores()
         except (FileNotFoundError, json.JSONDecodeError):
-            print(Fore.YELLOW,"\n*"+Fore.WHITE,"scoreboard.json not found or is corrupted. Creating new one...")
             fallbackdata=[]
             with open(filepath, 'w') as scorefile:
                 json.dump(fallbackdata,scorefile,indent=2)
+            readscores()
         
     if inp == "quit" or inp == "q":
         exit()
@@ -498,7 +496,7 @@ def savescore():
     scorelist['specprogs']=str(prgfound)+str("/4")
     print(Fore.GREEN,"\r*"+Fore.WHITE,"Saving results to json file...",end=" ")
     filename='scoreboard.json'
-    scoreoutput='scoreboard'
+    scoreoutput='data'
     filepath=os.path.join(scoreoutput,filename)
     os.makedirs(scoreoutput, exist_ok=True)
     try:
@@ -509,9 +507,10 @@ def savescore():
             json.dump(data,scorefile,indent=2)
         print("success")
     except (FileNotFoundError, json.JSONDecodeError):
-        print(Fore.YELLOW,"\n*"+Fore.WHITE,"scoreboard.json not found or is corrupted. Creating new one...")
+        print("* Scoreboard missing. Creating new one")
         with open(filepath, 'w') as scorefile:
             json.dump([scorelist],scorefile,indent=2)
+        print("success")
     
 def crash():
     print("\nplayer@termadventure $ ", end="")
