@@ -37,4 +37,3 @@ if __name__ == "__main__":
     installdeps()
     build()
     print("Setup finished")
-    

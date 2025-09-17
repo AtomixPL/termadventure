@@ -90,7 +90,7 @@ while True:
 
     if inp == "info" or inp == "i":
         print("""
-Version 0.6 Beta (05-08-2025)   
+Version 0.7 Beta (17-09-2025)   
            
 Explore the seemingly infinite Linux kernel containing directories and files.
 You may find a lot of interesting things, which can give you points.
