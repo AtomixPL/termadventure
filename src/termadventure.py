@@ -6,41 +6,12 @@ import time
 import random
 import os
 import sys
-import datetime
-import json
     
 try:
     from colorama import Fore, Style
 except ModuleNotFoundError:
     if not os.path.exists("venv"):
         print("No venv directory found. Maybe try running build.py?")
-    
-def readscores():
-    width_date = 15
-    width_time = 14
-    width_score = 14
-    width_layer = 14
-    width_specprogs = 14
-    header_format = "{:^{}}{:^{}}{:^{}}{:^{}}{:^{}}".format(
-        'Date', width_date,
-        'Time', width_time,
-        'Score', width_score,
-        'Layer', width_layer,
-        'Spec.prog.', width_specprogs
-    )
-    print("\n" + header_format)
-    total_width = width_date + width_time + width_score + width_layer + width_specprogs
-    print("-" * total_width)
-    for item in data:
-        row_format = "{:^{}}{:^{}}{:^{}}{:^{}}{:^{}}".format(
-            item['date'], width_date,
-            item['time'], width_time,
-            str(item['score']), width_score,
-            str(item['layer']), width_layer,
-            item['specprogs'], width_specprogs
-        )
-        print(row_format)
-    print("-" * total_width)
     
 score = 0
 latinnums={"unus": 1,
@@ -112,7 +83,6 @@ print(Fore.WHITE,"Copyright (c) 2025 Atomix")
 print(Style.RESET_ALL)
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the adventure")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- about the game")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"scores"+Style.NORMAL,"- show scoreboard")
 print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- exit the program")
 
 while True:
@@ -128,21 +98,6 @@ But unknown files may delete your system (not literally), so be careful!
 There are also readme files, which can contain codes for specific programs.
 Reach layer 50 to get to the root directory. 
 For the full guidebook, check out the README file in the repository.""")
-        
-    if inp == "scores" or inp == "s":
-        filename='scoreboard.json'
-        scoreoutput='data'
-        filepath=os.path.join(scoreoutput,filename)
-        os.makedirs(scoreoutput, exist_ok=True)
-        try:
-            with open(filepath, 'r') as scorefile:
-                data = json.load(scorefile)
-            readscores()
-        except (FileNotFoundError, json.JSONDecodeError):
-            fallbackdata=[]
-            with open(filepath, 'w') as scorefile:
-                json.dump(fallbackdata,scorefile,indent=2)
-            readscores()
         
     if inp == "quit" or inp == "q":
         exit()
@@ -483,34 +438,6 @@ def readfile3():
         else: 
             print(*readme3,end="\r")
          
-def savescore():
-    global today,timestamp,scorelist,score,layer,prgfound,scoreoutput,filepath
-    now=datetime.datetime.now()
-    timestamp=now.strftime("%H:%M")
-    today=now.strftime("%Y-%m-%d")
-    scorelist['date']=today
-    scorelist['time']=timestamp 
-    scorelist['score']=score
-    scorelist['layer']=layer
-    scorelist['specprogs']=str(prgfound)+str("/4")
-    print(Fore.GREEN,"\r*"+Fore.WHITE,"Saving results to json file...",end=" ")
-    filename='scoreboard.json'
-    scoreoutput='data'
-    filepath=os.path.join(scoreoutput,filename)
-    os.makedirs(scoreoutput, exist_ok=True)
-    try:
-        with open(filepath, 'r') as scorefile:
-            data=json.load(scorefile)
-        data.append(scorelist)
-        with open(filepath, 'w') as scorefile:
-            json.dump(data,scorefile,indent=2)
-        print("success")
-    except (FileNotFoundError, json.JSONDecodeError):
-        print("* Scoreboard missing. Creating new one")
-        with open(filepath, 'w') as scorefile:
-            json.dump([scorelist],scorefile,indent=2)
-        print("success")
-    
 def crash():
     print("\nplayer@termadventure $ ", end="")
     time.sleep(0.1)
@@ -549,7 +476,6 @@ def crash():
     elif prgfound == 4:
         print(Fore.YELLOW+Style.NORMAL,"\n* "+str(prgfound)+"/4 special programs found")
     time.sleep(2)
-    savescore()
     
 def readlorem():
     global codexnum,codexsolved,codexread,codexprg_chance,score,prgfound
@@ -817,7 +743,6 @@ def finallayer():
     elif prgfound == 4:
         print(Fore.YELLOW+Style.NORMAL,"\n*"+str(prgfound)+"/4 special programs found")
     time.sleep(2)
-    savescore()
     inp = input("\r* Do you want to play again or quit the game? (y/n) ")
     if inp == "n":
         quit()
