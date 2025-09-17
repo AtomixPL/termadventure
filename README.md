@@ -37,4 +37,4 @@ v0.5.0-alpha (04-08-2025) - new special program Hex, revamped game over screen a
 
 v0.6.0-beta (05-08-2025) - game results are now automatically being saved in json file (scoreboard.json)
 
-v0.7.0-beta (17-09-2025) - added build.py file for user to automatically install dependencies and properly setup the game, scoreboard was removed due to problems with handling game executable
+v0.7.0-beta (17-09-2025) - added build.py file for user to automatically install dependencies and properly setup the game, scoreboard was removed due to problems with handling game executable, you can now type in your username before starting the game

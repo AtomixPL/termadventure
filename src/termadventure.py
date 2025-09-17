@@ -104,6 +104,9 @@ For the full guidebook, check out the README file in the repository.""")
     if inp == "play" or inp == "p":
         break
 
+inp = input("\n* Type in your username (must be lowercase): ")
+username = inp.lower()
+
 def loading():
     print("\n")
     print("Generating directories")
@@ -250,7 +253,7 @@ def readfile1():
         bonus_chance = random.randint(1,20)
         readmescore = random.randint(1,20)
         
-        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
+        if kernelcode_chance >= 30 and kernelsolved==False and kernelread==False:
             if kernelread == False:
                 print(specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
@@ -293,7 +296,7 @@ def readfile1():
             readme.append(specialreadmetexts[3]+str(score))
             print(*readme,end="")
             
-        elif kernelcode_chance  < 25 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 30 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme.append(str(random.choice(readmetexts)))
             print(*readme,end="\r")
     else:
@@ -316,7 +319,7 @@ def readfile2():
         bonus_chance = random.randint(1,20)
         readmescore = random.randint(1,20)
         
-        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
+        if kernelcode_chance >= 30 and kernelsolved==False and kernelread==False:
             if kernelread == False:
                 print(specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
@@ -360,7 +363,7 @@ def readfile2():
             readme2.append(specialreadmetexts[3]+str(score))
             print(*readme2,end="")
         
-        elif kernelcode_chance  < 25 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 30 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme2.append(str(random.choice(readmetexts)))
             print(*readme2,end="\r")
     else:
@@ -383,7 +386,7 @@ def readfile3():
         bonus_chance = random.randint(1,20)
         readmescore = random.randint(1,20)
         
-        if kernelcode_chance >= 25 and kernelsolved==False and kernelread==False:
+        if kernelcode_chance >= 30 and kernelsolved==False and kernelread==False:
             if kernelread == False:
                 print(specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
@@ -427,7 +430,7 @@ def readfile3():
             readme3.append(specialreadmetexts[3]+str(score))
             print(*readme3,end="")
             
-        elif kernelcode_chance  < 25 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 30 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme3.append(str(random.choice(readmetexts)))
             print(*readme3,end="\r")
     else:
@@ -474,7 +477,7 @@ def crash():
     if prgfound < 4:
         print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,str(prgfound)+"/4 special programs found")
     elif prgfound == 4:
-        print(Fore.YELLOW+Style.NORMAL,"\n* "+str(prgfound)+"/4 special programs found")
+        print(Fore.YELLOW+Style.NORMAL,"\n * "+str(prgfound)+"/4 special programs found")
     time.sleep(2)
     
 def readlorem():
@@ -561,11 +564,8 @@ def readhex():
         row = random.randint(0, len(hexes) - 1)
         col = random.randint(0, len(hexes[row]) - 1)
         hexes[row][col] = r
-
-    if sys.platform == "win32":
-        os.system("cls")
-    elif sys.platform == "linux":
-        os.system("clear")
+        
+    print("\n")
     print(Fore.GREEN,"-= HEX VIEWER =-")
     for i in range(6):
         print(Fore.WHITE,*hexes[i])
@@ -582,10 +582,7 @@ def readhex():
     print(Fore.YELLOW,"\r* Correct!")
     time.sleep(0.5)
     hexes.clear()
-    if sys.platform == "win32":
-        os.system("cls")
-    elif sys.platform == "linux":
-        os.system("clear")
+    print("\n")
     for i in range(8):
         hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
                     +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
@@ -597,8 +594,7 @@ def readhex():
         row = random.randint(0, len(hexes) - 1)
         col = random.randint(0, len(hexes[row]) - 1)
         hexes[row][col] = r
-    
-    print(Fore.GREEN,"-= HEX VIEWER =-")    
+       
     for i in range(8):
         print(Fore.WHITE,*hexes[i])  
         
@@ -613,6 +609,7 @@ def readhex():
     print(Fore.YELLOW,"\r* Correct!")
     time.sleep(0.5)
     hexes.clear()
+    print("\n")
     if sys.platform == "win32":
         os.system("cls")
     elif sys.platform == "linux":
@@ -630,7 +627,6 @@ def readhex():
         col = random.randint(0, len(hexes[row]) - 1)
         hexes[row][col] = r
     
-    print(Fore.GREEN,"-= HEX VIEWER =-")
     for i in range(10):
         print(Fore.WHITE,*hexes[i])  
         
@@ -685,7 +681,7 @@ def finallayer():
     time.sleep(1)
     while True:
         syntax.clear()
-        inp = input("player@termadventure $ ")
+        inp = input(str(username)+"@termadventure $ ")
         syntax = inp.split(" ")
         if inp == "cd root":
             print("bash: cd: root: Permission denied")
@@ -739,10 +735,11 @@ def finallayer():
     else:
         print(Fore.WHITE+Style.DIM,"hex",end=" ")
     if prgfound < 4:
-        print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,str(prgfound)+"/4 special programs found")
+        print(Fore.GREEN+Style.NORMAL,"\n* "+Fore.WHITE,str(prgfound)+"/4 special programs found")
     elif prgfound == 4:
-        print(Fore.YELLOW+Style.NORMAL,"\n*"+str(prgfound)+"/4 special programs found")
+        print(Fore.YELLOW+Style.NORMAL,"\n* "+str(prgfound)+"/4 special programs found")
     time.sleep(2)
+    print(Style.RESET_ALL)
     inp = input("\r* Do you want to play again or quit the game? (y/n) ")
     if inp == "n":
         quit()
@@ -789,7 +786,7 @@ while True:
     print(Fore.BLUE+Style.BRIGHT,"home",end=" ")
     while True:
         print(Style.RESET_ALL)
-        inp = input("player@termadventure $ ")
+        inp = input(str(username)+"@termadventure $ ")
         if inp == "cd home":
             break
         
@@ -849,7 +846,7 @@ su root - switch to the root user""")
                 
         if inemptydir == True:
             print(Style.RESET_ALL)
-            inp = input("player@termadventure $ ")
+            inp = input(str(username)+"@termadventure $ ")
             syntax = inp.split(" ")
             syntax+=[".."]
             
@@ -862,7 +859,7 @@ su root - switch to the root user""")
 
         if wentbackempty == False and inemptydir == False:
             print(Style.RESET_ALL)
-            inp = input("player@termadventure $ ")
+            inp = input(str(username)+"@termadventure $ ")
             syntax = inp.split(" ")
             syntax+=[".."]
             
@@ -986,7 +983,7 @@ su root - switch to the root user""")
             
         if wentbackempty == True and inemptydir == False:
             print(Style.RESET_ALL)
-            inp = input("player@termadventure $ ")
+            inp = input(str(username)+"@termadventure $ ")
             syntax = inp.split(" ")
             syntax+=[".."]
             
