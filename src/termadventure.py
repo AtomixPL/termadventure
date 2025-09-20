@@ -557,6 +557,7 @@ def readchroma():
     for color in coloramas:
         print(color + greeter, end='\r', flush=True)
         time.sleep(0.1)
+    print("\n")
     print(Fore.CYAN,"\rEnter code: ",end="")
     while True:
         inp = input("=> ")
@@ -638,10 +639,6 @@ def readhex():
     time.sleep(0.5)
     hexes.clear()
     print("\n")
-    if sys.platform == "win32":
-        os.system("cls")
-    elif sys.platform == "linux":
-        os.system("clear")
     for i in range(10):
         hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
                     +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
@@ -671,7 +668,7 @@ def readhex():
     solvedall=True
     prgfound+=1
     print(Fore.YELLOW+Style.BRIGHT,"\r* All special programs found! +200 000 pts")
-    file.remove(str(files[10]))
+    file.remove(str(files[9]))
     
 def gendirsback(x):
     global score,names_memory,names,memory,dir,file_memory,file,gendir,inemptydir
