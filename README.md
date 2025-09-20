@@ -1,7 +1,7 @@
 # TermAdventure
 A small Python console game where you travel through a lot of directories and find various things.
 
-This is my second Python game and it's based on the original ProgressDOS minigame from Progressbar95. It's slightly different and it makes you feel you're exploring an Linux system. This game took me about 1 month to create from my knowledge of Python (sometimes i needed chatgpt). All you need to do is to collect as many bonuses as you can while exploring directories. You can also find codes inside readme files for various code programs, which can give you a lot of points. To finish the game, you need to get to the 50th directory. The game is in Alpha, so many features are missing and the game is still work in progress. The game can be launched on Windows and Linux distros.
+This is my second Python game and it's based on the original ProgressDOS minigame from Progressbar95. It's slightly different and it makes you feel you're exploring an Linux system. This game took me about 1 month to create from my knowledge of Python (sometimes i needed chatgpt). All you need to do is to collect as many bonuses as you can while exploring directories. You can also find codes inside readme files for various code programs, which can give you a lot of points. To finish the game, you need to get to the 50th directory, but you will need a password. The game is in Beta, so many features are missing and the game is still work in progress. The game can be launched on Windows and Linux distros.
 ## Setup
 To ensure the proper execution of the game, please run the "build.py" file located in the repository. It will automatically install necessary modules needed for the game and build the executable file from source code.
 ## Navigating the system
@@ -38,3 +38,5 @@ v0.5.0-alpha (04-08-2025) - new special program Hex, revamped game over screen a
 v0.6.0-beta (05-08-2025) - game results are now automatically being saved in json file (scoreboard.json)
 
 v0.7.0-beta (17-09-2025) - added build.py file for user to automatically install dependencies and properly setup the game, scoreboard was removed due to problems with handling game executable, you can now type in your username before starting the game
+
+v0.8.0-beta (20-09-2025) - smaller specprogs chances, smaller unknown crash chance, final layer revamped

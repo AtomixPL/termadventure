@@ -64,7 +64,7 @@ specialreadmetexts=["Linux termadventure 6.15.5-zen1-1-zen x86_64 GNU/Linux",
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-""","here are some points for you: ","your score is currently "]
+""","here are some points for you: ","your score is currently ","The password for the root directory is: "]
 readmetexts=["hello world","nothing to find here","thank you player, but the thing you're looking for is in another readme file!",
 "penguin is watching","nothing","if it works, don't touch it","it's free real estate","open source for the win","what's up","""
 To do list:
@@ -72,7 +72,7 @@ To do list:
 - get rid of windows
 - install arch linux on first drive
 - install gentoo on second drive
-""","i am king terry the terrible",";-)","herzlich wilkommen","no looking back"]
+""","i am king terry the terrible",";-)","herzlich wilkommen","no looking back","keep it simple stupid"]
 rootpasswords=["********","123","root","admin","password","administrator","linuxthebest"]
 bonuses = [1000,2000,3000,4000,5000]
 print(Fore.GREEN+Style.BRIGHT,r"""
@@ -93,7 +93,7 @@ while True:
 
     if inp == "info" or inp == "i":
         print("""
-Version 0.7 Beta (17-09-2025)   
+Version 0.8 Beta (20-09-2025)   
            
 Explore the seemingly infinite Linux kernel containing directories and files.
 You may find a lot of interesting things, which can give you points.
@@ -107,8 +107,13 @@ For the full guidebook, check out the README file in the repository.""")
     if inp == "play" or inp == "p":
         break
 
-inp = input("\n* Type in your username (must be lowercase): ")
-username = inp.lower()
+while True:
+    inp = input("\n* Type in your username (must be lowercase and cannot contain spaces): ")
+    if " " in str(inp):
+        print("Try again")
+    else:
+        username = inp.lower()
+        break
 
 def loading():
     print("\n")
@@ -240,7 +245,7 @@ def mkempty():
         dir[6].append("empty")
         
 def readfile1():
-    global kernelread,codexread,chromaread,score,kernelcode_chance,codex_chance,chroma_chance,kernelcode,codexnum,chromacode
+    global kernelread,codexread,chromaread,score,kernelcode_chance,codex_chance,chroma_chance,passwd_chance,kernelcode,codexnum,chromacode,passwd,passwdfound
     if not readme:
         kernelcode_chance = 0
         codex_chance = 0
@@ -255,8 +260,9 @@ def readfile1():
             chroma_chance = random.randint(1,40)
         bonus_chance = random.randint(1,20)
         readmescore = random.randint(1,20)
+        passwd_chance = random.randint(1,40)
         
-        if kernelcode_chance >= 30 and kernelsolved==False and kernelread==False:
+        if kernelcode_chance >= 33 and kernelsolved==False and kernelread==False:
             if kernelread == False:
                 print(specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
@@ -265,7 +271,7 @@ def readfile1():
                 kernelread=True
                 kernelcode_chance = 0
                 
-        elif codex_chance >= 35 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
+        elif codex_chance >= 33 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
             if codexread == False:
                 codex = dict(random.sample(list(latinnums.items()), 3))
                 print(specialreadmetexts[1])
@@ -276,7 +282,7 @@ def readfile1():
                 codexread=True
                 codex_chance = 0
                 
-        elif chroma_chance >= 30 and chromasolved==False and chromaread==False and kernelsolved==True:
+        elif chroma_chance >= 33 and chromasolved==False and chromaread==False and kernelsolved==True:
             if chromaread == False:
                 chroma = random.sample(colors,len(colors))
                 for i in range(len(chroma)):
@@ -286,6 +292,12 @@ def readfile1():
                 chromacode = ''.join(chroma)
                 chromaread=True
                 chroma_chance = 0
+                
+        elif passwd_chance >= 37 and passwdfound == False:
+            passwd = random.choice(rootpasswords)
+            readme.append(specialreadmetexts[4]+str(passwd))
+            print(*readme,end="")
+            passwdfound=True
                         
         elif bonus_chance == 20:
             bonusscore = random.choice(bonuses)
@@ -299,7 +311,7 @@ def readfile1():
             readme.append(specialreadmetexts[3]+str(score))
             print(*readme,end="")
             
-        elif kernelcode_chance  < 30 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme.append(str(random.choice(readmetexts)))
             print(*readme,end="\r")
     else:
@@ -311,7 +323,7 @@ def readfile1():
             print(*readme,end="\r")
             
 def readfile2():
-    global kernelread,codexread,chromaread,score,kernelcode_chance,codex_chance,chroma_chance,kernelcode,codexnum,chromacode
+    global kernelread,codexread,chromaread,score,kernelcode_chance,codex_chance,chroma_chance,passwd_chance,kernelcode,codexnum,chromacode,passwd,passwdfound
     if not readme2:
         if kernelread==False:
             kernelcode_chance = random.randint(1,20)
@@ -321,8 +333,9 @@ def readfile2():
             chroma_chance = random.randint(1,40)
         bonus_chance = random.randint(1,20)
         readmescore = random.randint(1,20)
+        passwd_chance = random.randint(1,40)
         
-        if kernelcode_chance >= 30 and kernelsolved==False and kernelread==False:
+        if kernelcode_chance >= 33 and kernelsolved==False and kernelread==False:
             if kernelread == False:
                 print(specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
@@ -331,7 +344,7 @@ def readfile2():
                 kernelread=True
                 kernelcode_chance = 0
                 
-        elif codex_chance >= 35 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
+        elif codex_chance >= 33 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
             if codexread == False:
                 codex = dict(random.sample(list(latinnums.items()), 3))
                 print(specialreadmetexts[1])
@@ -342,7 +355,7 @@ def readfile2():
                 codexread=True
                 codex_chance = 0
         
-        elif chroma_chance >= 30 and chromasolved==False and chromaread==False and kernelsolved==True:
+        elif chroma_chance >= 33 and chromasolved==False and chromaread==False and kernelsolved==True:
             if chromaread == False:
                 chroma = random.sample(colors,len(colors))
                 for i in range(len(chroma)):
@@ -353,6 +366,12 @@ def readfile2():
                 chromacode = ''.join(chroma)
                 chromaread=True
                 chroma_chance = 0
+                
+        elif passwd_chance >= 37 and passwdfound == False:
+            passwd = random.choice(rootpasswords)
+            readme2.append(specialreadmetexts[4]+str(passwd))
+            print(*readme2,end="")
+            passwdfound=True
         
         elif bonus_chance == 20:
             bonusscore = random.choice(bonuses)
@@ -366,7 +385,7 @@ def readfile2():
             readme2.append(specialreadmetexts[3]+str(score))
             print(*readme2,end="")
         
-        elif kernelcode_chance  < 30 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme2.append(str(random.choice(readmetexts)))
             print(*readme2,end="\r")
     else:
@@ -378,7 +397,7 @@ def readfile2():
             print(*readme2,end="\r")
             
 def readfile3():
-    global kernelread,codexread,chromaread,score,kernelcode_chance,codex_chance,chroma_chance,kernelcode,codexnum,chromacode
+    global kernelread,codexread,chromaread,score,kernelcode_chance,codex_chance,chroma_chance,passwd_chance,kernelcode,codexnum,chromacode,passwd,passwdfound
     if not readme3:
         if kernelread==False:
             kernelcode_chance = random.randint(1,20)
@@ -388,8 +407,9 @@ def readfile3():
             chroma_chance = random.randint(1,40)
         bonus_chance = random.randint(1,20)
         readmescore = random.randint(1,20)
+        passwd_chance = random.randint(1,40)
         
-        if kernelcode_chance >= 30 and kernelsolved==False and kernelread==False:
+        if kernelcode_chance >= 33 and kernelsolved==False and kernelread==False:
             if kernelread == False:
                 print(specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
@@ -398,7 +418,7 @@ def readfile3():
                 kernelread=True
                 kernelcode_chance = 0
                 
-        elif codex_chance >= 35 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
+        elif codex_chance >= 33 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
             if codexread == False:
                 codex = dict(random.sample(list(latinnums.items()), 3))
                 print(specialreadmetexts[1])
@@ -409,7 +429,7 @@ def readfile3():
                 codexread=True
                 codex_chance = 0
             
-        elif chroma_chance >= 30 and chromasolved==False and chromaread==False and kernelsolved==True:
+        elif chroma_chance >= 33 and chromasolved==False and chromaread==False and kernelsolved==True:
             if chromaread == False:
                 chroma = random.sample(colors,len(colors))
                 for i in range(len(chroma)):
@@ -420,6 +440,12 @@ def readfile3():
                 chromacode = ''.join(chroma)
                 chromaread=True
                 chroma_chance = 0
+                
+        elif passwd_chance >= 37 and passwdfound == False:
+            passwd = random.choice(rootpasswords)
+            readme3.append(specialreadmetexts[4]+str(passwd))
+            print(*readme3,end="")
+            passwdfound=True
         
         elif bonus_chance == 20:
             bonusscore = random.choice(bonuses)
@@ -433,7 +459,7 @@ def readfile3():
             readme3.append(specialreadmetexts[3]+str(score))
             print(*readme3,end="")
             
-        elif kernelcode_chance  < 30 or codex_chance < 35 or chroma_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme3.append(str(random.choice(readmetexts)))
             print(*readme3,end="\r")
     else:
@@ -510,13 +536,13 @@ gratulationes! L punctorum""")
 
 def readkernel():
     global kernelcode,kernelsolved,kernelread,kernelcodeprg_chance,score,prgfound
-    print(Fore.GREEN,"*"+Fore.WHITE,"Kernel code check ",end="")
+    print(Fore.WHITE,"-= Kernel code check ",end="")
     while True:
         inp = input("> ")
         if inp == str(kernelcode):
             break
         else:
-            print(Fore.RED,"*"+Fore.WHITE,"Incorrect code ",end="")
+            print(Fore.WHITE,"-= Incorrect code ",end="")
     print("kernelcode: +20 000 pts")
     score+=20000
     kernelsolved=True
@@ -531,7 +557,6 @@ def readchroma():
     for color in coloramas:
         print(color + greeter, end='\r', flush=True)
         time.sleep(0.1)
-    print("\n")
     print(Fore.CYAN,"\rEnter code: ",end="")
     while True:
         inp = input("=> ")
@@ -646,7 +671,7 @@ def readhex():
     solvedall=True
     prgfound+=1
     print(Fore.YELLOW+Style.BRIGHT,"\r* All special programs found! +200 000 pts")
-    file.remove("hex")
+    file.remove(str(files[10]))
     
 def gendirsback(x):
     global score,names_memory,names,memory,dir,file_memory,file,gendir,inemptydir
@@ -675,41 +700,43 @@ def gendirsback(x):
         inemptydir=True
 
 def finallayer():
-    global score,syntax
+    global score,syntax,passwd,i
+    screenwidth=os.get_terminal_size().columns
+    screenheight=os.get_terminal_size().lines
     print(Fore.MAGENTA+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
-    password = random.choice(rootpasswords)
     time.sleep(2)
     print(Fore.MAGENTA+Style.BRIGHT,"root",end=" ")
-    print(Style.RESET_ALL,"password")
+    print(Style.RESET_ALL)
     time.sleep(1)
     while True:
         syntax.clear()
         inp = input(str(username)+"@termadventure $ ")
         syntax = inp.split(" ")
         if inp == "cd root":
-            print("bash: cd: root: Permission denied")
-        if inp == "cat password":
-            print("The password for root user is: "+str(password),end="")
-            print(Style.DIM,"* Hint: su root",Style.RESET_ALL)
-        if inp == "su root":
-            time.sleep(0.1)
-            prompt = input("Password: ")        
-            if prompt == str(password):
+            if passwdfound==False:
+                passwd = random.choice(rootpasswords)
+                print(Style.DIM,"the password is"+str(passwd))
+            prompt = input("* This directory is encrypted. Password? > ")        
+            if prompt == str(passwd):
                 break    
             else:
-                print("su: Authentication failure")
-    print(Style.DIM,"* Hint: Enter the root directory to finish the game",Style.RESET_ALL)
-    while True:
-        syntax.clear()
-        inp = input(Fore.MAGENTA+Style.BRIGHT+"root"+Style.RESET_ALL+"@termadventure $ ")
-        syntax = inp.split(" ") 
-        if inp == "cd root":
-            break
-    password=0
+                prompt = input("* Incorrect password > ")
+    passwd=0
+    print("\n")
     chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
-    for i in range(50):
+    for i in range(screenwidth//3):
         print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
         time.sleep(0.02)
+    for i in range(300):
+        print(Fore.MAGENTA+Style.BRIGHT,(screenwidth-1)*str(random.choice(chars)))
+        time.sleep(0.02)
+    for i in range(screenwidth//3):
+        print(Fore.MAGENTA+Style.BRIGHT,(screenwidth-3*i)*str(random.choice(chars)))
+        time.sleep(0.02)
+    for i in range(screenheight):
+        print("\n")
+        time.sleep(0.05)
+        
     if sys.platform == "win32":
         os.system("cls")
     elif sys.platform == "linux":
@@ -769,6 +796,7 @@ while True:
     kernelcodeprg_chance=0
     chromaprg_chance=0
     hexprg_chance=0
+    passwd_chance=0
     prgfound=0
     wentbackempty=False
     inemptydir=False
@@ -781,6 +809,7 @@ while True:
     hexsolved=False
     solvedreadme=False
     solvedall=False
+    passwdfound=False
     loading()
     print("\n"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
     time.sleep(2)
@@ -950,7 +979,7 @@ su root - switch to the root user""")
                     while time.time() < wait:
                         print(".",end="", flush=True)
                         time.sleep(0.003)
-                    if crash_chance < 10:
+                    if crash_chance < 13:
                         if bonus_chance >= 14:
                             print("\n")
                             bonusscore = random.choice(bonuses)
@@ -961,7 +990,7 @@ su root - switch to the root user""")
                         elif bonus_chance < 14:
                             file.remove("unknown")
                             
-                    elif crash_chance > 10:
+                    elif crash_chance > 13:
                         crash()
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
