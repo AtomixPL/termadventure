@@ -14,7 +14,7 @@ except ModuleNotFoundError:
         print(r"""Please launch the game using Python from \venv\Scripts directory.""")
     elif sys.platform=="linux":
         print("Please launch the game using Python from /venv/bin directory.")
-    sys.exit()
+    quit()
     
 score = 0
 latinnums={"unus": 1,
@@ -103,7 +103,7 @@ Reach layer 50 to get to the root directory.
 For the full guidebook, check out the README file in the repository.""")
         
     if inp == "quit" or inp == "q":
-        sys.exit()
+        exit()
     if inp == "play" or inp == "p":
         break
 
@@ -769,7 +769,7 @@ def finallayer():
     print(Style.RESET_ALL)
     inp = input("\r* Do you want to play again or quit the game? (y/n) ")
     if inp == "n":
-        sys.exit()
+        quit()
     elif inp == "y":
         score = 0
          
@@ -820,7 +820,7 @@ while True:
             break
         
         elif inp == "quit" or inp == "q":
-            sys.exit()
+            quit()
             
         elif inp == "help":
             print("""
@@ -851,7 +851,7 @@ su root - switch to the root user""")
             print(Fore.YELLOW,"*"+Fore.WHITE,"Sorry, you can't go back",end=" ")
             
         if inp == "quit" or inp == "q":
-            sys.exit()
+            quit()
         
         if inp == "su root":
             time.sleep(0.1)
@@ -991,7 +991,7 @@ su root - switch to the root user""")
                         crash()
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
-                            sys.exit()
+                            quit()
                         elif inp == "y":
                             score = 0
                             layer=0
@@ -1089,7 +1089,7 @@ su root - switch to the root user""")
                         crash()
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
-                            sys.exit()
+                            quit()
                         elif inp == "y":
                             score = 0
                             layer=0
