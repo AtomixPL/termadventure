@@ -3,7 +3,7 @@ A small Python console game where you travel through a lot of directories and fi
 
 This is my second Python game and it's based on the original ProgressDOS minigame from Progressbar95. It's slightly different and it makes you feel you're exploring an Linux system. This game took me about 1 month to create from my knowledge of Python (sometimes i needed chatgpt). All you need to do is to collect as many bonuses as you can while exploring directories. You can also find codes inside readme files for various code programs, which can give you a lot of points. To finish the game, you need to get to the 50th directory, but you will need a password. The game is in Beta, so many features are missing and the game is still work in progress. The game can be launched on Windows and Linux distros.
 ## Setup
-To ensure the proper execution of the game, please run the "build.py" file located in the repository. It will automatically install necessary modules needed for the game and build the executable file from source code.
+To ensure the proper execution of the game, please run the "build.py" file located in the repository. It will automatically install necessary modules needed for the game and build the executable file from source code. After that you can play the game by running the compiled executable file from the dist directory.
 ## Navigating the system
 While exploring the system **you cannot go back by one directory** until you will find an empty one. Remember to always claim bonuses when you'll encounter them, otherwise they will be gone.
 ### Available commands
