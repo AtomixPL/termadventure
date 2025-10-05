@@ -2,6 +2,12 @@
 # Copyright (c) 2025 Atomix
 # Licensed under the MIT License
 
+# dir mechanics 
+# print("dir "+str(dir))
+# print("memory "+str(memory))
+# print("names "+str(names))
+# print("names_memory "+str(names_memory))         
+
 import time
 import random
 import os
@@ -553,11 +559,11 @@ def readkernel():
 
 def readchroma():
     global chromacode,chromasolved,chromaread,chromaprg_chance,score,prgfound
-    greeter=("---===chroma===---")
+    greeter=("""====================\n|---===chroma===---|\n====================""")
     for color in coloramas:
-        print(color + greeter, end='\r', flush=True)
+        print(color + greeter, end='\x1b[2A'+'\r')
         time.sleep(0.1)
-    print("\n")
+    print("\n\n")
     print(Fore.CYAN,"\rEnter code: ",end="")
     while True:
         inp = input("=> ")
@@ -565,12 +571,12 @@ def readchroma():
             break
         else:
             print(Fore.CYAN,"\r* Incorrect code ",end="")
-    goodjob=("------======GOOD JOB!======------")
+    goodjob=("""===================================\n|------======GOOD JOB!======------|\n===================================""")
     for i in range(3):
         for color in coloramas:
-            print(color + goodjob, end='\r', flush=True)
+            print(color + goodjob, end='\x1b[2A'+'\r')
             time.sleep(0.03)
-    print("\n")
+    print("\n\n")
     print(Fore.WHITE+"chroma: +30 000 pts")
     score+=50000
     chromasolved=True
@@ -773,9 +779,7 @@ def finallayer():
     elif inp == "y":
         score = 0
          
-         
-         
-#Core game                   
+# Core game                   
 while True:
     memory=[]
     dir=[]
@@ -833,7 +837,7 @@ su root - switch to the root user""")
         
     layer+=1
     score+=100
-    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
+    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
     print(Fore.GREEN,"+100 pts")
     for i in range(random.randint(4,7)):
         names.append(str(random.choice(dirs)))
@@ -852,7 +856,7 @@ su root - switch to the root user""")
             
         if inp == "quit" or inp == "q":
             sys.exit()
-        
+            
         if inp == "su root":
             time.sleep(0.1)
             prompt = input("Password: ")
@@ -872,7 +876,7 @@ su root - switch to the root user""")
                 listfiles()
             elif inemptydir==True:
                 print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")
-                
+
         if inemptydir == True:
             print(Style.RESET_ALL)
             inp = input(str(username)+"@termadventure $ ")
@@ -921,21 +925,11 @@ su root - switch to the root user""")
                         readme_chance = random.randint(1,15)
                         unknown_chance = random.randint(1,15)
                         genspecprogs()
-                            
-                        if syntax[1] == names_memory[0]:
-                            gendirs(0)   
-                        elif syntax[1] == names_memory[1]:
-                            gendirs(1)
-                        elif syntax[1] == names_memory[2]:
-                            gendirs(2)
-                        elif syntax[1] == names_memory[3]:
-                            gendirs(3)
-                        elif syntax[1] == names_memory[4]:
-                            gendirs(4)
-                        elif syntax[1] == names_memory[5]:
-                            gendirs(5)
-                        elif syntax[1] == names_memory[6]:
-                            gendirs(6)
+                        
+                        for i in range(len(names_memory)):
+                            if syntax[1] == names_memory[i]:
+                                gendirs(i)
+                                break
                         genfiles()
                                     
                     elif empty_chance >= 8:
@@ -1030,27 +1024,18 @@ su root - switch to the root user""")
                             
                         print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
                         if empty_chance < 8:
-                            if syntax[1] == names[0]: #if name[x] print dir[x]
-                                gendirsback(0)
-                            elif syntax[1] == names[1]:
-                                gendirsback(1)
-                            elif syntax[1] == names[2]:
-                                gendirsback(2)
-                            elif syntax[1] == names[3]:
-                                gendirsback(3)
-                            elif syntax[1] == names[4]:
-                                gendirsback(4)
-                            elif syntax[1] == names[5]:
-                                gendirsback(5)
-                            elif syntax[1] == names[6]:
-                                gendirsback(6)
+                            for i in range(len(names)):
+                                if syntax[1] == names[i]:
+                                    gendirsback(i)
+                                    break
+
+                        if inemptydir == False:
                             genfiles()
-                                              
+                        
                         elif empty_chance >= 8:
                             mkempty()
                             inemptydir=True
                             print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")
-                            
                         wentbackempty=False
                         
                 if inp == "cd .." and wentbackempty == True:
