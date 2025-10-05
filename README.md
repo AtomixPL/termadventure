@@ -16,8 +16,6 @@ _cd .._ - leave the directory
 _cat (text file)_ - read the content of the text file
 
 _(executable)_ - run the program or claim bonus
-
-_su root_ - switch to the root user (if you know the password)
 ## Bonuses, eastereggs and unknown files
 Bonuses are common executables that can give you from 1 000 to 5 000 points. Eastereggs are less common, and they are worth 10 000 points. However unknown files are more dangerous - they can delete your whole system. But rarely they can give you some points.
 ## Readme files
@@ -40,3 +38,5 @@ v0.6.0-beta (05-08-2025) - game results are now automatically being saved in jso
 v0.7.0-beta (17-09-2025) - added build.py file for user to automatically install dependencies and properly setup the game, scoreboard was removed due to problems with handling game executable, you can now type in your username before starting the game
 
 v0.8.0-beta (20-09-2025) - smaller specprogs chances, smaller unknown crash chance, final layer revamped
+
+v0.9.0-beta (05-10-2025) - chroma screen revamp, fixed genfiles outputting when inemptydir, gendirs and gendirsback code optimized, su root removed, larger root dir password chance

@@ -79,7 +79,7 @@ To do list:
 - install arch linux on first drive
 - install gentoo on second drive
 ""","i am king terry the terrible",";-)","herzlich wilkommen","no looking back","keep it simple stupid"]
-rootpasswords=["********","123","root","admin","password","administrator","linuxthebest"]
+rootpasswords=["********","123","root","admin","password","administrator","linuxthebest","excalibur","opensesame"]
 bonuses = [1000,2000,3000,4000,5000]
 print(Fore.GREEN+Style.BRIGHT,r"""
   ______                    ___       __                 __                
@@ -99,7 +99,7 @@ while True:
 
     if inp == "info" or inp == "i":
         print("""
-Version 0.8 Beta (20-09-2025)   
+Version 0.9 Beta (05-10-2025)   
            
 Explore the seemingly infinite Linux kernel containing directories and files.
 You may find a lot of interesting things, which can give you points.
@@ -299,7 +299,7 @@ def readfile1():
                 chromaread=True
                 chroma_chance = 0
                 
-        elif passwd_chance >= 37 and passwdfound == False:
+        elif passwd_chance >= 30 and passwdfound == False:
             passwd = random.choice(rootpasswords)
             readme.append(specialreadmetexts[4]+str(passwd))
             print(*readme,end="")
@@ -317,7 +317,7 @@ def readfile1():
             readme.append(specialreadmetexts[3]+str(score))
             print(*readme,end="")
             
-        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme.append(str(random.choice(readmetexts)))
             print(*readme,end="\r")
     else:
@@ -373,7 +373,7 @@ def readfile2():
                 chromaread=True
                 chroma_chance = 0
                 
-        elif passwd_chance >= 37 and passwdfound == False:
+        elif passwd_chance >= 30 and passwdfound == False:
             passwd = random.choice(rootpasswords)
             readme2.append(specialreadmetexts[4]+str(passwd))
             print(*readme2,end="")
@@ -391,7 +391,7 @@ def readfile2():
             readme2.append(specialreadmetexts[3]+str(score))
             print(*readme2,end="")
         
-        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme2.append(str(random.choice(readmetexts)))
             print(*readme2,end="\r")
     else:
@@ -447,7 +447,7 @@ def readfile3():
                 chromaread=True
                 chroma_chance = 0
                 
-        elif passwd_chance >= 37 and passwdfound == False:
+        elif passwd_chance >= 30 and passwdfound == False:
             passwd = random.choice(rootpasswords)
             readme3.append(specialreadmetexts[4]+str(passwd))
             print(*readme3,end="")
@@ -465,7 +465,7 @@ def readfile3():
             readme3.append(specialreadmetexts[3]+str(score))
             print(*readme3,end="")
             
-        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme3.append(str(random.choice(readmetexts)))
             print(*readme3,end="\r")
     else:
@@ -832,8 +832,7 @@ ls - list directories
 cd (dir) - change directory
 cd .. - leave the directory
 cat (text file) - read the content of the text file
-(executable) - run the program or claim bonus
-su root - switch to the root user""")
+(executable) - run the program or claim bonus""")
         
     layer+=1
     score+=100
@@ -857,19 +856,13 @@ su root - switch to the root user""")
         if inp == "quit" or inp == "q":
             sys.exit()
             
-        if inp == "su root":
-            time.sleep(0.1)
-            prompt = input("Password: ")
-            print("su: Authentication failure",end="")
-            
         if inp == "help":
             print("""
 ls - list directories
 cd (dir) - change directory
 cd .. - leave the directory
 cat (text file) - read the content of the text file
-(executable) - run the program or claim bonus
-su root - switch to the root user""")
+(executable) - run the program or claim bonus""")
             
         if inp == "ls":
             if inemptydir==False:
