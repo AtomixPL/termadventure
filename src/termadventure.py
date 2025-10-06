@@ -53,11 +53,11 @@ scorelist = {
     'layer': 0,
     'specprogs': 0}
 dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
-      "lost+found","include","man","log","cache","lock","spool","sda1","sdb1","sdc1",
+      "lost+found","include","man","log","cache","lock","spool","sda1","sdb1","sdc1","hda1","hdb1","hdc1",
       "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",
-      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2","sda2","sdb2","sdc2",
+      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2","sda2","sdb2","sdc2","hda2","hdb2","hdc2",
       "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3",
-      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3","sda3","sdb3","sdc3",
+      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3","sda3","sdb3","sdc3","hda3","hdb3","hdc3",
       "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
       "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4","sda4","sdb4","sdc4"]   
 files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode","chroma","hex"]
@@ -88,7 +88,7 @@ print(Fore.BLUE+Style.BRIGHT,r"""
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Copyright (c) 2025 AtomixPL"+Style.NORMAL,"                                      v1.0.0")
+print(Fore.WHITE,"Copyright (c) 2025 AtomixPL"+Style.NORMAL,"                                      v1.0.1")
 print(Style.RESET_ALL)
 print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"(p) - start the adventure")
 print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"(i) - about the game")
@@ -202,8 +202,9 @@ def genfiles():
         file.append(str(files[8]))
         print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[8],end=" ")
     if hexprg_chance >= 18:
-        file.append(str(files[9]))
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[9],end=" ")
+        if hexsolved == False and solvedall == False:
+            file.append(str(files[9]))
+            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[9],end=" ")
     if easter_chance > 14:
         file.append(str(files[1]))
         print(Fore.YELLOW+Style.BRIGHT,files[1],end=" ")                      
@@ -584,101 +585,89 @@ def readchroma():
 def readhex():
     global solvedall,score,prgfound,hexsolved
     hexes = []
-    while True:
-        for i in range(6):
-            hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
-            
-        r = str(hex(random.randint(16,255))[2:])
-        for i in range(5): #five reiterations
-            row = random.randint(0, len(hexes) - 1)
-            col = random.randint(0, len(hexes[row]) - 1)
-            hexes[row][col] = r
-            
-        print(Fore.GREEN,"\n-= HEX VIEWER =-")
-        for i in range(6):
-            print(Fore.WHITE,*hexes[i])
+    for i in range(6):
+        hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
+        
+    r = str(hex(random.randint(16,255))[2:])
+    for i in range(5): #five reiterations
+        row = random.randint(0, len(hexes) - 1)
+        col = random.randint(0, len(hexes[row]) - 1)
+        hexes[row][col] = r
+        
+    print(Fore.GREEN,"\n-= HEX VIEWER =-")
+    for i in range(6):
+        print(Fore.WHITE,*hexes[i])
 
-        print(Fore.GREEN,"\n*"+Fore.WHITE,"Find five reiterations")
-        print(Fore.GREEN,"\n*"+Fore.WHITE,"Type q to quit")
-        print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
-        while True:
-            inp = input("> ")
-            if inp == r:
-                break
-            else:
-                print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
-            if inp == "q":
-                break
+    print(Fore.GREEN,"\n*"+Fore.WHITE,"Find five reiterations")
+    print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
+    while True:
+        inp = input("> ")
+        if inp == r:
             break
-                
-        print(Fore.YELLOW,"\r* Correct!")
-        time.sleep(0.5)
-        hexes.clear()
-        print("\n")
-        print(Fore.GREEN,"-= HEX VIEWER =-")
-        for i in range(8):
-            hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
-            
-        r = str(hex(random.randint(16,255))[2:])
-        for i in range(5): #five reiterations
-            row = random.randint(0, len(hexes) - 1)
-            col = random.randint(0, len(hexes[row]) - 1)
-            hexes[row][col] = r
+        elif inp != r:
+            print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
         
-        for i in range(8):
-            print(Fore.WHITE,*hexes[i])  
-            
-        print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
-        while True:
-            inp = input("> ")
-            if inp == r:
-                break
-            else:
-                print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
-            if inp == "q":
-                break
+    print(Fore.YELLOW,"\n* Correct!")
+    time.sleep(0.5)
+    hexes.clear()
+    print("\n")
+    print(Fore.GREEN,"-= HEX VIEWER =-")
+    for i in range(8):
+        hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
+        
+    r = str(hex(random.randint(16,255))[2:])
+    for i in range(5): #five reiterations
+        row = random.randint(0, len(hexes) - 1)
+        col = random.randint(0, len(hexes[row]) - 1)
+        hexes[row][col] = r
+    
+    for i in range(8):
+        print(Fore.WHITE,*hexes[i])  
+        
+    print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
+    while True:
+        inp = input("> ")
+        if inp == r:
             break
-                
-        print(Fore.YELLOW,"\r* Correct!")
-        time.sleep(0.5)
-        hexes.clear()
-        print("\n")
-        print(Fore.GREEN,"-= HEX VIEWER =-")
-        for i in range(10):
-            hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
+        elif inp != r:
+            print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
             
-        r = str(hex(random.randint(16,255))[2:])
-        for i in range(5): #five reiterations
-            row = random.randint(0, len(hexes) - 1)
-            col = random.randint(0, len(hexes[row]) - 1)
-            hexes[row][col] = r
+    print(Fore.YELLOW,"\n* Correct!")
+    time.sleep(0.5)
+    hexes.clear()
+    print("\n")
+    print(Fore.GREEN,"-= HEX VIEWER =-")
+    for i in range(10):
+        hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
         
-        for i in range(10):
-            print(Fore.WHITE,*hexes[i])  
-            
-        print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
-        while True:
-            inp = input("> ")
-            if inp == r:
-                break
-            else:
-                print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
-            if inp == "q":
-                break
+    r = str(hex(random.randint(16,255))[2:])
+    for i in range(5): #five reiterations
+        row = random.randint(0, len(hexes) - 1)
+        col = random.randint(0, len(hexes[row]) - 1)
+        hexes[row][col] = r
+    
+    for i in range(10):
+        print(Fore.WHITE,*hexes[i])  
+        
+    print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
+    while True:
+        inp = input("> ")
+        if inp == r:
             break
-        
-        print(Fore.YELLOW,"\r* Correct!")
-        time.sleep(0.5)
-        break
+        elif inp != r:
+            print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
+    
+    print(Fore.YELLOW,"\n* Correct!")
+    time.sleep(0.5)
     print(Fore.WHITE,"\rhex: 100 000 pts")
     print('\n')
     hexsolved=True
@@ -935,7 +924,7 @@ cat (text file) - read the content of the text file
                                 gendirs(i)
                                 break
                         genfiles()
-                                    
+                        
                     elif empty_chance >= 9:
                         mkempty() 
                         inemptydir=True
@@ -987,6 +976,7 @@ cat (text file) - read the content of the text file
                             
                     elif crash_chance > 13:
                         crash()
+                        print(Style.RESET_ALL)
                         inp = input("\r* Do you want to play again or quit the game? (y/n) ")
                         if inp == "n":
                             sys.exit()

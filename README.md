@@ -42,3 +42,5 @@ v0.8.0-beta (20-09-2025) - smaller specprogs chances, smaller unknown crash chan
 v0.9.0-beta (05-10-2025) - chroma screen revamp, fixed genfiles outputting when inemptydir, gendirs and gendirsback code optimized, su root removed, smaller root dir password chance
 
 v1.0.0 (06-10-2025) - fixed hex appearing after completing it, improved hex program, game theme changed, "loading" screen changed, slightly higher passwd_chance
+
+v1.0.1 (06-10-2025) - fixed hex "correct" text overlapping, reverting hex quit option, another hex postsolve appearance fix, new directory names
