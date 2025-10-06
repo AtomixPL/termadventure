@@ -1,5 +1,5 @@
 # TermAdventure
-# Copyright (c) 2025 Atomix
+# Copyright (c) 2025 AtomixPL
 # Licensed under the MIT License
 
 # dir mechanics 
@@ -81,26 +81,24 @@ To do list:
 ""","i am king terry the terrible",";-)","herzlich wilkommen","no looking back","keep it simple stupid"]
 rootpasswords=["********","123","root","admin","password","administrator","linuxthebest","excalibur","opensesame"]
 bonuses = [1000,2000,3000,4000,5000]
-print(Fore.GREEN+Style.BRIGHT,r"""
+print(Fore.BLUE+Style.BRIGHT,r"""
   ______                    ___       __                 __                
  /_  __/__  _________ ___  /   | ____/ /   _____  ____  / /___  __________ 
   / / / _ \/ ___/ __ `__ \/ /| |/ __  / | / / _ \/ __ \/ __/ / / / ___/ _ \
  / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
 /_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
 """, end="")
-print(Fore.WHITE,"Copyright (c) 2025 Atomix")
+print(Fore.WHITE,"Copyright (c) 2025 AtomixPL"+Style.NORMAL,"                                      v1.0.0")
 print(Style.RESET_ALL)
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"- start the adventure")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"- about the game")
-print(Fore.GREEN,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"- exit the program")
+print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"(p) - start the adventure")
+print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"(i) - about the game")
+print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"quit"+Style.NORMAL,"(q) - exit the program")
 
 while True:
     inp = input(Style.RESET_ALL+"\nplayer@termadventure $ ")
 
     if inp == "info" or inp == "i":
-        print("""
-Version 0.9 Beta (05-10-2025)   
-           
+        print("""           
 Explore the seemingly infinite Linux kernel containing directories and files.
 You may find a lot of interesting things, which can give you points.
 But unknown files may delete your system (not literally), so be careful!
@@ -128,17 +126,15 @@ def loading():
         print("\r"+str(int(i/2))+"/50"+" "+int(i/2)*"=",end=">",flush=True)
         time.sleep(0.003)
     print("\n")
-    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading directories ... "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
-    time.sleep(0.3)
-    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading bonuses ... "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    print("Loading bonuses ... ")
     time.sleep(0.05)
-    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading eastereggs ... "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    print("Loading eastereggs ... ")
     time.sleep(0.1)
-    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading unknown files ... "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    print("Loading unknown files ... ")
     time.sleep(0.2)
-    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading readme files ... "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    print("Loading readme files ... ")
     time.sleep(0.1)
-    print(Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Loading special programs ... "+Fore.BLUE+Style.BRIGHT,"["+Fore.GREEN,"ok"+Fore.BLUE,"]")
+    print("Loading special programs ... ")
     time.sleep(0.2)
     if sys.platform == "win32":
         os.system("cls")
@@ -193,7 +189,6 @@ def gendirs(x):
         gendir.clear()
 
 def genfiles():
-    global solvedreadme
     if bonus_chance > 8:
         file.append(str(files[0]))
         print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end=" ")
@@ -299,7 +294,7 @@ def readfile1():
                 chromaread=True
                 chroma_chance = 0
                 
-        elif passwd_chance >= 30 and passwdfound == False:
+        elif passwd_chance >= 37 and passwdfound == False:
             passwd = random.choice(rootpasswords)
             readme.append(specialreadmetexts[4]+str(passwd))
             print(*readme,end="")
@@ -317,7 +312,7 @@ def readfile1():
             readme.append(specialreadmetexts[3]+str(score))
             print(*readme,end="")
             
-        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme.append(str(random.choice(readmetexts)))
             print(*readme,end="\r")
     else:
@@ -373,7 +368,7 @@ def readfile2():
                 chromaread=True
                 chroma_chance = 0
                 
-        elif passwd_chance >= 30 and passwdfound == False:
+        elif passwd_chance >= 37 and passwdfound == False:
             passwd = random.choice(rootpasswords)
             readme2.append(specialreadmetexts[4]+str(passwd))
             print(*readme2,end="")
@@ -391,7 +386,7 @@ def readfile2():
             readme2.append(specialreadmetexts[3]+str(score))
             print(*readme2,end="")
         
-        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme2.append(str(random.choice(readmetexts)))
             print(*readme2,end="\r")
     else:
@@ -447,7 +442,7 @@ def readfile3():
                 chromaread=True
                 chroma_chance = 0
                 
-        elif passwd_chance >= 30 and passwdfound == False:
+        elif passwd_chance >= 37 and passwdfound == False:
             passwd = random.choice(rootpasswords)
             readme3.append(specialreadmetexts[4]+str(passwd))
             print(*readme3,end="")
@@ -465,7 +460,7 @@ def readfile3():
             readme3.append(specialreadmetexts[3]+str(score))
             print(*readme3,end="")
             
-        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 30 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
+        elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
             readme3.append(str(random.choice(readmetexts)))
             print(*readme3,end="\r")
     else:
@@ -488,9 +483,9 @@ def crash():
     time.sleep(1)
     print(Fore.RED+Style.BRIGHT,"\r* "+Fore.WHITE+Style.NORMAL+"Game over!")
     time.sleep(2)
-    print(Fore.GREEN,"\r*"+Fore.WHITE,"You made it to layer "+str(layer))
+    print(Fore.BLUE,"\r*"+Fore.WHITE,"You made it to layer "+str(layer))
     time.sleep(2)
-    print(Fore.GREEN,"\r*"+Fore.WHITE,"Total points collected: "+str(score))
+    print(Fore.BLUE,"\r*"+Fore.WHITE,"Total points collected: "+str(score))
     time.sleep(2)
     if kernelsolved==True:
         print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end=" ")
@@ -510,7 +505,7 @@ def crash():
     else:
         print(Fore.WHITE+Style.DIM,"hex",end=" ")
     if prgfound < 4:
-        print(Fore.GREEN+Style.NORMAL,"\n*"+Fore.WHITE,str(prgfound)+"/4 special programs found")
+        print(Fore.BLUE+Style.NORMAL,"\n*"+Fore.WHITE,str(prgfound)+"/4 special programs found")
     elif prgfound == 4:
         print(Fore.YELLOW+Style.NORMAL,"\n * "+str(prgfound)+"/4 special programs found")
     time.sleep(2)
@@ -564,13 +559,13 @@ def readchroma():
         print(color + greeter, end='\x1b[2A'+'\r')
         time.sleep(0.1)
     print("\n\n")
-    print(Fore.CYAN,"\rEnter code: ",end="")
+    print(Fore.WHITE,"\rEnter code: ",end="")
     while True:
         inp = input("=> ")
         if inp == str(chromacode):
             break
         else:
-            print(Fore.CYAN,"\r* Incorrect code ",end="")
+            print(Fore.WHITE,"\rIncorrect code ",end="")
     goodjob=("""===================================\n|------======GOOD JOB!======------|\n===================================""")
     for i in range(3):
         for color in coloramas:
@@ -589,92 +584,108 @@ def readchroma():
 def readhex():
     global solvedall,score,prgfound,hexsolved
     hexes = []
-    for i in range(6):
-        hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
-        
-    r = str(hex(random.randint(16,255))[2:])
-    for i in range(5): #five reiterations
-        row = random.randint(0, len(hexes) - 1)
-        col = random.randint(0, len(hexes[row]) - 1)
-        hexes[row][col] = r
-        
-    print("\n")
-    print(Fore.GREEN,"-= HEX VIEWER =-")
-    for i in range(6):
-        print(Fore.WHITE,*hexes[i])
+    while True:
+        for i in range(6):
+            hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
+            
+        r = str(hex(random.randint(16,255))[2:])
+        for i in range(5): #five reiterations
+            row = random.randint(0, len(hexes) - 1)
+            col = random.randint(0, len(hexes[row]) - 1)
+            hexes[row][col] = r
+            
+        print(Fore.GREEN,"\n-= HEX VIEWER =-")
+        for i in range(6):
+            print(Fore.WHITE,*hexes[i])
 
-    print(Fore.GREEN,"\n*"+Fore.WHITE,"Find five reiterations")
-    print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
-    while True:
-        inp = input("> ")
-        if inp == r:
+        print(Fore.GREEN,"\n*"+Fore.WHITE,"Find five reiterations")
+        print(Fore.GREEN,"\n*"+Fore.WHITE,"Type q to quit")
+        print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
+        while True:
+            inp = input("> ")
+            if inp == r:
+                break
+            else:
+                print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
+            if inp == "q":
+                break
             break
-        else:
-            print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
+                
+        print(Fore.YELLOW,"\r* Correct!")
+        time.sleep(0.5)
+        hexes.clear()
+        print("\n")
+        print(Fore.GREEN,"-= HEX VIEWER =-")
+        for i in range(8):
+            hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
             
-    print(Fore.YELLOW,"\r* Correct!")
-    time.sleep(0.5)
-    hexes.clear()
-    print("\n")
-    for i in range(8):
-        hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
+        r = str(hex(random.randint(16,255))[2:])
+        for i in range(5): #five reiterations
+            row = random.randint(0, len(hexes) - 1)
+            col = random.randint(0, len(hexes[row]) - 1)
+            hexes[row][col] = r
         
-    r = str(hex(random.randint(16,255))[2:])
-    for i in range(5): #five reiterations
-        row = random.randint(0, len(hexes) - 1)
-        col = random.randint(0, len(hexes[row]) - 1)
-        hexes[row][col] = r
-       
-    for i in range(8):
-        print(Fore.WHITE,*hexes[i])  
-        
-    print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
-    while True:
-        inp = input("> ")
-        if inp == r:
-            break
-        else:
-            print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
+        for i in range(8):
+            print(Fore.WHITE,*hexes[i])  
             
-    print(Fore.YELLOW,"\r* Correct!")
-    time.sleep(0.5)
-    hexes.clear()
-    print("\n")
-    for i in range(10):
-        hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
-                    +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
-        
-    r = str(hex(random.randint(16,255))[2:])
-    for i in range(5): #five reiterations
-        row = random.randint(0, len(hexes) - 1)
-        col = random.randint(0, len(hexes[row]) - 1)
-        hexes[row][col] = r
-    
-    for i in range(10):
-        print(Fore.WHITE,*hexes[i])  
-        
-    print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
-    while True:
-        inp = input("> ")
-        if inp == r:
+        print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
+        while True:
+            inp = input("> ")
+            if inp == r:
+                break
+            else:
+                print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
+            if inp == "q":
+                break
             break
-        else:
-            print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
-    print(Fore.YELLOW,"\r* Correct!")
+                
+        print(Fore.YELLOW,"\r* Correct!")
+        time.sleep(0.5)
+        hexes.clear()
+        print("\n")
+        print(Fore.GREEN,"-= HEX VIEWER =-")
+        for i in range(10):
+            hexes.insert(i,[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])]
+                        +[str(hex(random.randint(16,255))[2:])]+[str(hex(random.randint(16,255))[2:])])
+            
+        r = str(hex(random.randint(16,255))[2:])
+        for i in range(5): #five reiterations
+            row = random.randint(0, len(hexes) - 1)
+            col = random.randint(0, len(hexes[row]) - 1)
+            hexes[row][col] = r
+        
+        for i in range(10):
+            print(Fore.WHITE,*hexes[i])  
+            
+        print(Fore.GREEN,"\r*"+Fore.WHITE,"Enter here ",end="")
+        while True:
+            inp = input("> ")
+            if inp == r:
+                break
+            else:
+                print(Fore.RED,"\r*"+Fore.WHITE,"Wrong number ",end="")
+            if inp == "q":
+                break
+            break
+        
+        print(Fore.YELLOW,"\r* Correct!")
+        time.sleep(0.5)
+        break
     print(Fore.WHITE,"\rhex: 100 000 pts")
+    print('\n')
     hexsolved=True
     solvedall=True
     prgfound+=1
     print(Fore.YELLOW+Style.BRIGHT,"\r* All special programs found! +200 000 pts")
-    file.remove(str(files[9]))
+    file.remove("hex")
     
 def gendirsback(x):
     global score,names_memory,names,memory,dir,file_memory,file,gendir,inemptydir
@@ -718,7 +729,7 @@ def finallayer():
         if inp == "cd root":
             if passwdfound==False:
                 passwd = random.choice(rootpasswords)
-                print(Style.DIM,"the password is"+str(passwd))
+                print(Style.DIM,"the password is "+str(passwd))
             prompt = input("* This directory is encrypted. Password? > ")        
             if prompt == str(passwd):
                 break    
@@ -748,7 +759,7 @@ def finallayer():
     time.sleep(1)
     print(Fore.MAGENTA,"\r*"+Fore.WHITE,"You made it to the end! Congrats!")
     time.sleep(2)
-    print(Fore.GREEN,"\r*"+Fore.WHITE,"Total points collected: "+str(score))
+    print(Fore.BLUE,"\r*"+Fore.WHITE,"Total points collected: "+str(score))
     time.sleep(2)
     if kernelsolved==True:
         print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end=" ")
@@ -768,7 +779,7 @@ def finallayer():
     else:
         print(Fore.WHITE+Style.DIM,"hex",end=" ")
     if prgfound < 4:
-        print(Fore.GREEN+Style.NORMAL,"\n* "+Fore.WHITE,str(prgfound)+"/4 special programs found")
+        print(Fore.BLUE+Style.NORMAL,"\n* "+Fore.WHITE,str(prgfound)+"/4 special programs found")
     elif prgfound == 4:
         print(Fore.YELLOW+Style.NORMAL,"\n* "+str(prgfound)+"/4 special programs found")
     time.sleep(2)
@@ -812,9 +823,9 @@ while True:
     solvedall=False
     passwdfound=False
     loading()
-    print("\n"+Fore.GREEN+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
+    print("\n"+Fore.BLUE+Style.NORMAL,"*"+Fore.WHITE,"Let's go!")
     time.sleep(2)
-    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+    print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
     
     print(Fore.BLUE+Style.BRIGHT,"home",end=" ")
     while True:
@@ -836,7 +847,7 @@ cat (text file) - read the content of the text file
         
     layer+=1
     score+=100
-    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+    print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
     print(Fore.GREEN,"+100 pts")
     for i in range(random.randint(4,7)):
         names.append(str(random.choice(dirs)))
@@ -878,7 +889,7 @@ cat (text file) - read the content of the text file
             
         if inp == "cd .." and inemptydir == True and wentbackempty == False: #cd .. when entered empty
             layer-=1
-            print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
+            print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer))
             listfiles()
             wentbackempty=True
             inemptydir=False
@@ -895,9 +906,9 @@ cat (text file) - read the content of the text file
                     if layer == 50:
                         break
                     empty_chance = random.randint(1,10)
-                    print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
+                    print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
                     
-                    if empty_chance < 8:
+                    if empty_chance < 9:
                         
                         print(Fore.GREEN,"+100 pts")
                         score+=100
@@ -925,7 +936,7 @@ cat (text file) - read the content of the text file
                                 break
                         genfiles()
                                     
-                    elif empty_chance >= 8:
+                    elif empty_chance >= 9:
                         mkempty() 
                         inemptydir=True
                         print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")
@@ -1015,17 +1026,16 @@ cat (text file) - read the content of the text file
                         unknown_chance = random.randint(1,15)
                         genspecprogs()
                             
-                        print(Fore.GREEN+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
-                        if empty_chance < 8:
+                        print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
+                        if empty_chance < 9:
                             for i in range(len(names)):
                                 if syntax[1] == names[i]:
                                     gendirsback(i)
                                     break
-
-                        if inemptydir == False:
-                            genfiles()
+                            if inemptydir == False:
+                                genfiles()
                         
-                        elif empty_chance >= 8:
+                        elif empty_chance >= 9:
                             mkempty()
                             inemptydir=True
                             print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")

@@ -1,7 +1,7 @@
 # TermAdventure
 A small Python console game where you travel through a lot of directories and find various things.
 
-This is my second Python game and it's based on the original ProgressDOS minigame from Progressbar95. It's slightly different and it makes you feel you're exploring an Linux system. This game took me about 1 month to create from my knowledge of Python (sometimes i needed chatgpt). All you need to do is to collect as many bonuses as you can while exploring directories. You can also find codes inside readme files for various code programs, which can give you a lot of points. To finish the game, you need to get to the 50th directory, but you will need a password. The game is in Beta, so many features are missing and the game is still work in progress. The game can be launched on Windows and Linux distros.
+This is my second Python game and it's based on the original ProgressDOS minigame from Progressbar95. It's slightly different and it makes you feel you're exploring an Linux system. This game took me about 1 month to create from my knowledge of Python (sometimes i needed chatgpt). All you need to do is to collect as many bonuses as you can while exploring directories. You can also find codes inside readme files for various code programs, which can give you a lot of points. To finish the game, you need to get to the 50th directory, but you will need a password. The game can be launched on Windows and Linux distros.
 ## Setup
 To ensure the proper execution of the game, please run the "build.py" file located in the repository. It will automatically install necessary modules needed for the game and build the executable file from source code. After that you can play the game by running the compiled executable file from the dist directory.
 ## Navigating the system
@@ -19,7 +19,7 @@ _(executable)_ - run the program or claim bonus
 ## Bonuses, eastereggs and unknown files
 Bonuses are common executables that can give you from 1 000 to 5 000 points. Eastereggs are less common, and they are worth 10 000 points. However unknown files are more dangerous - they can delete your whole system. But rarely they can give you some points.
 ## Readme files
-Inside those text files there are random contents written, but you can encounter mysterious codes, which can hint to more worthy and interesting programs, that can contain up to 100 000 points. They can only appear after finding such codes.
+Inside those text files there are random contents written, but you can encounter mysterious codes, which can hint to more worthy and interesting programs, that can contain up to 100 000 points. They can only appear after finding such codes. Apart from them you need to find the password needed for the final directory.
 ## Kernelcode, chroma, codex and hex
 Kernelcode is an executable where you must type in correct 3-digit code which you can find in the text file beginning with the Linux kernel version. By successfully solving the program you can get 20 000 points. Another special program is Chroma, which is an alternative to kernelcode, and it needs a special six-letter color code, which you can also find in one of the readme files. You will get awarded 30 000 points for the solve. Codex is an extrordinary latin program, which works the same as kernelcode, but you need to know numbers in latin. When you'll encounter a readme file with "lorem ipsum" text inside it, there are numbers written in latin below, eg. unus, duo, tres etc. By correctly typing the 3-digit code as in kernelcode you can get 50 000 points. The last and the hardest of the four programs is Hex, where you must find five reiterations of the same hex number in a grid of those numbers. Be aware, that you must complete it three times, and after finding the number the grid becomes larger, and it will be harder to find the correct number. If you manage to find those numbers, the award is 100 000 points. After solving all of the four special programs, you get an extra bonus of 200 000 points.
 ## Changelog
@@ -39,4 +39,6 @@ v0.7.0-beta (17-09-2025) - added build.py file for user to automatically install
 
 v0.8.0-beta (20-09-2025) - smaller specprogs chances, smaller unknown crash chance, final layer revamped
 
-v0.9.0-beta (05-10-2025) - chroma screen revamp, fixed genfiles outputting when inemptydir, gendirs and gendirsback code optimized, su root removed, larger root dir password chance
+v0.9.0-beta (05-10-2025) - chroma screen revamp, fixed genfiles outputting when inemptydir, gendirs and gendirsback code optimized, su root removed, smaller root dir password chance
+
+v1.0.0 (06-10-2025) - fixed hex appearing after completing it, improved hex program, game theme changed, "loading" screen changed, slightly higher passwd_chance
