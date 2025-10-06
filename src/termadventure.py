@@ -718,7 +718,8 @@ def finallayer():
         if inp == "cd root":
             if passwdfound==False:
                 passwd = random.choice(rootpasswords)
-                print(Style.DIM,"the password is "+str(passwd))
+                print(Style.DIM,"* the password is "+str(passwd))
+                print(Style.RESET_ALL)
             prompt = input("* This directory is encrypted. Password? > ")        
             if prompt == str(passwd):
                 break    

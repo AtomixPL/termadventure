@@ -44,3 +44,5 @@ v0.9.0-beta (05-10-2025) - chroma screen revamp, fixed genfiles outputting when 
 v1.0.0 (06-10-2025) - fixed hex appearing after completing it, improved hex program, game theme changed, "loading" screen changed, slightly higher passwd_chance
 
 v1.0.1 (06-10-2025) - fixed hex "correct" text overlapping, reverting hex quit option, another hex postsolve appearance fix, new directory names
+
+v1.0.2 (06-10-2025) - small text fix on "no password" scenario on final layer
