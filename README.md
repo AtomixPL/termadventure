@@ -46,3 +46,5 @@ v1.0.0 (06-10-2025) - fixed hex appearing after completing it, improved hex prog
 v1.0.1 (06-10-2025) - fixed hex "correct" text overlapping, reverting hex quit option, another hex postsolve appearance fix, new directory names
 
 v1.0.2 (06-10-2025) - small text fix on "no password" scenario on final layer
+
+v1.0.3 (07-10-2025) - typing a blank username is now impossible
