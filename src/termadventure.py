@@ -1,6 +1,6 @@
 # TermAdventure
 # Copyright (c) 2025 AtomixPL
-# Licensed under the MIT License
+# Licensed under the GNU General Public License
 
 # dir mechanics 
 # print("dir "+str(dir))
