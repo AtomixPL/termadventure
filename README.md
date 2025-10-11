@@ -48,3 +48,5 @@ v1.0.1 (06-10-2025) - fixed hex "correct" text overlapping, reverting hex quit o
 v1.0.2 (06-10-2025) - small text fix on "no password" scenario on final layer
 
 v1.0.3 (07-10-2025) - typing a blank username is now impossible
+
+v1.0.4 (11-10-2025) - fixed issue where executing "python" instead of "python3" in build.py won't work on other linux distros
