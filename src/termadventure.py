@@ -46,12 +46,6 @@ colors_map2 = {
     'o': Fore.CYAN,
     'm': Fore.BLUE,
     'a': Fore.MAGENTA}
-scorelist = {
-    'date': 0,
-    'time': 0,
-    'score': 0,
-    'layer': 0,
-    'specprogs': 0}
 dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
       "lost+found","include","man","log","cache","lock","spool","sda1","sdb1","sdc1","hda1","hdb1","hdc1",
       "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",

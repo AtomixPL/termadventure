@@ -12,6 +12,8 @@ def installdeps():
         venv_python = os.path.join("venv","Scripts","python.exe")
     else:
         venv_python = "./"+os.path.join("venv","bin","python")
+    print("==> Checking for new pip version...")
+    subprocess.run([venv_python,"-m","pip","install","--upgrade","pip"],text=True,check=True)
     print("==> Installing colorama and PyInstaller modules...")
     subprocess.run([venv_python,"-m","pip","install","colorama","pyinstaller"],text=True,check=True)
 
