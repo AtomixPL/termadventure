@@ -6,7 +6,7 @@ from colorama import Fore
 
 class Constants:
     def __init__(self):
-        self.logo = """
+        self.logo = r"""
   ______                    ___       __                 __                
  /_  __/__  _________ ___  /   | ____/ /   _____  ____  / /___  __________ 
   / / / _ \/ ___/ __ `__ \/ /| |/ __  / | / / _ \/ __ \/ __/ / / / ___/ _ \
