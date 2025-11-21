@@ -1,12 +1,6 @@
-# TermAdventure
+# termadventure.py
 # Copyright (c) 2025 AtomixPL
 # Licensed under the GNU General Public License
-
-# dir mechanics 
-# print("dir "+str(dir))
-# print("memory "+str(memory))
-# print("names "+str(names))
-# print("names_memory "+str(names_memory))         
 
 import time
 import random
@@ -22,67 +16,11 @@ except ModuleNotFoundError:
         print("Please launch the game using Python from /venv/bin directory.")
     sys.exit()
     
+from var.const_vars import c
+
 score = 0
-latinnums={"unus": 1,
-           "duo": 2,
-           "tres": 3,
-           "quattuor": 4,
-           "quinque": 5,
-           "sex": 6,
-           "septem": 7,
-           "octo": 8,
-           "novem": 9}
-colors_map = {
-    'r': Fore.RED,
-    'g': Fore.GREEN,
-    'y': Fore.YELLOW,
-    'b': Fore.BLUE,
-    'm': Fore.MAGENTA,
-    'c': Fore.CYAN}
-colors_map2 = {
-    'c': Fore.RED,
-    'h': Fore.YELLOW,
-    'r': Fore.GREEN,
-    'o': Fore.CYAN,
-    'm': Fore.BLUE,
-    'a': Fore.MAGENTA}
-dirs=["bin","boot","dev","etc","lib","mnt","opt","proc","run","srv","sys","tmp","usr","var","dir","tux","linux","localhost","local","doc","share","tmpfs","home","udev","tty1","sbin","src",
-      "lost+found","include","man","log","cache","lock","spool","sda1","sdb1","sdc1","hda1","hdb1","hdc1",
-      "bin2","boot2","dev2","etc2","lib2","mnt2","opt2","proc","run2","srv2","sys2","tmp2","usr2","var2","dir2","tux2","linux2","localhost2","local2","doc2","share2","tmpfs2","home2","udev2",
-      "tty2","sbin2","src2","lost+found2","include2","man2","log2","cache2","lock2","spool2","sda2","sdb2","sdc2","hda2","hdb2","hdc2",
-      "bin3","boot3","dev3","etc3","lib3","mnt3","opt3","proc3","run3","srv3","sys3","tmp3","usr3","var3","dir3","tux3","linux3","localhost3","local3","doc3","share3","tmpfs3",
-      "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3","sda3","sdb3","sdc3","hda3","hdb3","hdc3",
-      "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
-      "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4","sda4","sdb4","sdc4"]   
-files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode","chroma","hex"]
-colors=["r","g","y","b","m","c"]
-ch=["c","h","r","o","m","a"]
-rainbow = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
-coloramas=[Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
-specialreadmetexts=["Linux termadventure 6.15.5-zen1-1-zen x86_64 GNU/Linux",
-"""Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-""","here are some points for you: ","your score is currently ","The password for the root directory is: "]
-readmetexts=["hello world","nothing to find here","thank you player, but the thing you're looking for is in another readme file!",
-"penguin is watching","nothing","if it works, don't touch it","it's free real estate","open source for the win","what's up","""
-To do list:
-- buy amd gpu
-- get rid of windows
-- install arch linux on first drive
-- install gentoo on second drive
-""","i am king terry the terrible",";-)","herzlich wilkommen","no looking back","keep it simple stupid"]
-rootpasswords=["********","123","root","admin","password","administrator","linuxthebest","excalibur","opensesame"]
-bonuses = [1000,2000,3000,4000,5000]
-print(Fore.BLUE+Style.BRIGHT,r"""
-  ______                    ___       __                 __                
- /_  __/__  _________ ___  /   | ____/ /   _____  ____  / /___  __________ 
-  / / / _ \/ ___/ __ `__ \/ /| |/ __  / | / / _ \/ __ \/ __/ / / / ___/ _ \
- / / /  __/ /  / / / / / / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
-/_/  \___/_/  /_/ /_/ /_/_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/ 
-""", end="")
-print(Fore.WHITE,"Copyright (c) 2025 AtomixPL"+Style.NORMAL,"                                      v1.0.3")
+print(Fore.BLUE+Style.BRIGHT+c.logo, end="") # Print menu
+print(Fore.WHITE,"Copyright (c) 2025 AtomixPL"+Style.NORMAL,"                                      v1.0.4")
 print(Style.RESET_ALL)
 print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"(p) - start the adventure")
 print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"(i) - about the game")
@@ -92,14 +30,7 @@ while True:
     inp = input(Style.RESET_ALL+"\nplayer@termadventure $ ")
 
     if inp == "info" or inp == "i":
-        print("""           
-Explore the seemingly infinite Linux kernel containing directories and files.
-You may find a lot of interesting things, which can give you points.
-But unknown files may delete your system (not literally), so be careful!
-There are also readme files, which can contain codes for specific programs.
-Reach layer 50 to get to the root directory. 
-For the full guidebook, check out the README file in the repository.""")
-        
+        print(c.info)
     if inp == "quit" or inp == "q":
         sys.exit()
     if inp == "play" or inp == "p":
@@ -113,7 +44,7 @@ while True:
         username = inp.lower()
         break
 
-def loading():
+def loading(): # Loading simulation
     print("\n")
     print("Generating directories")
     for i in range (101):
@@ -136,31 +67,31 @@ def loading():
         os.system("clear")
         
 def listfiles():
-    global names,files,file
+    global names,file
     for i in range(len(names)):
         print(Fore.BLUE+Style.BRIGHT,names[i],end=" ")
     if "bonus" in file:
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end=" ")
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[0],end=" ")
     if "codex" in file:
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end=" ")
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[6],end=" ")
     if "kernelcode" in file:
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end=" ")
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[7],end=" ")
     if "chroma" in file:
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[8],end=" ")
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[8],end=" ")
     if "hex" in file:
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[9],end=" ")
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[9],end=" ")
     if "easteregg" in file:
-        print(Fore.YELLOW+Style.BRIGHT,files[1],end=" ")
+        print(Fore.YELLOW+Style.BRIGHT,c.files[1],end=" ")
     if "unknown" in file:
-        print(Fore.RED+Style.BRIGHT,files[5],end=" ")
+        print(Fore.RED+Style.BRIGHT,c.files[5],end=" ")
     if "readme" in file:
-        print(Fore.WHITE+Style.NORMAL,files[2],end=" ")
+        print(Fore.WHITE+Style.NORMAL,c.files[2],end=" ")
     if "readme2" in file:
-        print(Fore.WHITE+Style.NORMAL,files[3],end=" ")
+        print(Fore.WHITE+Style.NORMAL,c.files[3],end=" ")
     if "readme3" in file:
-        print(Fore.WHITE+Style.NORMAL,files[4],end=" ")
+        print(Fore.WHITE+Style.NORMAL,c.files[4],end=" ")
     
-def genspecprogs():
+def genspecprogs(): # If readme of program found then generate the program 
     global codexprg_chance,kernelcodeprg_chance,chromaprg_chance,codexsolved,hexprg_chance
     if codexread==True and codexsolved==False:
         codexprg_chance = random.randint(1,20)
@@ -171,57 +102,57 @@ def genspecprogs():
     if codexsolved==True and hexsolved==False:
         hexprg_chance = random.randint(1,20)
     
-def gendirs(x):
-    global memory,names,gendir,dir,dirs
+def gendirs(x): # If names[x] picked then move dir list contents to memory, print memory[x], for every memory[x] directory generate new content for new names[x]
+    global memory,names,gendir,dir
     for i in range(len(memory[x])):
         print(Fore.BLUE+Style.BRIGHT,memory[x][i],end=" ")
         names.append(memory[x][i])
     for i in memory[x]:
         for i in range(random.randint(4,7)):
-            gendir.append(str(random.choice(dirs)))
+            gendir.append(str(random.choice(c.dirs)))
         dir.append(list(gendir))
         gendir.clear()
 
-def genfiles():
+def genfiles(): # Generate executables and readme files
     if bonus_chance > 8:
-        file.append(str(files[0]))
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[0],end=" ")
+        file.append(str(c.files[0]))
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[0],end=" ")
     if codexprg_chance >= 16:
-        file.append(str(files[6]))
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[6],end=" ")
+        file.append(str(c.files[6]))
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[6],end=" ")
     if kernelcodeprg_chance >= 16:
-        file.append(str(files[7]))
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[7],end=" ")
+        file.append(str(c.files[7]))
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[7],end=" ")
     if chromaprg_chance >= 16:
-        file.append(str(files[8]))
-        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[8],end=" ")
+        file.append(str(c.files[8]))
+        print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[8],end=" ")
     if hexprg_chance >= 18:
         if hexsolved == False and solvedall == False:
-            file.append(str(files[9]))
-            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,files[9],end=" ")
+            file.append(str(c.files[9]))
+            print(Fore.LIGHTGREEN_EX+Style.BRIGHT,c.files[9],end=" ")
     if easter_chance > 14:
-        file.append(str(files[1]))
-        print(Fore.YELLOW+Style.BRIGHT,files[1],end=" ")                      
+        file.append(str(c.files[1]))
+        print(Fore.YELLOW+Style.BRIGHT,c.files[1],end=" ")                      
     if unknown_chance > 10:
-        file.append(str(files[5]))
-        print(Fore.RED+Style.BRIGHT,files[5],end=" ")
+        file.append(str(c.files[5]))
+        print(Fore.RED+Style.BRIGHT,c.files[5],end=" ")
     if readme_chance > 7:
         readmenum = random.randint(1,3)
         if readmenum == 1:
-            file.append(str(files[2]))
-            print(Fore.WHITE+Style.NORMAL,files[2],end=" ")   
+            file.append(str(c.files[2]))
+            print(Fore.WHITE+Style.NORMAL,c.files[2],end=" ")   
         elif readmenum == 2:
-            file.append(str(files[2]))
-            file.append(str(files[3]))
-            print(Fore.WHITE+Style.NORMAL,files[2],end=" ")
-            print(Fore.WHITE+Style.NORMAL,files[3],end=" ")
+            file.append(str(c.files[2]))
+            file.append(str(c.files[3]))
+            print(Fore.WHITE+Style.NORMAL,c.files[2],end=" ")
+            print(Fore.WHITE+Style.NORMAL,c.files[3],end=" ")
         elif readmenum == 3:
-            file.append(str(files[2]))
-            file.append(str(files[3]))
-            file.append(str(files[4]))
-            print(Fore.WHITE+Style.NORMAL,files[2],end=" ")
-            print(Fore.WHITE+Style.NORMAL,files[3],end=" ")
-            print(Fore.WHITE+Style.NORMAL,files[4],end=" ")     
+            file.append(str(c.files[2]))
+            file.append(str(c.files[3]))
+            file.append(str(c.files[4]))
+            print(Fore.WHITE+Style.NORMAL,c.files[2],end=" ")
+            print(Fore.WHITE+Style.NORMAL,c.files[3],end=" ")
+            print(Fore.WHITE+Style.NORMAL,c.files[4],end=" ")     
 
 def mkempty():
     global syntax,names,dir
@@ -260,19 +191,19 @@ def readfile1():
         
         if kernelcode_chance >= 33 and kernelsolved==False and kernelread==False:
             if kernelread == False:
-                print(specialreadmetexts[0],end=" ")
+                print(c.specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
                 print(kernelcode,end="")
-                readme.append(str(specialreadmetexts[0])+" "+str(kernelcode))
+                readme.append(str(c.specialreadmetexts[0])+" "+str(kernelcode))
                 kernelread=True
                 kernelcode_chance = 0
                 
         elif codex_chance >= 33 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
             if codexread == False:
-                codex = dict(random.sample(list(latinnums.items()), 3))
-                print(specialreadmetexts[1])
+                codex = dict(random.sample(list(c.latinnums.items()), 3))
+                print(c.specialreadmetexts[1])
                 print(*codex.keys(), end="")
-                readme.append(str(specialreadmetexts[1]))
+                readme.append(str(c.specialreadmetexts[1]))
                 readme.append("".join(codex.keys()))
                 codexnum = list(codex.values())
                 codexread=True
@@ -280,9 +211,9 @@ def readfile1():
                 
         elif chroma_chance >= 33 and chromasolved==False and chromaread==False and kernelsolved==True:
             if chromaread == False:
-                chroma = random.sample(colors,len(colors))
+                chroma = random.sample(c.colors,len(c.colors))
                 for i in range(len(chroma)):
-                    color = colors_map.get(chroma[i], Fore.WHITE)
+                    color = c.colors_map.get(chroma[i], Fore.WHITE)
                     print(color + chroma[i], end='')
                 readme.append(''.join(chroma))
                 chromacode = ''.join(chroma)
@@ -290,30 +221,30 @@ def readfile1():
                 chroma_chance = 0
                 
         elif passwd_chance >= 37 and passwdfound == False:
-            passwd = random.choice(rootpasswords)
-            readme.append(specialreadmetexts[4]+str(passwd))
+            passwd = random.choice(c.rootpasswords)
+            readme.append(c.specialreadmetexts[4]+str(passwd))
             print(*readme,end="")
             passwdfound=True
                         
         elif bonus_chance == 20:
-            bonusscore = random.choice(bonuses)
-            print(specialreadmetexts[2],end="")
+            bonusscore = random.choice(c.bonuses)
+            print(c.specialreadmetexts[2],end="")
             print(bonusscore)
             print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
             score+=bonusscore
-            readme.append(str(specialreadmetexts[2]+str(bonusscore)))
+            readme.append(str(c.specialreadmetexts[2]+str(bonusscore)))
             
         elif readmescore == 20:
-            readme.append(specialreadmetexts[3]+str(score))
+            readme.append(c.specialreadmetexts[3]+str(score))
             print(*readme,end="")
             
         elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
-            readme.append(str(random.choice(readmetexts)))
+            readme.append(str(random.choice(c.readmetexts)))
             print(*readme,end="\r")
     else:
         if chromacode != 0:
             for i in range(len(chroma)):
-                    color = colors_map.get(chroma[i], Fore.WHITE)
+                    color = c.colors_map.get(chroma[i], Fore.WHITE)
                     print(color + chroma[i], end='')
         else: 
             print(*readme,end="\r")
@@ -333,19 +264,19 @@ def readfile2():
         
         if kernelcode_chance >= 33 and kernelsolved==False and kernelread==False:
             if kernelread == False:
-                print(specialreadmetexts[0],end=" ")
+                print(c.specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
                 print(kernelcode,end="")
-                readme2.append(str(specialreadmetexts[0])+" "+str(kernelcode))
+                readme2.append(str(c.specialreadmetexts[0])+" "+str(kernelcode))
                 kernelread=True
                 kernelcode_chance = 0
                 
         elif codex_chance >= 33 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
             if codexread == False:
-                codex = dict(random.sample(list(latinnums.items()), 3))
-                print(specialreadmetexts[1])
+                codex = dict(random.sample(list(c.latinnums.items()), 3))
+                print(c.specialreadmetexts[1])
                 print(*codex.keys(), end="")
-                readme2.append(str(specialreadmetexts[1]))
+                readme2.append(str(c.specialreadmetexts[1]))
                 readme2.append("".join(codex.keys()))
                 codexnum = list(codex.values())
                 codexread=True
@@ -353,9 +284,9 @@ def readfile2():
         
         elif chroma_chance >= 33 and chromasolved==False and chromaread==False and kernelsolved==True:
             if chromaread == False:
-                chroma = random.sample(colors,len(colors))
+                chroma = random.sample(c.colors,len(c.colors))
                 for i in range(len(chroma)):
-                    color = colors_map.get(chroma[i], Fore.WHITE)
+                    color = c.colors_map.get(chroma[i], Fore.WHITE)
                     print(color + chroma[i], end='')
                 print(Style.RESET_ALL)
                 readme2.append(''.join(chroma))
@@ -364,30 +295,30 @@ def readfile2():
                 chroma_chance = 0
                 
         elif passwd_chance >= 37 and passwdfound == False:
-            passwd = random.choice(rootpasswords)
-            readme2.append(specialreadmetexts[4]+str(passwd))
+            passwd = random.choice(c.rootpasswords)
+            readme2.append(c.specialreadmetexts[4]+str(passwd))
             print(*readme2,end="")
             passwdfound=True
         
         elif bonus_chance == 20:
-            bonusscore = random.choice(bonuses)
-            print(specialreadmetexts[2],end="")
+            bonusscore = random.choice(c.bonuses)
+            print(c.specialreadmetexts[2],end="")
             print(bonusscore)
             print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
             score+=bonusscore
-            readme2.append(str(specialreadmetexts[2]+str(bonusscore)))
+            readme2.append(str(c.specialreadmetexts[2]+str(bonusscore)))
         
         elif readmescore == 20:
-            readme2.append(specialreadmetexts[3]+str(score))
+            readme2.append(c.specialreadmetexts[3]+str(score))
             print(*readme2,end="")
         
         elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
-            readme2.append(str(random.choice(readmetexts)))
+            readme2.append(str(random.choice(c.readmetexts)))
             print(*readme2,end="\r")
     else:
         if chromacode != 0:
             for i in range(len(chroma)):
-                    color = colors_map.get(chroma[i], Fore.WHITE)
+                    color = c.colors_map.get(chroma[i], Fore.WHITE)
                     print(color + chroma[i], end='')
         else: 
             print(*readme2,end="\r")
@@ -407,19 +338,19 @@ def readfile3():
         
         if kernelcode_chance >= 33 and kernelsolved==False and kernelread==False:
             if kernelread == False:
-                print(specialreadmetexts[0],end=" ")
+                print(c.specialreadmetexts[0],end=" ")
                 kernelcode=random.randint(111,999)
                 print(kernelcode,end="")
-                readme3.append(str(specialreadmetexts[0])+" "+str(kernelcode))
+                readme3.append(str(c.specialreadmetexts[0])+" "+str(kernelcode))
                 kernelread=True
                 kernelcode_chance = 0
                 
         elif codex_chance >= 33 and codexsolved==False and codexread==False and kernelsolved==True and chromasolved==True:
             if codexread == False:
-                codex = dict(random.sample(list(latinnums.items()), 3))
-                print(specialreadmetexts[1])
+                codex = dict(random.sample(list(c.latinnums.items()), 3))
+                print(c.specialreadmetexts[1])
                 print(*codex.keys(), end="")
-                readme3.append(str(specialreadmetexts[1]))
+                readme3.append(str(c.specialreadmetexts[1]))
                 readme3.append("".join(codex.keys()))
                 codexnum = list(codex.values())
                 codexread=True
@@ -427,9 +358,9 @@ def readfile3():
             
         elif chroma_chance >= 33 and chromasolved==False and chromaread==False and kernelsolved==True:
             if chromaread == False:
-                chroma = random.sample(colors,len(colors))
+                chroma = random.sample(c.colors,len(c.colors))
                 for i in range(len(chroma)):
-                    color = colors_map.get(chroma[i], Fore.WHITE)
+                    color = c.colors_map.get(chroma[i], Fore.WHITE)
                     print(color + chroma[i], end='')
                 print(Style.RESET_ALL)
                 readme3.append(''.join(chroma))
@@ -438,30 +369,30 @@ def readfile3():
                 chroma_chance = 0
                 
         elif passwd_chance >= 37 and passwdfound == False:
-            passwd = random.choice(rootpasswords)
-            readme3.append(specialreadmetexts[4]+str(passwd))
+            passwd = random.choice(c.rootpasswords)
+            readme3.append(c.specialreadmetexts[4]+str(passwd))
             print(*readme3,end="")
             passwdfound=True
         
         elif bonus_chance == 20:
-            bonusscore = random.choice(bonuses)
-            print(specialreadmetexts[2],end="")
+            bonusscore = random.choice(c.bonuses)
+            print(c.specialreadmetexts[2],end="")
             print(bonusscore)
             print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
             score+=bonusscore
-            readme3.append(str(specialreadmetexts[2]+str(bonusscore)))
+            readme3.append(str(c.specialreadmetexts[2]+str(bonusscore)))
         
         elif readmescore == 20:
-            readme3.append(specialreadmetexts[3]+str(score))
+            readme3.append(c.specialreadmetexts[3]+str(score))
             print(*readme3,end="")
             
         elif kernelcode_chance  < 33 or codex_chance < 33 or chroma_chance < 33 or passwd_chance < 37 or bonus_chance != 20 or readmescore != 20 or kernelsolved == True or codexsolved == True:
-            readme3.append(str(random.choice(readmetexts)))
+            readme3.append(str(random.choice(c.readmetexts)))
             print(*readme3,end="\r")
     else:
         if chromacode != 0:
             for i in range(len(chroma)):
-                    color = colors_map.get(chroma[i], Fore.WHITE)
+                    color = c.colors_map.get(chroma[i], Fore.WHITE)
                     print(color + chroma[i], end='')
         else: 
             print(*readme3,end="\r")
@@ -487,8 +418,8 @@ def crash():
     else:
         print(Fore.WHITE+Style.DIM,"\rkernelcode",end=" ")
     if chromasolved==True:
-        for letter in ch:
-            print(colors_map2.get(letter, Fore.WHITE) + letter, end='')
+        for letter in c.ch:
+            print(c.colors_map2.get(letter, Fore.WHITE) + letter, end='')
     else:
         print(Fore.WHITE+Style.DIM,"chroma",end=" ")
     if codexsolved==True:
@@ -507,10 +438,7 @@ def crash():
     
 def readlorem():
     global codexnum,codexsolved,codexread,codexprg_chance,score,prgfound
-    print("""
-============
-|| lorem! ||
-============""")
+    print(c.codexgreeter)
     time.sleep(0.5)
     print(Style.RESET_ALL)
     print("typus in codice ",end="")
@@ -549,9 +477,8 @@ def readkernel():
 
 def readchroma():
     global chromacode,chromasolved,chromaread,chromaprg_chance,score,prgfound
-    greeter=("""====================\n|---===chroma===---|\n====================""")
-    for color in coloramas:
-        print(color + greeter, end='\x1b[2A'+'\r')
+    for color in c.coloramas:
+        print(color + c.chromagreeter, end='\x1b[2A'+'\r')
         time.sleep(0.1)
     print("\n\n")
     print(Fore.WHITE,"\rEnter code: ",end="")
@@ -561,10 +488,9 @@ def readchroma():
             break
         else:
             print(Fore.WHITE,"\rIncorrect code ",end="")
-    goodjob=("""===================================\n|------======GOOD JOB!======------|\n===================================""")
     for i in range(3):
-        for color in coloramas:
-            print(color + goodjob, end='\x1b[2A'+'\r')
+        for color in c.coloramas:
+            print(color + c.chromagj, end='\x1b[2A'+'\r')
             time.sleep(0.03)
     print("\n\n")
     print(Fore.WHITE+"chroma: +30 000 pts")
@@ -670,7 +596,7 @@ def readhex():
     print(Fore.YELLOW+Style.BRIGHT,"\r* All special programs found! +200 000 pts")
     file.remove("hex")
     
-def gendirsback(x):
+def gendirsback(x): # Generate dirs if player is behind one directory
     global score,names_memory,names,memory,dir,file_memory,file,gendir,inemptydir
     if "empty" not in dir[x]:
         print(Fore.GREEN,"+100 pts")
@@ -689,7 +615,7 @@ def gendirsback(x):
             names.append(memory[x][i])
             for i in names:
                 for i in range(random.randint(4,7)):
-                    gendir.append(str(random.choice(dirs)))
+                    gendir.append(str(random.choice(c.dirs)))
                 dir.append(list(gendir))
                 gendir.clear()
     else:
@@ -711,7 +637,7 @@ def finallayer():
         syntax = inp.split(" ")
         if inp == "cd root":
             if passwdfound==False:
-                passwd = random.choice(rootpasswords)
+                passwd = random.choice(c.rootpasswords)
                 print(Style.DIM,"* the password is "+str(passwd))
                 print(Style.RESET_ALL)
             prompt = input("* This directory is encrypted. Password? > ")        
@@ -721,15 +647,14 @@ def finallayer():
                 prompt = input("* Incorrect password > ")
     passwd=0
     print("\n")
-    chars=["/","@","#","$","%","&","*","!","?","^","~","`","-","_","=","+","|","{","}","[","]",":",";","<",">",",","."]
     for i in range(screenwidth//3):
-        print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(chars)))
+        print(Fore.MAGENTA+Style.BRIGHT,3*i*str(random.choice(c.endchars)))
         time.sleep(0.02)
     for i in range(300):
-        print(Fore.MAGENTA+Style.BRIGHT,(screenwidth-1)*str(random.choice(chars)))
+        print(Fore.MAGENTA+Style.BRIGHT,(screenwidth-1)*str(random.choice(c.endchars)))
         time.sleep(0.02)
     for i in range(screenwidth//3):
-        print(Fore.MAGENTA+Style.BRIGHT,(screenwidth-3*i)*str(random.choice(chars)))
+        print(Fore.MAGENTA+Style.BRIGHT,(screenwidth-3*i)*str(random.choice(c.endchars)))
         time.sleep(0.02)
     for i in range(screenheight):
         print("\n")
@@ -750,8 +675,8 @@ def finallayer():
     else:
         print(Fore.WHITE+Style.DIM,"\rkernelcode",end=" ")
     if chromasolved==True:
-        for letter in ch:
-            print(colors_map2.get(letter, Fore.WHITE) + letter, end='')
+        for letter in c.ch:
+            print(c.colors_map2.get(letter, Fore.WHITE) + letter, end='')
     else:
         print(Fore.WHITE+Style.DIM,"chroma",end=" ")
     if codexsolved==True:
@@ -822,24 +747,19 @@ while True:
             sys.exit()
             
         elif inp == "help":
-            print("""
-ls - list directories
-cd (dir) - change directory
-cd .. - leave the directory
-cat (text file) - read the content of the text file
-(executable) - run the program or claim bonus""")
+            print(c.help)
         
     layer+=1
     score+=100
     print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(layer),end="  ")
     print(Fore.GREEN,"+100 pts")
     for i in range(random.randint(4,7)):
-        names.append(str(random.choice(dirs)))
+        names.append(str(random.choice(c.dirs)))
         print(Fore.BLUE+Style.BRIGHT,names[i],end=" ")
         
     for i in names:
         for i in range(random.randint(4,7)):
-            gendir.append(str(random.choice(dirs)))
+            gendir.append(str(random.choice(c.dirs)))
         dir.append(list(gendir))
         gendir.clear()
                
@@ -852,12 +772,7 @@ cat (text file) - read the content of the text file
             sys.exit()
             
         if inp == "help":
-            print("""
-ls - list directories
-cd (dir) - change directory
-cd .. - leave the directory
-cat (text file) - read the content of the text file
-(executable) - run the program or claim bonus""")
+            print(c.help)
             
         if inp == "ls":
             if inemptydir==False:
@@ -925,32 +840,32 @@ cat (text file) - read the content of the text file
                         inemptydir=True
                         print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")
                     
-            if inp == files[0]:
+            if inp == c.files[0]:
                 if inp == "bonus" and syntax[0] in file: #bonus
-                    bonusscore = random.choice(bonuses)
+                    bonusscore = random.choice(c.bonuses)
                     print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
                     score+=bonusscore
                     file.remove("bonus")
                         
-            if inp == files[1]:
+            if inp == c.files[1]:
                 if inp == "easteregg" and syntax[0] in file: #easteregg
                     print(Fore.YELLOW+Style.BRIGHT,"* Easter egg found! +10 000 pts",end=" ")
                     score+=10000
                     file.remove("easteregg")
                     
-            if inp == "cat "+str(files[2]):
-                if files[2] in file:  #readme files
+            if inp == "cat "+str(c.files[2]):
+                if c.files[2] in file:  #readme files
                     readfile1()
                         
-            if inp == "cat "+str(files[3]):
-                if files[3] in file:
+            if inp == "cat "+str(c.files[3]):
+                if c.files[3] in file:
                     readfile2()
                         
-            if inp == "cat "+str(files[4]):
-                if files[4] in file:
+            if inp == "cat "+str(c.files[4]):
+                if c.files[4] in file:
                     readfile3()
 
-            if inp == files[5]:
+            if inp == c.files[5]:
                 crash_chance = random.randint(1,15)
                 bonus_chance = random.randint(1,15)
                 if inp == "unknown" and syntax[0] in file:
@@ -961,7 +876,7 @@ cat (text file) - read the content of the text file
                     if crash_chance < 13:
                         if bonus_chance >= 14:
                             print("\n")
-                            bonusscore = random.choice(bonuses)
+                            bonusscore = random.choice(c.bonuses)
                             print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
                             score+=bonusscore
                             file.remove("unknown")
@@ -980,17 +895,17 @@ cat (text file) - read the content of the text file
                             layer=0
                             break
                         
-            if inp == files[6]:
-                if files[6] in file:
+            if inp == c.files[6]:
+                if c.files[6] in file:
                     readlorem()
-            if inp == files[7]:
-                if files[7] in file:
+            if inp == c.files[7]:
+                if c.files[7] in file:
                     readkernel()
-            if inp == files[8]:
-                if files[8] in file:
+            if inp == c.files[8]:
+                if c.files[8] in file:
                     readchroma()
-            if inp == files[9]:
-                if files[9] in file:
+            if inp == c.files[9]:
+                if c.files[9] in file:
                     readhex()
             
         if wentbackempty == True and inemptydir == False:
@@ -1029,17 +944,17 @@ cat (text file) - read the content of the text file
                 if inp == "cd .." and wentbackempty == True:
                     print(Fore.YELLOW,"*"+Fore.WHITE,"You can't go back now!",end=" ")
                     
-            if inp == "cat "+str(files[2]):
-                if files[2] in file:  #readme files
+            if inp == "cat "+str(c.files[2]):
+                if c.files[2] in file:  #readme files
                     readfile1()
-            if inp == "cat "+str(files[3]):
-                if files[3] in file:
+            if inp == "cat "+str(c.files[3]):
+                if c.files[3] in file:
                     readfile2()
-            if inp == "cat "+str(files[4]):
-                if files[4] in file:
+            if inp == "cat "+str(c.files[4]):
+                if c.files[4] in file:
                     readfile3()
                     
-            if inp == files[5]:
+            if inp == c.files[5]:
                 crash_chance = random.randint(1,15)
                 bonus_chance = random.randint(1,15)
                 if inp == "unknown" and syntax[0] in file:
@@ -1050,7 +965,7 @@ cat (text file) - read the content of the text file
                     if crash_chance < 10:
                         if bonus_chance >= 14:
                             print("\n")
-                            bonusscore = random.choice(bonuses)
+                            bonusscore = random.choice(c.bonuses)
                             print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
                             score+=bonusscore
                             file.remove("unknown")
@@ -1068,21 +983,21 @@ cat (text file) - read the content of the text file
                             layer=0
                             break
                             
-            if inp == files[6]:           
-                if files[6] in file:
+            if inp == c.files[6]:           
+                if c.files[6] in file:
                     readlorem()
-            if inp == files[7]:
-                if files[7] in file:
+            if inp == c.files[7]:
+                if c.files[7] in file:
                     readkernel()
-            if inp == files[8]:
-                if files[8] in file:
+            if inp == c.files[8]:
+                if c.files[8] in file:
                     readchroma()
-            if inp == files[9]:
-                if files[9] in file:
+            if inp == c.files[9]:
+                if c.files[9] in file:
                     readhex()
                     
             if inp == "bonus" and syntax[0] in file: #bonus
-                    bonusscore = random.choice(bonuses)
+                    bonusscore = random.choice(c.bonuses)
                     print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
                     score+=bonusscore
                     file.remove("bonus")
