@@ -1,3 +1,6 @@
 dist
 venv
-src/var/__pycache__
+src/constants/__pycache__
+src/dynamic/__pycache__
+src/elements/__pycache__
+src/game/__pycache__
