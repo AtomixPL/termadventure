@@ -1,4 +1,4 @@
-# dynamic.py
+# dynvars.py
 # Dynamic variables and tables for TermAdventure
 # Copyright (c) 2025 AtomixPL
 # Licensed under the GNU General Public License

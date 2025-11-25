@@ -15,10 +15,12 @@ except ModuleNotFoundError:
         print("Please launch the game using Python from /venv/bin directory.")
     sys.exit()
     
-from constants.constants import c
-from dynamic.dynamic import d
-from game.game import g
-from elements.elements import e
+from constvars import c
+from dynvars import d
+from game import g
+from termadvfiles import f
+from termadvprogs import p
+
 
 print(Fore.BLUE+Style.BRIGHT+c.logo, end="") # Print menu
 print(Fore.WHITE,"Copyright (c) 2025 AtomixPL"+Style.NORMAL,"                                      v1.0.5")
@@ -92,7 +94,7 @@ while True:
             
         if inp == "ls":
             if d.inemptydir==False:
-                e.listfiles()
+                f.listfiles()
             elif d.inemptydir==True:
                 print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")
 
@@ -105,7 +107,7 @@ while True:
         if inp == "cd .." and d.inemptydir == True and d.wentbackempty == False: #cd .. when entered empty
             d.layer-=1
             print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(d.layer))
-            e.listfiles()
+            f.listfiles()
             d.wentbackempty=True
             d.inemptydir=False
 
@@ -143,16 +145,16 @@ while True:
                         d.easter_chance = random.randint(1,15)
                         d.readme_chance = random.randint(1,15)
                         d.unknown_chance = random.randint(1,15)
-                        e.genspecprogs()
+                        p.genspecprogs()
                         
                         for i in range(len(d.names_memory)):
                             if d.syntax[1] == d.names_memory[i]:
-                                e.gendirs(i)
+                                f.gendirs(i)
                                 break
-                        e.genfiles()
+                        f.genfiles()
                         
                     elif empty_chance >= 9:
-                        e.mkempty() 
+                        f.mkempty() 
                         d.inemptydir=True
                         print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")
                     
@@ -171,15 +173,15 @@ while True:
                     
             if inp == "cat "+str(c.files[2]):
                 if c.files[2] in d.file:  #readme files
-                    e.readfile1()
+                    f.readfile1()
                         
             if inp == "cat "+str(c.files[3]):
                 if c.files[3] in d.file:
-                    e.readfile2()
+                    f.readfile2()
                         
             if inp == "cat "+str(c.files[4]):
                 if c.files[4] in d.file:
-                    e.readfile3()
+                    f.readfile3()
 
             if inp == c.files[5]:
                 crash_chance = random.randint(1,15)
@@ -213,16 +215,16 @@ while True:
                         
             if inp == c.files[6]:
                 if c.files[6] in d.file:
-                    e.readlorem()
+                    p.readlorem()
             if inp == c.files[7]:
                 if c.files[7] in d.file:
-                    e.readkernel()
+                    p.readkernel()
             if inp == c.files[8]:
                 if c.files[8] in d.file:
-                    e.readchroma()
+                    p.readchroma()
             if inp == c.files[9]:
                 if c.files[9] in d.file:
-                    e.readhex()
+                    p.readhex()
             
         if d.wentbackempty == True and d.inemptydir == False:
             print(Style.RESET_ALL)
@@ -240,19 +242,19 @@ while True:
                         d.easter_chance = random.randint(1,15)
                         d.readme_chance = random.randint(1,15)
                         d.unknown_chance = random.randint(1,15)
-                        e.genspecprogs()
+                        p.genspecprogs()
                             
                         print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(d.layer),end="  ")
                         if empty_chance < 9:
                             for i in range(len(d.names)):
                                 if d.syntax[1] == d.names[i]:
-                                    e.gendirsback(i)
+                                    f.gendirsback(i)
                                     break
                             if d.inemptydir == False:
-                                e.genfiles()
+                                f.genfiles()
                         
                         elif empty_chance >= 9:
-                            e.mkempty()
+                            f.mkempty()
                             d.inemptydir=True
                             print(Fore.YELLOW,"\n *"+Fore.WHITE,"Directory is empty",end=" ")
                         d.wentbackempty=False
@@ -262,13 +264,13 @@ while True:
                     
             if inp == "cat "+str(c.files[2]):
                 if c.files[2] in d.file:  #readme files
-                    e.readfile1()
+                    f.readfile1()
             if inp == "cat "+str(c.files[3]):
                 if c.files[3] in d.file:
-                    e.readfile2()
+                    f.readfile2()
             if inp == "cat "+str(c.files[4]):
                 if c.files[4] in d.file:
-                    e.readfile3()
+                    f.readfile3()
                     
             if inp == c.files[5]:
                 crash_chance = random.randint(1,15)
@@ -300,16 +302,16 @@ while True:
                             
             if inp == c.files[6]:           
                 if c.files[6] in d.file:
-                    e.readlorem()
+                    p.readlorem()
             if inp == c.files[7]:
                 if c.files[7] in d.file:
-                    e.readkernel()
+                    p.readkernel()
             if inp == c.files[8]:
                 if c.files[8] in d.file:
-                    e.readchroma()
+                    p.readchroma()
             if inp == c.files[9]:
                 if c.files[9] in d.file:
-                    e.readhex()
+                    p.readhex()
                     
             if inp == "bonus" and d.syntax[0] in d.file: #bonus
                     bonusscore = random.choice(c.bonuses)

@@ -9,8 +9,8 @@ import time
 import random
 
 from colorama import Fore, Style
-from dynamic.dynamic import d
-from constants.constants import c
+from dynvars import d
+from constvars import c
 
 class Game:
     def loading(self): # Loading simulation

@@ -1,4 +1,4 @@
-# constants.py
+# constvars.py
 # Constant variables, tables and dicts for TermAdventure
 # Copyright (c) 2025 AtomixPL
 # Licensed under the GNU General Public License
