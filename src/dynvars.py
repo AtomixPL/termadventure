@@ -1,6 +1,6 @@
 # dynvars.py
 # Dynamic variables and tables for TermAdventure
-# Copyright (c) 2025 AtomixPL
+# Copyright (c) 2025 Atomix
 # Licensed under the GNU General Public License
 
 class Dynamic:
@@ -33,7 +33,9 @@ class Dynamic:
         self.bonus_chance=0
         self.easter_chance=0
         self.readme_chance=0
-        self.unknown_chance=0
+        self.ruby_chance=0
+        self.amethyst_chance=0
+        self.diamond_chance=0
         self.wentbackempty=False
         self.inemptydir=False
         self.kernelread=False

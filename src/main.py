@@ -1,5 +1,5 @@
 # main.py
-# Copyright (c) 2025 AtomixPL
+# Copyright (c) 2025 Atomix
 # Licensed under the GNU General Public License
 
 import time
@@ -23,7 +23,7 @@ from termadvprogs import p
 
 
 print(Fore.BLUE+Style.BRIGHT+c.logo, end="") # Print menu
-print(Fore.WHITE,"Copyright (c) 2025 AtomixPL"+Style.NORMAL,"                                      v1.0.5")
+print(Fore.WHITE,"Copyright (c) 2025 Atomix"+Style.NORMAL,"                                         v1.1.0")
 print(Style.RESET_ALL)
 print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"play"+Style.NORMAL,"(p) - start the adventure")
 print(Fore.BLUE,"* "+Fore.WHITE+Style.BRIGHT+"info"+Style.NORMAL,"(i) - about the game")
@@ -144,7 +144,9 @@ while True:
                         d.bonus_chance = random.randint(1,15)
                         d.easter_chance = random.randint(1,15)
                         d.readme_chance = random.randint(1,15)
-                        d.unknown_chance = random.randint(1,15)
+                        d.amethyst_chance = random.randint(1,50)
+                        d.diamond_chance = random.randint(1,60)
+                        d.ruby_chance = random.randint(1,70)
                         p.genspecprogs()
                         
                         for i in range(len(d.names_memory)):
@@ -184,34 +186,11 @@ while True:
                     f.readfile3()
 
             if inp == c.files[5]:
-                crash_chance = random.randint(1,15)
-                d.bonus_chance = random.randint(1,15)
-                if inp == "unknown" and d.syntax[0] in d.file:
-                    wait = time.time() + 0.5
-                    while time.time() < wait:
-                        print(".",end="", flush=True)
-                        time.sleep(0.003)
-                    if crash_chance < 13:
-                        if d.bonus_chance >= 14:
-                            print("\n")
-                            bonusscore = random.choice(c.bonuses)
-                            print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
-                            d.score+=bonusscore
-                            d.file.remove("unknown")
-                                
-                        elif d.bonus_chance < 14:
-                            d.file.remove("unknown")
-                            
-                    elif crash_chance > 13:
-                        g.crash()
-                        print(Style.RESET_ALL)
-                        inp = input("\r* Do you want to play again or quit the game? (y/n) ")
-                        if inp == "n":
-                            sys.exit()
-                        elif inp == "y":
-                            d.reset()
-                            c.passwd = 0
-                            break
+                if inp == "ruby" and d.syntax[0] in d.file:
+                    print(Fore.RED+Style.BRIGHT,"* Shiny! +500 000 pts",end=" ")
+                    d.score+=500000
+                    d.file.remove("ruby")
+                    
                         
             if inp == c.files[6]:
                 if c.files[6] in d.file:
@@ -225,6 +204,18 @@ while True:
             if inp == c.files[9]:
                 if c.files[9] in d.file:
                     p.readhex()
+            
+            if inp == c.files[10]:
+                if inp == "amethyst" and d.syntax[0] in d.file: #amesthyst
+                    print(Fore.MAGENTA+Style.BRIGHT,"* Amethyst found! +50 000 pts",end=" ")
+                    d.score+=50000
+                    d.file.remove("amethyst")
+            
+            if inp == c.files[11]:
+                if inp == "diamond" and d.syntax[0] in d.file: #diamond
+                    print(Fore.CYAN+Style.BRIGHT,"* Diamond found! +100 000 pts",end=" ")
+                    d.score+=100000
+                    d.file.remove("diamond")
             
         if d.wentbackempty == True and d.inemptydir == False:
             print(Style.RESET_ALL)
@@ -241,7 +232,9 @@ while True:
                         d.bonus_chance = random.randint(1,15)
                         d.easter_chance = random.randint(1,15)
                         d.readme_chance = random.randint(1,15)
-                        d.unknown_chance = random.randint(1,15)
+                        d.amethyst_chance = random.randint(1,50)
+                        d.diamond_chance = random.randint(1,60)
+                        d.ruby_chance = random.randint(1,70)
                         p.genspecprogs()
                             
                         print(Fore.BLUE+Style.BRIGHT,"/"+Fore.WHITE+Style.NORMAL,str(d.layer),end="  ")
@@ -273,32 +266,10 @@ while True:
                     f.readfile3()
                     
             if inp == c.files[5]:
-                crash_chance = random.randint(1,15)
-                d.bonus_chance = random.randint(1,15)
-                if inp == "unknown" and d.syntax[0] in d.file:
-                    wait = time.time() + 0.5
-                    while time.time() < wait:
-                        print(".",end="", flush=True)
-                        time.sleep(0.003)
-                    if crash_chance < 10:
-                        if d.bonus_chance >= 14:
-                            print("\n")
-                            bonusscore = random.choice(c.bonuses)
-                            print(Fore.LIGHTGREEN_EX+Style.NORMAL,"* Bonus! +"+str(bonusscore)+" pts",end=" ")
-                            d.score+=bonusscore
-                            d.file.remove("unknown")
-                                
-                        elif d.bonus_chance < 14:
-                            d.file.remove("unknown")
-                            
-                    elif crash_chance > 10:
-                        g.crash()
-                        inp = input("\r* Do you want to play again or quit the game? (y/n) ")
-                        if inp == "n":
-                            sys.exit()
-                        elif inp == "y":
-                            d.reset()
-                            break
+                if inp == "ruby" and d.syntax[0] in d.file:
+                    print(Fore.RED+Style.BRIGHT,"* Shiny! +500 000 pts",end=" ")
+                    d.score+=500000
+                    d.file.remove("ruby")
                             
             if inp == c.files[6]:           
                 if c.files[6] in d.file:
@@ -312,6 +283,18 @@ while True:
             if inp == c.files[9]:
                 if c.files[9] in d.file:
                     p.readhex()
+            
+            if inp == c.files[10]:
+                if inp == "amethyst" and d.syntax[0] in d.file: #amesthyst
+                    print(Fore.MAGENTA+Style.BRIGHT,"* Amethyst found! +50 000 pts",end=" ")
+                    d.score+=50000
+                    d.file.remove("amethyst")
+            
+            if inp == c.files[11]:
+                if inp == "diamond" and d.syntax[0] in d.file: #diamond
+                    print(Fore.CYAN+Style.BRIGHT,"* Diamond found! +100 000 pts",end=" ")
+                    d.score+=100000
+                    d.file.remove("diamond")
                     
             if inp == "bonus" and d.syntax[0] in d.file: #bonus
                     bonusscore = random.choice(c.bonuses)

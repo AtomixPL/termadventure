@@ -1,6 +1,6 @@
 # constvars.py
 # Constant variables, tables and dicts for TermAdventure
-# Copyright (c) 2025 AtomixPL
+# Copyright (c) 2025 Atomix
 # Licensed under the GNU General Public License
 
 from colorama import Fore
@@ -16,7 +16,6 @@ class Constants:
         info = """
 Explore the seemingly infinite Linux kernel containing directories and files.
 You may find a lot of interesting things, which can give you points.
-But unknown files may delete your system (not literally), so be careful!
 There are also readme files, which can contain codes for specific programs.
 Reach layer 50 to get to the root directory. 
 For the full guidebook, check out the README file in the repository."""
@@ -64,7 +63,7 @@ cat (text file) - read the content of the text file
             "home3","udev3","tty3","sbin3","src3","lost+found3","include3","man3","log3","cache3","lock3","spool3","sda3","sdb3","sdc3","hda3","hdb3","hdc3",
             "bin4","boot4","dev4","etc4","lib4","mnt4","opt4","proc4","run4","srv4","sys4","tmp4","usr4","var4","dir4","tux4","linux4","localhost4","local4","doc4","share4",
             "tmpfs4","home4","udev4","tty4","sbin4","src4","lost+found4","include4","man4","log4","cache4","lock4","spool4","sda4","sdb4","sdc4"]   
-        files=["bonus","easteregg","readme","readme2","readme3","unknown","codex","kernelcode","chroma","hex"]
+        files=["bonus","easteregg","readme","readme2","readme3","ruby","codex","kernelcode","chroma","hex","amethyst","diamond"]
         colors=["r","g","y","b","m","c"]
         ch=["c","h","r","o","m","a"]
         coloramas=[Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN]
@@ -82,7 +81,7 @@ To do list:
 - install arch linux on first drive
 - install gentoo on second drive
         ""","i am king terry the terrible",";-)","herzlich wilkommen","no looking back","keep it simple stupid"]
-        rootpasswords=["********","123","root","admin","password","administrator","linuxthebest","excalibur","opensesame"]
+        rootpasswords=["********","123","root","admin","password","administrator","linuxthebest","excalibur","opensesame","glorytofoss"]
         bonuses = [1000,2000,3000,4000,5000]
         username = 0
         passwd = 0

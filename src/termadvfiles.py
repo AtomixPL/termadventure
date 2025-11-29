@@ -1,6 +1,6 @@
 # termadvfiles.py
 # TermAdventure in-game files and directories functions
-# Copyright (c) 2025 AtomixPL
+# Copyright (c) 2025 Atomix
 # Licensed under the GNU General Public License
 
 import random
@@ -29,10 +29,15 @@ class Files:
             print(Fore.RED+Style.BRIGHT,c.files[5],end=" ")
         if "readme" in d.file:
             print(Fore.WHITE+Style.NORMAL,c.files[2],end=" ")
-        if "d.readme2" in d.file:
+        if "readme2" in d.file:
             print(Fore.WHITE+Style.NORMAL,c.files[3],end=" ")
-        if "d.readme3" in d.file:
+        if "readme3" in d.file:
             print(Fore.WHITE+Style.NORMAL,c.files[4],end=" ")
+        if "amethyst" in d.file:
+            print(Fore.MAGENTA+Style.BRIGHT,c.files[10],end=" ")
+        if "diamond" in d.file:
+            print(Fore.CYAN+Style.BRIGHT,c.files[11],end=" ")
+        
         
     def gendirs(self,x): # If names[x] picked then move dir list contents to memory, print memory[x], for every memory[x] directory generate new content for new names[x]
         for i in range(len(d.memory[x])):
@@ -64,9 +69,16 @@ class Files:
         if d.easter_chance > 14:
             d.file.append(str(c.files[1]))
             print(Fore.YELLOW+Style.BRIGHT,c.files[1],end=" ")                      
-        if d.unknown_chance > 10:
+        if d.ruby_chance > 68:
             d.file.append(str(c.files[5]))
             print(Fore.RED+Style.BRIGHT,c.files[5],end=" ")
+        if d.amethyst_chance > 47:
+            d.file.append(str(c.files[10]))
+            print(Fore.MAGENTA+Style.BRIGHT,c.files[10],end=" ")    
+        if d.diamond_chance > 57:
+            d.file.append(str(c.files[11]))
+            print(Fore.CYAN+Style.BRIGHT,c.files[11],end=" ")
+        
         if d.readme_chance > 7:
             readmenum = random.randint(1,3)
             if readmenum == 1:
@@ -113,16 +125,16 @@ class Files:
             readmescore = random.randint(1,20)
             d.passwd_chance = random.randint(1,40)
             
-            if d.kernelcode_chance >= 33 and d.kernelsolved==False and d.kernelread==False:
+            if d.kernelcode_chance >= 37 and d.kernelsolved==False and d.kernelread==False:
                 if d.kernelread == False:
                     print(c.specialreadmetexts[0],end=" ")
-                    d.kernelcode=random.randint(111,999)
+                    d.kernelcode=random.randint(111111,999999)
                     print(d.kernelcode,end="")
                     d.readme.append(str(c.specialreadmetexts[0])+" "+str(d.kernelcode))
                     d.kernelread=True
                     d.kernelcode_chance = 0
                     
-            elif d.codex_chance >= 33 and d.codexsolved==False and d.codexread==False and d.kernelsolved==True and d.chromasolved==True:
+            elif d.codex_chance >= 37 and d.codexsolved==False and d.codexread==False and d.kernelsolved==True and d.chromasolved==True:
                 if d.codexread == False:
                     codex = dict(random.sample(list(c.latinnums.items()), 3))
                     print(c.specialreadmetexts[1])
@@ -133,7 +145,7 @@ class Files:
                     d.codexread=True
                     d.codex_chance = 0
                     
-            elif d.chroma_chance >= 33 and d.chromasolved==False and d.chromaread==False and d.kernelsolved==True:
+            elif d.chroma_chance >= 35 and d.chromasolved==False and d.chromaread==False and d.kernelsolved==True:
                 if d.chromaread == False:
                     chroma = random.sample(c.colors,len(c.colors))
                     for i in range(len(chroma)):
@@ -176,25 +188,25 @@ class Files:
     def readfile2(self):
         if not d.readme2:
             if d.kernelread==False:
-                d.kernelcode_chance = random.randint(1,20)
+                d.kernelcode_chance = random.randint(1,40)
             if d.codexread==False:
-                d.codex_chance = random.randint(1,30) 
+                d.codex_chance = random.randint(1,40) 
             if d.chromaread==False:
                 d.chroma_chance = random.randint(1,40)
             d.bonus_chance = random.randint(1,20)
             readmescore = random.randint(1,20)
             d.passwd_chance = random.randint(1,40)
             
-            if d.kernelcode_chance >= 33 and d.kernelsolved==False and d.kernelread==False:
+            if d.kernelcode_chance >= 37 and d.kernelsolved==False and d.kernelread==False:
                 if d.kernelread == False:
                     print(c.specialreadmetexts[0],end=" ")
-                    d.kernelcode=random.randint(111,999)
+                    d.kernelcode=random.randint(111111,999999)
                     print(d.kernelcode,end="")
                     d.readme2.append(str(c.specialreadmetexts[0])+" "+str(d.kernelcode))
                     d.kernelread=True
                     d.kernelcode_chance = 0
                     
-            elif d.codex_chance >= 33 and d.codexsolved==False and d.codexread==False and d.kernelsolved==True and d.chromasolved==True:
+            elif d.codex_chance >= 37 and d.codexsolved==False and d.codexread==False and d.kernelsolved==True and d.chromasolved==True:
                 if d.codexread == False:
                     codex = dict(random.sample(list(c.latinnums.items()), 3))
                     print(c.specialreadmetexts[1])
@@ -205,7 +217,7 @@ class Files:
                     d.codexread=True
                     d.codex_chance = 0
             
-            elif d.chroma_chance >= 33 and d.chromasolved==False and d.chromaread==False and d.kernelsolved==True:
+            elif d.chroma_chance >= 35 and d.chromasolved==False and d.chromaread==False and d.kernelsolved==True:
                 if d.chromaread == False:
                     chroma = random.sample(c.colors,len(c.colors))
                     for i in range(len(chroma)):
@@ -249,25 +261,25 @@ class Files:
     def readfile3(self):
         if not d.readme3:
             if d.kernelread==False:
-                d.kernelcode_chance = random.randint(1,20)
+                d.kernelcode_chance = random.randint(1,40)
             if d.codexread==False:
-                d.codex_chance = random.randint(1,30) 
+                d.codex_chance = random.randint(1,40) 
             if d.chromaread==False:
                 d.chroma_chance = random.randint(1,40)
             d.bonus_chance = random.randint(1,20)
             readmescore = random.randint(1,20)
             d.passwd_chance = random.randint(1,40)
             
-            if d.kernelcode_chance >= 33 and d.kernelsolved==False and d.kernelread==False:
+            if d.kernelcode_chance >= 37 and d.kernelsolved==False and d.kernelread==False:
                 if d.kernelread == False:
                     print(c.specialreadmetexts[0],end=" ")
-                    d.kernelcode=random.randint(111,999)
+                    d.kernelcode=random.randint(111111,999999)
                     print(d.kernelcode,end="")
                     d.readme3.append(str(c.specialreadmetexts[0])+" "+str(d.kernelcode))
                     d.kernelread=True
                     d.kernelcode_chance = 0
                     
-            elif d.codex_chance >= 33 and d.codexsolved==False and d.codexread==False and d.kernelsolved==True and d.chromasolved==True:
+            elif d.codex_chance >= 37 and d.codexsolved==False and d.codexread==False and d.kernelsolved==True and d.chromasolved==True:
                 if d.codexread == False:
                     codex = dict(random.sample(list(c.latinnums.items()), 3))
                     print(c.specialreadmetexts[1])
@@ -278,7 +290,7 @@ class Files:
                     d.codexread=True
                     d.codex_chance = 0
                 
-            elif d.chroma_chance >= 33 and d.chromasolved==False and d.chromaread==False and d.kernelsolved==True:
+            elif d.chroma_chance >= 35 and d.chromasolved==False and d.chromaread==False and d.kernelsolved==True:
                 if d.chromaread == False:
                     chroma = random.sample(c.colors,len(c.colors))
                     for i in range(len(chroma)):

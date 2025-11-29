@@ -17,24 +17,29 @@ _cd .._ - leave the directory
 _cat (text file)_ - read the content of the text file
 
 _(executable)_ - run the program or claim bonus
-## In-game executables and readme files
-Bonus - common executable, points ranging from 1000 to 5000
+## In-game bonuses and readme files
+Bonus - common bonus, points ranging from 1000 to 5000
 
-Easteregg - uncommon executable, 10 000 points
+Easteregg - uncommon bonus, 10 000 points
+
+Amethyst - rare bonus, 50 000 points
+
+Diamond - extremely rare bonus, 100 000 points
+
+Ruby - legendary bonus, 500 000 points
 
 Readme - text files, which can hint to a special program, or give you some points
 
-Unknown - mysterious file, which either does nothing, acts as a Bonus or deletes your in-game system
 ## Special progams
-Kernelcode - simple utility checking for a three-digit code, 20 000 points
+Kernelcode - simple utility checking for a six-digit code, 100 000 points
 
-Chroma - another code-checking program, which needs a specific color code, 30 000 points
+Chroma - another code-checking program, which needs a specific color code, 200 000 points
 
-Codex - Kernelcode's extrordinary latin program for a three-digit code from a latin-translated set, 50 000 points
+Codex - Kernelcode's extrordinary latin program for a three-digit code from a latin set of words, 500 000 points
 
-Hex - more advanced utility for checking a hex code iteration in a set, 100 000 points
+Hex - more advanced utility for checking a hex code iteration in a set, 1 000 000 points
 
-For solving all of these you can get extra 200 000 points.
+For solving all of these you can get extra 500 000 points.
 ## Changelog
 v0.1.0-alpha (08-07-2025) - initial release
 

@@ -1,6 +1,6 @@
 # game.py
 # TermAdventure game functions
-# Copyright (c) 2025 AtomixPL
+# Copyright (c) 2025 Atomix
 # Licensed under the GNU General Public License
 
 import os
@@ -19,60 +19,10 @@ class Game:
         for i in range (101):
             print("\r"+str(int(i/2))+"/50"+" "+int(i/2)*"=",end=">",flush=True)
             time.sleep(0.003)
-        print("\n")
-        print("Loading bonuses ... ")
-        time.sleep(0.05)
-        print("Loading eastereggs ... ")
-        time.sleep(0.1)
-        print("Loading unknown files ... ")
-        time.sleep(0.2)
-        print("Loading readme files ... ")
-        time.sleep(0.1)
-        print("Loading special programs ... ")
-        time.sleep(0.2)
         if sys.platform == "win32":
             os.system("cls")
         elif sys.platform == "linux":
             os.system("clear")
-            
-    def crash(self):
-        print("\nplayer@termadventure $ ", end="")
-        time.sleep(0.1)
-        print("sudo rm -rf /* --no-preserve-root")
-        time.sleep(0.4)
-        if sys.platform == "win32":
-            os.system("cls")
-        elif sys.platform == "linux":
-            os.system("clear")
-        time.sleep(1)
-        print(Fore.RED+Style.BRIGHT,"\r* "+Fore.WHITE+Style.NORMAL+"Game over!")
-        time.sleep(2)
-        print(Fore.BLUE,"\r*"+Fore.WHITE,"You made it to layer "+str(d.layer))
-        time.sleep(2)
-        print(Fore.BLUE,"\r*"+Fore.WHITE,"Total points collected: "+str(d.score))
-        time.sleep(2)
-        if d.kernelsolved==True:
-            print(Fore.BLUE+Style.BRIGHT,"\rkernelcode",end=" ")
-        else:
-            print(Fore.WHITE+Style.DIM,"\rkernelcode",end=" ")
-        if d.chromasolved==True:
-            for letter in c.ch:
-                print(c.colors_map2.get(letter, Fore.WHITE) + letter, end='')
-        else:
-            print(Fore.WHITE+Style.DIM,"chroma",end=" ")
-        if d.codexsolved==True:
-            print(Fore.WHITE+Style.BRIGHT,"codex ",end="")
-        else:
-            print(Fore.WHITE+Style.DIM,"codex ",end="")
-        if d.hexsolved==True:
-            print(Fore.GREEN+Style.BRIGHT,"hex",end=" ")
-        else:
-            print(Fore.WHITE+Style.DIM,"hex",end=" ")
-        if d.prgfound < 4:
-            print(Fore.BLUE+Style.NORMAL,"\n*"+Fore.WHITE,str(d.prgfound)+"/4 special programs found")
-        elif d.prgfound == 4:
-            print(Fore.YELLOW+Style.NORMAL,"\n * "+str(d.prgfound)+"/4 special programs found")
-        time.sleep(2)
         
     def finallayer(self):
         screenwidth=os.get_terminal_size().columns

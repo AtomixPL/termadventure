@@ -1,6 +1,6 @@
 # termadvprogs.py
 # TermAdventure in-game programs functions
-# Copyright (c) 2025 AtomixPL
+# Copyright (c) 2025 Atomix
 # Licensed under the GNU General Public License
 
 import time
@@ -33,9 +33,9 @@ class Programs:
                 else:
                     print("codicem invalidum ",end="")
             print("""               _
-    gratulationes! L punctorum""")
-            print("codex: +50 000 pts")
-            d.score+=30000
+gratulationes! L punctorum""")
+            print("codex: +500 000 pts")
+            d.score+=500000
             d.codexsolved=True
             d.codexread=True
             d.codexprg_chance = 0
@@ -43,15 +43,15 @@ class Programs:
             d.prgfound+=1
 
     def readkernel(self):
-        print(Fore.WHITE,"-= Kernel code check ",end="")
+        print("-= KERNEL CODE CHECK =-")
         while True:
-            inp = input("> ")
+            inp = input("Enter code here: ")
             if inp == str(d.kernelcode):
                 break
             else:
-                print(Fore.WHITE,"-= Incorrect code ",end="")
-        print("kernelcode: +20 000 pts")
-        d.score+=20000
+                print(Fore.RED,"Incorrect code ",end="")
+        print("kernelcode: +100 000 pts")
+        d.score+=100000
         d.kernelsolved=True
         d.kernelread=True
         d.kernelcodeprg_chance = 0
@@ -63,9 +63,8 @@ class Programs:
             print(color + c.chromagreeter, end='\x1b[2A'+'\r')
             time.sleep(0.1)
         print("\n\n")
-        print(Fore.WHITE,"\rEnter code: ",end="")
         while True:
-            inp = input("=> ")
+            inp = input("\rPlease enter color code: ")
             if inp == str(d.chromacode):
                 break
             else:
@@ -75,8 +74,8 @@ class Programs:
                 print(color + c.chromagj, end='\x1b[2A'+'\r')
                 time.sleep(0.03)
         print("\n\n")
-        print(Fore.WHITE+"chroma: +30 000 pts")
-        d.score+=50000
+        print(Fore.WHITE+"chroma: +200 000 pts")
+        d.score+=200000
         d.chromasolved=True
         d.chromaread=True
         d.chromaprg_chance = 0
@@ -171,14 +170,13 @@ class Programs:
         
         print(Fore.YELLOW,"\n* Correct!")
         time.sleep(0.5)
-        print(Fore.WHITE,"\rhex: 100 000 pts")
-        print('\n')
-        d.score+=100000
+        print(Fore.WHITE,"hex: 1 000 000 pts")
+        d.score+=1000000
         d.hexsolved=True
         d.solvedall=True
         d.prgfound+=1
-        print(Fore.YELLOW+Style.BRIGHT,"\r* All special programs found! +200 000 pts")
-        d.score+=200000
+        print(Fore.YELLOW+Style.BRIGHT,"\r* All special programs found! +500 000 pts")
+        d.score+=500000
         d.file.remove("hex")
 
 p = Programs()
