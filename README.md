@@ -70,3 +70,5 @@ v1.0.3 (07-10-2025) - typing a blank username is now impossible
 v1.0.4 (21-11-2025) - game code was cleaned up and constant game variables were moved to separate file
 
 v1.0.5 (24-11-2025) - game was split into five seperate .py files for organisational purposes
+
+v1.1.0 (29-11-2025) - new two bonus files, "unknown" file replaced with "ruby" bonus, shorter loading simulation, smaller kernelcode text chance and other
